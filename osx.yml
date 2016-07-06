@@ -1,0 +1,11 @@
+---
+
+- hosts: localhost
+  connection: local
+  sudo: no
+  tasks: 
+    - name: Install tools via Homebrew
+      homebrew: name={{ item }}
+      with_items: [ curl, ruby, vim, tmux, sbt, scala, leiningen, rust ]
+
+    - include: tasks/common.yml

@@ -1,0 +1,17 @@
+---
+
+- hosts: localhost
+  connection: local
+  sudo: no
+  tasks:
+    - name: Install tools via aptitude
+      apt: name={{ item }}
+           update_cache=yes
+      with_items: [ curl, ruby, vim, tmux, sbt, scala ]
+
+    - name: Install Rust
+      shell: curl -sSf https://static.rust-lang.org/rustup.sh | sh
+    
+    - include: tasks/leiningen.yml
+
+    - include: tasks/common.yml

@@ -1,0 +1,22 @@
+---
+
+- name: Install tmuxinator
+  gem: name=tmuxinator
+
+- name: Install Vundle
+  git: repo=https://github.com/VundleVim/Vundle.vim.git
+       dest=~/.vim/bundle/Vundle.vim
+
+- name: Install ViM plugins
+  shell: vim +PluginInstall +qall
+
+- name: Pull down dotfile repo
+  git: repo=https://github.com/mookle/dotfiles.git
+       dest=~/src/dotfiles
+
+- name: Install dotfiles
+  expect:
+    command: install.sh
+    chdir: ~/src/dotfiles
+    responses:
+        (?i)(Continue\? \[y/N\]:): "y"

@@ -1,0 +1,8 @@
+---
+
+- include: java.yml
+
+- name: Install Leiningen
+  shell: curl -sSf https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein | bash # Requires java
+  args:
+    executable: /bin/bash
