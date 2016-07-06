@@ -1,6 +1,6 @@
 #!/bin/bash
 
-readonly PROVISION_DIR="$(HOME)/src/lowpro"
+readonly PROVISION_DIR="$HOME/src/lowpro"
 
 osx_setup() {
     playbook=osx.yml
