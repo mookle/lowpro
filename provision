@@ -1,4 +1,4 @@
-#/etc/bin/bash
+#!/bin/bash
 
 readonly PROVISION_DIR="$(HOME)/src/lowpro"
 
