@@ -11,7 +11,7 @@ osx_setup() {
 
 linux_setup() {
     playbook=linux.yml
-    sudo apt-get update -y
+    sudo apt-get update -y 
     sudo apt-get install git ansible -y
 }
 
