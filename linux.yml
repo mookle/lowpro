@@ -2,18 +2,22 @@
 
 - hosts: localhost
   connection: local
-  sudo: no
+  pre_tasks:
+    - include_vars: "{{ item }}"
+      with_first_found:
+        - tasks/vars.yml
   tasks:
     - name: Install tools via aptitude
       apt: name={{ item }}
            update_cache=yes
       with_items: [ curl, ruby, vim, tmux, scala ]
+      become: true
 
     - name: Install Rust
       shell: curl -sSf https://static.rust-lang.org/rustup.sh | sh
 
     - include: tasks/sbt.yml
-    
-    - include: tasks/leiningen.yml
+
+    - include: tasks/lein.yml
 
     - include: tasks/common.yml

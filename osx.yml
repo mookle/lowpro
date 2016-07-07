@@ -2,7 +2,10 @@
 
 - hosts: localhost
   connection: local
-  sudo: no
+  pre_tasks:
+    - include_vars: "{{ item }}"
+      with_first_found:
+        - tasks/vars.yml
   tasks: 
     - name: Install tools via Homebrew
       homebrew: name={{ item }}

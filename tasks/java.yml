@@ -2,6 +2,7 @@
 
 - name: Add WebUpd8 apt repo
   apt_repository: repo='ppa:webupd8team/java'
+  become: true
 
 - name: Accept Java license
   debconf: name=oracle-java8-installer
@@ -11,8 +12,9 @@
 
 - name: Update apt_cache
   apt: update_cache=yes
+  become: true
 
-- name: Install Java 8
+- name: Install Java
   apt: name=oracle-java8-installer
        state=latest
 
