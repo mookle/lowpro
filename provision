@@ -9,8 +9,8 @@ osx_setup() {
     brew install git ansible
 }
 
-linux_setup() {
-    playbook=linux.yml
+ubuntu_setup() {
+    playbook=ubuntu.yml
     sudo apt-get update -y
     sudo apt-get install git ansible -y
 }
@@ -18,7 +18,7 @@ linux_setup() {
 # Install prerequisites for provisioning
 case $(uname) in
     Darwin) osx_setup;;
-    Linux ) linux_setup;;
+    Linux ) ubuntu_setup;;
     *     ) echo 'Aborting: Unsupported operating system'
             exit;;
 esac
