@@ -1,0 +1,28 @@
+---
+
+- name: "Download Rust {{ rust_version }}"
+  get_url: >
+    url=https://static.rust-lang.org/dist/{{ rust_id }}.tar.gz
+    dest={{ rust_dir }}/{{ rust_id }}.tar.gz
+    checksum={{ rust_sha256sum }}
+
+- name: Uncompress Rust archive
+  unarchive: >
+    src={{ rust_dir }}/{{ rust_id }}.tar.gz
+    dest={{ rust_dir }}
+    copy=no
+
+- name: Install Rust
+  command: "{{ rust_dir }}/{{ rust_id }}/install.sh"
+  args:
+    creates: /usr/local/lib/rustlib/uninstall.sh
+  become: true
+
+- name: Clean-up Rust install artifacts
+  file: >
+    path={{ item }}
+    state=absent
+  with_items:
+    - "{{ rust_dir }}/{{ rust_id }}.tar.gz"
+    - "{{ rust_dir }}/{{ rust_id }}"
+

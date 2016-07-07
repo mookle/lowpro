@@ -13,8 +13,7 @@
       with_items: [ curl, ruby, vim, tmux, scala ]
       become: true
 
-    - name: Install Rust
-      shell: curl -sSf https://static.rust-lang.org/rustup.sh | sh
+    - include: tasks/rust.yml rust_dir={{ ansible_env.HOME }}
 
     - include: tasks/sbt.yml
 
