@@ -9,6 +9,7 @@
            question='shared/accepted-oracle-license-v1-1'
            value=true
            vtype=select
+  become: true
 
 - name: Update apt_cache
   apt: update_cache=yes
@@ -17,7 +18,9 @@
 - name: Install Java
   apt: name=oracle-java8-installer
        state=latest
+  become: true
 
 - name: Set Java environment variables
   apt: name=oracle-java8-set-default
        state=latest
+  become: true
