@@ -6,7 +6,7 @@
     dest={{ ansible_env.HOME }}/sbt-0.13.7.deb
 
 - name: Unpack sbt deb
-  shell: dpkg -i sbt-0.13.7.deb
+  shell: "dpkg -i {{ ansible_env.HOME }}/sbt-0.13.7.deb"
   become: true
 
 - name: Cleanup deb
