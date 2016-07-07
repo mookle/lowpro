@@ -18,11 +18,7 @@
     creates: /usr/local/lib/rustlib/uninstall.sh
   become: true
 
-- name: Clean-up Rust install artifacts
+- name: Clean-up extracted Rust files
   file: >
-    path={{ item }}
+    path={{ rust_dir }}/{{ rust_id }}
     state=absent
-  with_items:
-    - "{{ rust_dir }}/{{ rust_id }}.tar.gz"
-    - "{{ rust_dir }}/{{ rust_id }}"
-

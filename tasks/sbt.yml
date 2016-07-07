@@ -8,8 +8,3 @@
 - name: Unpack sbt deb
   shell: "dpkg -i {{ ansible_env.HOME }}/sbt-0.13.7.deb"
   become: true
-
-- name: Cleanup deb
-  file: >
-    path={{ ansible_env.HOME }}/sbt-0.13.7.deb
-    state=absent
