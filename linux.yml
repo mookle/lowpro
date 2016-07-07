@@ -7,10 +7,12 @@
     - name: Install tools via aptitude
       apt: name={{ item }}
            update_cache=yes
-      with_items: [ curl, ruby, vim, tmux, sbt, scala ]
+      with_items: [ curl, ruby, vim, tmux, scala ]
 
     - name: Install Rust
       shell: curl -sSf https://static.rust-lang.org/rustup.sh | sh
+
+    - include: tasks/sbt.yml
     
     - include: tasks/leiningen.yml
 
