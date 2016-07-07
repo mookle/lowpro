@@ -1,12 +1,15 @@
 ---
 
-- name: Add sbt apt repo
-  apt_repository: repo='deb https://dl.bintray.com/sbt/debian /'
+- name: Download sbt deb file
+  get_url: >
+    url=https://dl.bintray.com/sbt/debian/sbt-0.13.11.deb
+    dest={{ ansible_env.HOME }}/sbt-0.13.7.deb
 
-- name: Add sbt key
-  apt_key: id=642AC823 keyserver='hkp://keyserver.ubuntu.com:80'
-
-- name: Install sbt
-  apt: name=sbt update_cache=yes
+- name: Unpack sbt deb
+  shell: dpkg -i sbt-0.13.7.deb
   become: true
 
+- name: Cleanup deb
+  file: >
+    path={{ ansible_env.HOME }}/sbt-0.13.7.deb
+    state=absent
