@@ -1,6 +1,13 @@
 ---
 
-- include: java.yml
+- name: Download Leiningen stable
+  get_url: >
+    url=https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein
+    dest=/usr/local/bin
+  become: true
 
-- name: Install Leiningen
-  shell: curl -sSf https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein | bash
+- name: Ensure script is executable
+  file: >
+    path=/usr/local/bin/lein
+    mode=0755
+  become: true

@@ -17,6 +17,8 @@
 
     - include: tasks/sbt.yml
 
+    - include: tasks/java.yml
+
     - include: tasks/lein.yml
 
     - include: tasks/common.yml
