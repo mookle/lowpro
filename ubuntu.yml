@@ -10,13 +10,12 @@
     - { role: rust, tags: [ rust ] }
     - { role: sbt, tags: [ sbt ] }
     - { role: java, tags: [ java ] }
+    - { role: lein, tags: [ lein ] }
   tasks:
     - name: Install tools via aptitude
       apt: name={{ item }}
            update_cache=yes
       with_items: [ curl, ruby, vim, tmux, scala ]
       become: true
-
-    - include: tasks/lein.yml
 
     - include: tasks/common.yml

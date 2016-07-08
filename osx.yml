@@ -10,9 +10,10 @@
     - { role: rust, tags: [ rust ] }
     - { role: sbt, tags: [ sbt ] }
     - { role: java, tags: [ java ] }
+    - { role: lein, tags: [ lein ] }
   tasks:
     - name: Install tools via Homebrew
       homebrew: name={{ item }}
-      with_items: [ curl, ruby, vim, tmux, scala, leiningen ]
+      with_items: [ curl, ruby, vim, tmux, scala ]
 
     - include: tasks/common.yml
