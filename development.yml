@@ -1,0 +1,15 @@
+---
+
+- hosts: localhost
+  connection: local
+  roles:
+    - { role: rust, tags: [ rust ] }
+    - { role: sbt, tags: [ sbt ] }
+    - { role: java, tags: [ java ] }
+    - { role: lein, tags: [ lein ] }
+    - { role: curl, tags: [ curl ] }
+    - { role: ruby, tags: [ ruby ] }
+    - { role: vim, tags: [ vim ] }
+    - { role: tmux, tags: [ tmux ] }
+    - { role: scala, tags: [ scala ] }
+    - { role: common, tags: [ common ] }

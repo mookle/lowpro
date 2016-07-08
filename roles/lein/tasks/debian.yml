@@ -1,0 +1,13 @@
+---
+
+- name: download {{ lein_branch }}
+  get_url: >
+    url=https://raw.githubusercontent.com/technomancy/leiningen/{{ lein_branch }}/bin/lein
+    dest={{ lein_install_dir }}
+  become: true
+
+- name: ensure script is executable
+  file: >
+    path={{ lein_install_dir }}/lein
+    mode=0755
+  become: true

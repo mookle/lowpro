@@ -1,0 +1,19 @@
+---
+
+- name: "download {{ rust_version }}"
+  get_url: >
+    url=https://static.rust-lang.org/dist/{{ rust_build_name }}.tar.gz
+    dest={{ rust_download_dir }}/{{ rust_build_name }}.tar.gz
+    checksum={{ rust_checksum }}
+
+- name: extract tarball
+  unarchive: >
+    src={{ rust_download_dir }}/{{ rust_build_name }}.tar.gz
+    dest={{ rust_download_dir }}
+    copy=no
+
+- name: run install script
+  command: "{{ rust_download_dir }}/{{ rust_build_name }}/install.sh"
+  args:
+    creates: /usr/local/lib/rustlib/uninstall.sh
+  become: true
