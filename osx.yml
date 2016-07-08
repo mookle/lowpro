@@ -6,9 +6,11 @@
     - include_vars: "{{ item }}"
       with_first_found:
         - tasks/vars.yml
-  tasks: 
+  roles:
+      - { role: rust, tags: [ rust ] }
+  tasks:
     - name: Install tools via Homebrew
       homebrew: name={{ item }}
-      with_items: [ curl, ruby, vim, tmux, sbt, scala, leiningen, rust ]
+      with_items: [ curl, ruby, vim, tmux, sbt, scala, leiningen ]
 
     - include: tasks/common.yml

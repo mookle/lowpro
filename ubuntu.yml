@@ -6,14 +6,14 @@
     - include_vars: "{{ item }}"
       with_first_found:
         - tasks/vars.yml
+  roles:
+      - { role: rust, tags: [ rust ] }
   tasks:
     - name: Install tools via aptitude
       apt: name={{ item }}
            update_cache=yes
       with_items: [ curl, ruby, vim, tmux, scala ]
       become: true
-
-    - include: tasks/rust.yml rust_dir={{ ansible_env.HOME }}
 
     - include: tasks/sbt.yml
 
