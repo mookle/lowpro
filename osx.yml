@@ -8,9 +8,10 @@
         - tasks/vars.yml
   roles:
       - { role: rust, tags: [ rust ] }
+      - { role: sbt, tags: [ sbt ] }
   tasks:
     - name: Install tools via Homebrew
       homebrew: name={{ item }}
-      with_items: [ curl, ruby, vim, tmux, sbt, scala, leiningen ]
+      with_items: [ curl, ruby, vim, tmux, scala, leiningen ]
 
     - include: tasks/common.yml

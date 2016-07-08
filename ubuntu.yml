@@ -8,14 +8,13 @@
         - tasks/vars.yml
   roles:
       - { role: rust, tags: [ rust ] }
+      - { role: sbt, tags: [ sbt ] }
   tasks:
     - name: Install tools via aptitude
       apt: name={{ item }}
            update_cache=yes
       with_items: [ curl, ruby, vim, tmux, scala ]
       become: true
-
-    - include: tasks/sbt.yml
 
     - include: tasks/java.yml
 

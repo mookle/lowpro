@@ -1,0 +1,4 @@
+---
+
+sbt_version: 0.13.11
+sbt_download_dir: "{{ ansible_env.HOME }}"
