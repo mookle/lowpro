@@ -7,8 +7,9 @@
       with_first_found:
         - tasks/vars.yml
   roles:
-      - { role: rust, tags: [ rust ] }
-      - { role: sbt, tags: [ sbt ] }
+    - { role: rust, tags: [ rust ] }
+    - { role: sbt, tags: [ sbt ] }
+    - { role: java, tags: [ java ] }
   tasks:
     - name: Install tools via Homebrew
       homebrew: name={{ item }}

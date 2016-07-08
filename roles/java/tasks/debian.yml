@@ -1,0 +1,29 @@
+---
+
+- name: add WebUpd8 repo to apt
+  apt_repository: repo='ppa:webupd8team/java'
+  become: true
+
+- name: accept Java license
+  debconf: >
+    name=oracle-java8-installer
+    question='shared/accepted-oracle-license-v1-1'
+    value=true
+    vtype=select
+  become: true
+
+- name: update apt_cache
+  apt: update_cache=yes
+  become: true
+
+- name: install
+  apt: >
+    name=oracle-java8-installer
+    state=latest
+  become: true
+
+- name: set environment variables
+  apt: >
+    name=oracle-java8-set-default
+    state=latest
+  become: true
