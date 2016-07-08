@@ -1,0 +1,9 @@
+---
+
+- name: install package
+  apt: >
+    name=curl
+    state=present
+    update_cache=yes
+  become: true
+

@@ -11,8 +11,9 @@
     - { role: sbt, tags: [ sbt ] }
     - { role: java, tags: [ java ] }
     - { role: lein, tags: [ lein ] }
+    - { role: curl, tags: [ curl ] }
+    - { role: ruby, tags: [ ruby ] }
+    - { role: vim, tags: [ vim ] }
+    - { role: tmux, tags: [ tmux ] }
+    - { role: scala, tags: [ scala ] }
     - common
-  tasks:
-    - name: Install tools via Homebrew
-      homebrew: name={{ item }}
-      with_items: [ curl, ruby, vim, tmux, scala ]
