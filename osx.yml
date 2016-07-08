@@ -11,9 +11,8 @@
     - { role: sbt, tags: [ sbt ] }
     - { role: java, tags: [ java ] }
     - { role: lein, tags: [ lein ] }
+    - common
   tasks:
     - name: Install tools via Homebrew
       homebrew: name={{ item }}
       with_items: [ curl, ruby, vim, tmux, scala ]
-
-    - include: tasks/common.yml
