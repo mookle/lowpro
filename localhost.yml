@@ -4,8 +4,8 @@
   connection: local
   roles:
     - { role: rust, tags: [ rust ] }
-    - { role: sbt, tags: [ sbt ] }
     - { role: java, tags: [ java ] }
+    - { role: sbt, tags: [ sbt ] }
     - { role: lein, tags: [ lein ] }
     - { role: curl, tags: [ curl ] }
     - { role: ruby, tags: [ ruby ] }
