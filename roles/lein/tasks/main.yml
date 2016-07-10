@@ -2,6 +2,14 @@
 
 - include: debian.yml
   when: ansible_os_family == 'Debian'
+  tags: [ package ]
 
 - include: darwin.yml
   when: ansible_os_family == 'Darwin'
+  tags: [ package ]
+
+- name: copy config file
+  copy: >
+    src=files/profiles.clj
+    dest={{ lein_config_dir }}/profiles.clj
+  tags: [ config ]
