@@ -8,6 +8,13 @@
   when: ansible_os_family == 'Darwin'
   tags: [ package ]
 
+- name: ensure config directory exists
+  file: >
+    path={{ haskell_config_dir }}
+    recurse=yes
+    state=directory
+  tags: [ config ]
+
 - name: copy config
   copy: >
     src=files/.ghci
