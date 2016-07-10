@@ -4,4 +4,3 @@
   homebrew: >
     name=vim
     state=present
-

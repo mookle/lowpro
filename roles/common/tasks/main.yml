@@ -25,17 +25,3 @@
     regexp='^(    email = ).*'
     line="\1{{ email }}"
     backrefs=yes
-
-- name: Install Vundle
-  git: repo=https://github.com/VundleVim/Vundle.vim.git
-       dest={{ ansible_env.HOME }}/.vim/bundle/Vundle.vim
-       accept_hostkey=yes
-
-- name: Install autobot theme
-  git: repo=https://github.com/mookle/autobot.vim.git
-       dest={{ ansible_env.HOME }}/.vim/bundle/autobot.vim
-       accept_hostkey=yes
-
-- name: Install ViM plugins
-  shell: vim +PluginInstall +qall
-

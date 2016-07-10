@@ -2,7 +2,32 @@
 
 - include: debian.yml
   when: ansible_os_family == 'Debian'
+  tags: [ package ]
 
 - include: darwin.yml
   when: ansible_os_family == 'Darwin'
+  tags: [ package ]
 
+- name: copy config file
+  copy: >
+    src=files/.vimrc
+    dest={{ vim_config_dir }}/.vimrc
+  tags: [ config ]
+
+- name: install Vundle
+  git: >
+    repo=https://github.com/VundleVim/Vundle.vim.git
+    dest={{ vim_bundle_dir }}/Vundle.vim
+    accept_hostkey=yes
+  tags: [ config ]
+
+- name: install autobot theme
+  git: >
+    repo=https://github.com/mookle/autobot.vim.git
+    dest={{ vim_bundle_dir }}/autobot.vim
+    accept_hostkey=yes
+  tags: [ config ]
+
+- name: install plugins
+  shell: vim +PluginInstall +qall
+  tags: [ config ]
