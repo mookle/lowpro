@@ -2,7 +2,14 @@
 
 - include: debian.yml
   when: ansible_os_family == 'Debian'
+  tags: [ package ]
 
 - include: darwin.yml
   when: ansible_os_family == 'Darwin'
+  tags: [ package ]
 
+- name: copy curl output-formatting template
+  copy: >
+    src=files/.curl_format
+    dest={{ ansible_env.HOME }}/.curl_format
+  tags: [ config ]
