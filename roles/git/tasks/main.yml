@@ -1,0 +1,15 @@
+---
+
+- include: debian.yml
+  when: ansible_os_family == 'Debian'
+  tags: [ package ]
+
+- include: darwin.yml
+  when: ansible_os_family == 'Darwin'
+  tags: [ package ]
+
+- name: copy config file
+  template: >
+    src=templates/gitconfig.j2
+    dest={{ git_config_dir }}/.gitconfig
+  tags: [ config ]

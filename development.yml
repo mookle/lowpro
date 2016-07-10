@@ -12,4 +12,5 @@
     - { role: vim, tags: [ vim ] }
     - { role: tmux, tags: [ tmux ] }
     - { role: scala, tags: [ scala ] }
+    - { role: git, tags: [ git ] }
     - { role: common, tags: [ common ] }

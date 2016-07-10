@@ -18,10 +18,3 @@
     chdir: "{{ ansible_env.HOME }}/src/dotfiles"
     responses:
         (\[y/N\]): "y"
-
-- name: Setup .gitconfig
-  lineinfile: >
-    dest={{ ansible_env.HOME }}/.gitconfig
-    regexp='^(    email = ).*'
-    line="\1{{ email }}"
-    backrefs=yes
