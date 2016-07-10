@@ -10,5 +10,5 @@
 - name: copy ssh config
   copy: >
     src=files/ssh_config
-    src={{ ssh_config_dir }}/config
+    dest={{ ssh_config_dir }}/config
   tags: [ config ]
