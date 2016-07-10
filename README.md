@@ -1,6 +1,6 @@
 # Lowpro
 
-Quickly and easily setup my development environment on a local machine. Intended for use on OSX or Ubuntu systems.
+Quickly and easily setup various development tools on a local machine. Intended for use on OSX or Ubuntu systems.
 
 ## Usage
 
@@ -8,7 +8,7 @@ Quickly and easily setup my development environment on a local machine. Intended
 
 ## What's happening here?
 
-The `./provision` script installs some dependancies, clones this repo, then utilises `ansible-playbook` to ensure all the programs exist and are correctly configured.
+The `./provision` script installs some dependancies, clones this repo, then uses Ansible to ensure all the programs exist and are correctly configured.
 
 ### Installed programs
 
@@ -25,7 +25,4 @@ The `./provision` script installs some dependancies, clones this repo, then util
 - java (Ubuntu only)
 - leiningen
 - rust
-
-### Configuration
-
-Configuration is currently handled by the inclusion of [mookle/dotfiles](https://github.com/mookle/dotfiles); check there to see exactly what will be configured.
+- haskell

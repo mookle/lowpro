@@ -1,0 +1,4 @@
+---
+
+vim_config_dir: "{{ ansible_env.HOME }}"
+vim_bundle_dir: "{{ ansible_env.HOME }}/.vim/bundle"

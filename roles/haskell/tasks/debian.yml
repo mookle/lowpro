@@ -2,7 +2,7 @@
 
 - name: install package
   apt: >
-    name=vim
+    name=haskell-platform
     state=present
     update_cache=yes
   become: true

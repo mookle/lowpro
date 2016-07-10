@@ -1,0 +1,6 @@
+Host github.com
+User git
+IdentityFile ~/.ssh/id_rsa
+
+Host coriandr.com
+IdentityFile ~/.ssh/id_rsa_coriandr

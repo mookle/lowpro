@@ -4,12 +4,15 @@
   connection: local
   roles:
     - { role: rust, tags: [ rust ] }
-    - { role: sbt, tags: [ sbt ] }
     - { role: java, tags: [ java ] }
+    - { role: sbt, tags: [ sbt ] }
     - { role: lein, tags: [ lein ] }
     - { role: curl, tags: [ curl ] }
     - { role: ruby, tags: [ ruby ] }
     - { role: vim, tags: [ vim ] }
     - { role: tmux, tags: [ tmux ] }
     - { role: scala, tags: [ scala ] }
-    - { role: common, tags: [ common ] }
+    - { role: git, tags: [ git ] }
+    - { role: bash, tags: [ bash ] }
+    - { role: ssh, tags: [ ssh ] }
+    - { role: haskell, tags: [ haskell ] }

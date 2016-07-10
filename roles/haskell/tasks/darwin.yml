@@ -2,5 +2,5 @@
 
 - name: install package
   homebrew: >
-    name=vim
+    name=haskell-stack
     state=present

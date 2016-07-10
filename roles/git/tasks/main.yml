@@ -10,13 +10,13 @@
 
 - name: ensure config directory exists
   file: >
-    path={{ lein_config_dir }}
+    path={{ git_config_dir }}
     recurse=yes
     state=directory
   tags: [ config ]
 
 - name: copy config file
-  copy: >
-    src=files/profiles.clj
-    dest={{ lein_config_dir }}/profiles.clj
+  template: >
+    src=templates/gitconfig.j2
+    dest={{ git_config_dir }}/.gitconfig
   tags: [ config ]

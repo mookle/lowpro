@@ -2,7 +2,34 @@
 
 - include: debian.yml
   when: ansible_os_family == 'Debian'
+  tags: [ package ]
 
 - include: darwin.yml
   when: ansible_os_family == 'Darwin'
+  tags: [ package ]
 
+- name: ensure config directories exists
+  file: >
+    path={{ item }}
+    recurse=yes
+    state=directory
+  with_items:
+    - "{{ tmux_config_dir }}"
+    - "{{ tmuxinator_template_dir }}"
+  tags: [ config ]
+
+- name: copy config file
+  copy: >
+    src=files/.tmux.conf
+    dest={{ tmux_config_dir }}/.tmux.conf
+  tags: [ config ]
+
+- name: install tmuxinator
+  gem: name=tmuxinator
+  tags: [ package ]
+
+- name: copy default tmuxinator template
+  copy: >
+    src=files/tmuxinator_template.yml
+    dest={{ tmuxinator_template_dir }}/template.yml
+  tags: [ config ]

@@ -10,13 +10,13 @@
 
 - name: ensure config directory exists
   file: >
-    path={{ lein_config_dir }}
+    path={{ haskell_config_dir }}
     recurse=yes
     state=directory
   tags: [ config ]
 
-- name: copy config file
+- name: copy config
   copy: >
-    src=files/profiles.clj
-    dest={{ lein_config_dir }}/profiles.clj
+    src=files/.ghci
+    dest={{ haskell_config_dir }}/.ghci
   tags: [ config ]
