@@ -13,3 +13,13 @@
     src=files/.tmux.conf
     dest={{ tmux_config_dir }}/.tmux.conf
   tags: [ config ]
+
+- name: install tmuxinator
+  gem: name=tmuxinator
+  tags: [ package ]
+
+- name: copy default tmuxinator template
+  copy: >
+    src=files/tmuxinator_template.yml
+    dest={{ tmuxinator_template_dir }}/template.yml
+  tags: [ config ]

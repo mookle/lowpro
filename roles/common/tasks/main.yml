@@ -1,8 +1,5 @@
 ---
 
-- name: Install tmuxinator
-  gem: name=tmuxinator
-
 - name: Pull down dotfile repo
   git: repo=https://github.com/mookle/dotfiles.git
        dest={{ ansible_env.HOME }}/src/dotfiles

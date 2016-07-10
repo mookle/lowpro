@@ -1,3 +1,4 @@
 ---
 
 tmux_config_dir: "{{ ansible_env.HOME }}"
+tmuxinator_template_dir: "{{ ansible_env.HOME }}/.tmuxinator"
