@@ -2,7 +2,14 @@
 
 - include: debian.yml
   when: ansible_os_family == 'Debian'
+  tags: [ package ]
 
 - include: darwin.yml
   when: ansible_os_family == 'Darwin'
+  tags: [ package ]
 
+- name: copy config file
+  copy: >
+    src=files/.tmux.conf
+    dest={{ tmux_config_dir }}/.tmux.conf
+  tags: [ config ]
