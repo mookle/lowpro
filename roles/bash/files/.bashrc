@@ -23,17 +23,9 @@ shopt -s checkwinsize
 # Handy aliases
 [[ -f ~/.bash_aliases ]] && . ~/.bash_aliases
 
-# Tab completion for OSX
-if type "brew" &> /dev/null; then
-    brew_file=$(brew --prefix)/etc/bash_completion
-    [[ -f $brew_file ]] && . $brew_file
-# Tab completion for Ubuntu
-elif [[ -f /etc/bash_completion ]]; then
-    . /etc/bash_completion
-fi
-
 # Ensure a default EDITOR is defined
 export EDITOR="vim"
 
 # Better prompt
 PS1="\u@\H:\w\[\e[32;40m\]\$(__git_ps1)\[\e[0m\]\$ "
+

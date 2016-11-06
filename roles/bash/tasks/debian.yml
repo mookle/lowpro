@@ -1,0 +1,16 @@
+---
+
+- name: install bash completion
+  apt: >
+    name=bash-completion
+    state=present
+  become: true
+
+- name: add completion to .bashrc
+  blockinfile:
+    dest: "{{ bash_config_dir }}/.bashrc"
+    block: |
+      # Tab completion
+      if [[ -f /etc/bash_completion ]]; then
+          . /etc/bash_completion
+      fi

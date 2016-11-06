@@ -24,3 +24,11 @@
     src=files/.bash_aliases
     dest={{ bash_config_dir }}/.bash_aliases
   tags: [ config ]
+
+- include: debian.yml
+  when: ansible_os_family == 'Debian'
+  tags: [ package ]
+
+- include: darwin.yml
+  when: ansible_os_family == 'Darwin'
+  tags: [ package ]
