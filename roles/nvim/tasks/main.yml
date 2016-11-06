@@ -1,0 +1,23 @@
+---
+
+- include: debian.yml
+  when: ansible_os_family == 'Debian'
+  tags: [ package ]
+
+- include: darwin.yml
+  when: ansible_os_family == 'Darwin'
+  tags: [ package ]
+
+- name: ensure config directory exists
+  file: >
+    path={{ nvim_config_dir }}
+    recurse=yes
+    state=directory
+  tags: [ config ]
+
+- name: link to existing ViM config file
+  file: >
+    src={{ vim_config_dir }}/.vimrc
+    name={{ nvim_config_dir }}/init.vim
+    state=link
+  tags: [ config ]
