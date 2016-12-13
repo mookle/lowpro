@@ -17,3 +17,4 @@
     - { role: bash, tags: [ bash ] }
     - { role: ssh, tags: [ ssh ] }
     - { role: haskell, tags: [ haskell ] }
+    - { role: vagrant, tags: [ vagrant ] }
