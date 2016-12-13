@@ -18,3 +18,4 @@
     - { role: ssh, tags: [ ssh ] }
     - { role: haskell, tags: [ haskell ] }
     - { role: vagrant, tags: [ vagrant ] }
+    - { role: virtualbox, tags: [ virtualbox ] }

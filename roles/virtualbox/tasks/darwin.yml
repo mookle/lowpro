@@ -1,0 +1,6 @@
+---
+
+- name: install package
+  homebrew_cask: >
+    name=virtualbox
+    state=present
