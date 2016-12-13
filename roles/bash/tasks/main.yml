@@ -3,7 +3,6 @@
 - name: ensure config directory exists
   file: >
     path={{ bash_config_dir }}
-    recurse=yes
     state=directory
   tags: [ config ]
 

@@ -11,7 +11,6 @@
 - name: ensure config directories exists
   file: >
     path={{ item }}
-    recurse=yes
     state=directory
   with_items:
     - "{{ tmux_config_dir }}"
