@@ -1,0 +1,6 @@
+---
+
+- name: install watch util
+  homebrew: >
+    name=watch
+    state=present

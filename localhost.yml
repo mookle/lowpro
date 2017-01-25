@@ -19,3 +19,4 @@
     - { role: haskell, tags: [ haskell ] }
     - { role: vagrant, tags: [ vagrant ] }
     - { role: virtualbox, tags: [ virtualbox ] }
+    - { role: watch, tags: [ watch ] }
