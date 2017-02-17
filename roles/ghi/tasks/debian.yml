@@ -1,0 +1,7 @@
+---
+
+- name: install ghi
+  gem: >
+    name=ghi
+    state=present
+  become: true

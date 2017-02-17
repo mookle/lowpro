@@ -1,6 +1,6 @@
 # Lowpro
 
-Quickly and easily setup various development tools on a local machine. Intended for use on OSX or Ubuntu systems.
+Basic provisioning for my development environment. Intended for use on OSX or Ubuntu systems.
 
 ## Usage
 
@@ -8,21 +8,35 @@ Quickly and easily setup various development tools on a local machine. Intended 
 
 ## What's happening here?
 
-The `./provision` script installs some dependancies, clones this repo, then uses Ansible to ensure all the programs exist and are correctly configured.
+The `./provision` script installs some platform-specific dependancies, clones this repo, then uses Ansible to ensure all the programs exist and are correctly configured. The installed / configured programs are:
 
-### Installed programs
-
-- homebrew (OSX only)
-- git
-- ansible
-- curl
-- ruby
-- vim
-- tmux
-- tmuxinator
-- sbt
-- scala
-- java (Ubuntu only)
+### Languages
 - leiningen
+- scala
+- sbt
 - rust
 - haskell
+- java
+- ruby
+
+### Editors
+- vim
+- nvim
+
+### Version Control
+- git
+- ghi (https://github.com/stephencelis/ghi)
+
+### Infrastructure / provisioning
+- ansible
+- homebrew
+- vagrant
+- virtualbox
+- bash
+
+### Utilities
+- curl
+- ssh
+- tmux
+- tmuxinator (https://github.com/tmuxinator/tmuxinator)
+- watch
