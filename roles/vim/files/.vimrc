@@ -52,6 +52,12 @@ let g:ctrlp_clear_cache_on_exit= 1     " maintain cache between vim sessions
 let g:ctrlp_open_multiple_files = 'i' " open multiple files as hidden buffers
 let g:ctrlp_mruf_max = 15             " limit the number of recently-used files CtrlP should remember
 let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files --exclude-standard -co'] " faster indexing
+if executable('ag')
+    set grepprg=ag\ --nogroup\ --nocolor
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+    let g:ctrlp_use_caching = 0
+endif
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " Vim Markdown
 let g:vim_markdown_folding_disabled=1 " disable folding
@@ -88,6 +94,8 @@ Plugin 'gmarik/Vundle.vim' " required
 Plugin 'sjl/vitality.vim'
 " CtrlP (fuzzy file-finder)
 Plugin 'kien/ctrlp.vim'
+" Better auto-completion
+Plugin 'Valloric/YouCompleteMe'
 " Display git diff notation in the gutter
 Plugin 'airblade/vim-gitgutter'
 " File renaming (saveas and delete old)
@@ -113,6 +121,8 @@ Plugin 'tpope/vim-fireplace'
 Plugin 'venantius/vim-cljfmt'
 Plugin 'guns/vim-sexp'
 Plugin 'tpope/vim-sexp-mappings-for-regular-people'
+" Elixir integration
+Plugin 'elixir-lang/vim-elixir'
 " Colorschemes
 Plugin 'vim-scripts/devbox-dark-256'
 Plugin 'mookle/autobot.vim'
