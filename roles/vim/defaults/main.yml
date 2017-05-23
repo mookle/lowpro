@@ -1,4 +1,41 @@
 ---
 
 vim_config_dir: "{{ ansible_env.HOME }}"
-vim_bundle_dir: "{{ ansible_env.HOME }}/.vim/bundle"
+vim_plugin_dir: "{{ ansible_env.HOME }}/.vim/plugged"
+vim_vim_plug_dir: "{{ ansible_env.HOME }}/.vim/autoload"
+vim_plugins:
+    # Restores Focus(Lost|Gained) when using iTerm & tmux
+  - 'sjl/vitality.vim'
+    # CtrlP (fuzzy file-finder)
+  - 'kien/ctrlp.vim'
+    # Better auto-completion
+  - 'Valloric/YouCompleteMe'
+    # Display git diff notation in the gutter
+  - 'airblade/vim-gitgutter'
+    # File renaming (saveas and delete old)
+  - 'vim-scripts/Rename'
+    # Multiline editing
+  - 'terryma/vim-multiple-cursors'
+    # Better status line
+  - 'vim-airline/vim-airline'
+  - 'vim-airline/vim-airline-themes'
+    # Syntax highlighting
+  - 'estin/htmljinja'
+  - 'godlygeek/tabular' # required by plasticboy/vim-markdown
+  - 'plasticboy/vim-markdown'
+  - 'leshill/vim-json'
+  - 'StanAngeloff/php.vim'
+  - 'derekwyatt/vim-scala'
+  - 'rust-lang/rust.vim'
+    # Clojure integration
+  - 'guns/vim-clojure-static'
+  - 'tpope/vim-fireplace'
+  - 'venantius/vim-cljfmt'
+  - 'guns/vim-sexp'
+  - 'tpope/vim-sexp-mappings-for-regular-people'
+    # Elixir integration
+  - 'elixir-lang/vim-elixir'
+  - 'slashmili/alchemist.vim'
+    # Colorschemes
+  - 'mookle/autobot.vim'
+  - 'mookle/decepticon.vim'

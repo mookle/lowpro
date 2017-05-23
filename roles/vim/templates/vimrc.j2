@@ -1,3 +1,12 @@
+" Plugin manager
+call plug#begin('{{ vim_plugin_dir }}')
+
+{% for item in vim_plugins %}
+Plug '{{ item }}'
+{% endfor %}
+
+call plug#end()
+
 " General settings
 set nocompatible " no old school vi support
 set nobackup	 " don't backup edited buffers
@@ -13,7 +22,6 @@ set splitbelow " open horizontal splits below the current file
 set splitright " open vertical splits to the right of the current file
 
 " Searching
-"set hlsearch  " highlight search terms
 set incsearch  " show search matches as they are typed
 set ignorecase " ignore case when searching
 set smartcase  " make searches case-sensitive when uppercase is used
@@ -37,10 +45,8 @@ set softtabstop=4 " number of columns a tab uses
 
 " Visual settings
 syntax on " enable syntax highlighting
-" Syntax highlighting for Twig
-autocmd BufRead,BufNewFile *.twig set filetype=htmljinja
-
-" ========== Plugins ===========
+autocmd BufRead,BufNewFile *.twig set filetype=htmljinja " syntax highlighting for Twig
+silent! colorscheme autobot
 
 " CtrlP
 let g:ctrlp_custom_ignore = {
@@ -52,12 +58,6 @@ let g:ctrlp_clear_cache_on_exit= 1     " maintain cache between vim sessions
 let g:ctrlp_open_multiple_files = 'i' " open multiple files as hidden buffers
 let g:ctrlp_mruf_max = 15             " limit the number of recently-used files CtrlP should remember
 let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files --exclude-standard -co'] " faster indexing
-if executable('ag')
-    set grepprg=ag\ --nogroup\ --nocolor
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-    let g:ctrlp_use_caching = 0
-endif
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " Vim Markdown
 let g:vim_markdown_folding_disabled=1 " disable folding
@@ -80,57 +80,6 @@ set ttimeoutlen=10 " reduce lag when leaving insert mode
 " Clojure Static
 let g:clojure_align_multiline_strings = 1
 
-" ========== Vundle ==========
-
-" Vundle init
-set nocompatible " required
-filetype off " required
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" Vundle itself
-Plugin 'gmarik/Vundle.vim' " required
-" Restores Focus(Lost|Gained) when using iTerm & tmux
-Plugin 'sjl/vitality.vim'
-" CtrlP (fuzzy file-finder)
-Plugin 'kien/ctrlp.vim'
-" Better auto-completion
-Plugin 'Valloric/YouCompleteMe'
-" Display git diff notation in the gutter
-Plugin 'airblade/vim-gitgutter'
-" File renaming (saveas and delete old)
-Plugin 'vim-scripts/Rename'
-" Multiline editing
-Plugin 'terryma/vim-multiple-cursors'
-" Better status line
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-" Syntax checking
-Plugin 'scrooloose/syntastic'
-" Syntax highlighting
-Plugin 'estin/htmljinja'
-Plugin 'godlygeek/tabular' " required by plasticboy/vim-markdown
-Plugin 'plasticboy/vim-markdown'
-Plugin 'leshill/vim-json'
-Plugin 'StanAngeloff/php.vim'
-Plugin 'derekwyatt/vim-scala'
-Plugin 'rust-lang/rust.vim'
-" Clojure integration
-Plugin 'guns/vim-clojure-static'
-Plugin 'tpope/vim-fireplace'
-Plugin 'venantius/vim-cljfmt'
-Plugin 'guns/vim-sexp'
-Plugin 'tpope/vim-sexp-mappings-for-regular-people'
-" Elixir integration
-Plugin 'elixir-lang/vim-elixir'
-" Colorschemes
-Plugin 'vim-scripts/devbox-dark-256'
-Plugin 'mookle/autobot.vim'
-Plugin 'mookle/decepticon.vim'
-
-" Vundle clean-up
-call vundle#end()
-filetype plugin indent on " re-enable now that Vundle is done
-
-" Set default colourscheme
-colorscheme autobot
+" Alchemist
+" K to lookup function under cursor
+autocmd FileType elixir nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
