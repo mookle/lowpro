@@ -19,6 +19,8 @@ vim_plugins:
     # Better status line
   - 'vim-airline/vim-airline'
   - 'vim-airline/vim-airline-themes'
+    # Improve netrw workflow
+  - 'tpope/vim-vinegar'
     # Syntax highlighting
   - 'estin/htmljinja'
   - 'godlygeek/tabular' # required by plasticboy/vim-markdown
