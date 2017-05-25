@@ -1,6 +1,16 @@
 ---
 
-- name: install package
-  homebrew: >
-    name=git
+- name: install pygments (ghi dependency)
+  gem: >
+    name=pygments.rb
     state=present
+  become: true
+
+- name: install packages
+  homebrew: >
+    name={{ item }}
+    state=present
+  with_items:
+    - git
+    - ghi
+    - hub

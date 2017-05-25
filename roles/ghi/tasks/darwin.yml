@@ -1,6 +1,0 @@
----
-
-- name: install ghi
-  homebrew: >
-    name=ghi
-    state=present
