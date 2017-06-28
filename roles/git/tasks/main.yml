@@ -19,3 +19,23 @@
     src=templates/gitconfig.j2
     dest={{ git_config_dir }}/.gitconfig
   tags: [ config ]
+
+- name: git helper functions
+  blockinfile:
+    dest: "~/.bash_profile"
+    block: |
+      # Save time when push/pull-ing on feature branches
+      function push() {
+        BRANCH=`git branch -l | grep "*" | sed 's/\* //'`
+        ARGS=("$@")
+        CMD="git push origin $BRANCH $ARGS"
+        history -s $CMD
+        (set -x; $CMD)
+      }
+      function pull() {
+        BRANCH=`git branch -l | grep "*" | sed 's/\* //'`
+        ARGS=("$@")
+        CMD="git pull origin $BRANCH --rebase $ARGS"
+        history -s $CMD
+        (set -x; $CMD)
+      }

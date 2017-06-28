@@ -12,8 +12,8 @@
     - { role: vim, tags: [ vim ] }
     - { role: tmux, tags: [ tmux ] }
     - { role: scala, tags: [ scala ] }
-    - { role: git, tags: [ git ] }
     - { role: bash, tags: [ bash ] }
+    - { role: git, tags: [ git ] }
     - { role: ssh, tags: [ ssh ] }
     - { role: haskell, tags: [ haskell ] }
     - { role: vagrant, tags: [ vagrant ] }
