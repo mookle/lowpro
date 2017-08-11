@@ -15,7 +15,7 @@
 
 - name: clone hub repo
   git: >
-    repo=hgitttps://github.com/github/hub.git
+    repo=https://github.com/github/hub.git
     dest=~/hub
 
 - name: build and install hub
