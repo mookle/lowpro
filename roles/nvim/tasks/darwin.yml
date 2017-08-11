@@ -1,6 +1,0 @@
----
-
-- name: install package
-  homebrew: >
-    name=neovim/neovim/neovim
-    state=present
