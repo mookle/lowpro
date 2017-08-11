@@ -12,18 +12,3 @@
     name=ghi
     state=present
   become: true
-
-- name: clone hub repo
-  git: >
-    repo=https://github.com/github/hub.git
-    dest=~/hub
-
-- name: build and install hub
-  shell: make install prefix=/usr/local
-  args:
-    chdir: ~/hub
-
-- name: clean-up hub repo clone
-  file: >
-    path=~/hub
-    state=absent
