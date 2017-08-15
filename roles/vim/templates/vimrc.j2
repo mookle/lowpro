@@ -75,11 +75,6 @@ let g:syntastic_auto_jump = 1
 let g:airline_theme='powerlineish'
 let g:airline_section_c = '%F' " display full filepath
 set laststatus=2 " always visible
-set ttimeoutlen=10 " reduce lag when leaving insert mode
 
 " Clojure Static
 let g:clojure_align_multiline_strings = 1
-
-" Alchemist
-" K to lookup function under cursor
-autocmd FileType elixir nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
