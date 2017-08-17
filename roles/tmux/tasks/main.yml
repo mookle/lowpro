@@ -32,3 +32,13 @@
     src=files/tmuxinator_template.yml
     dest={{ tmuxinator_template_dir }}/template.yml
   tags: [ config ]
+
+- name: copy tmux-friendly terminfo
+  template: >
+    src=files/tmux-256color.terminfo
+    dest={{ tmux_config_dir }}/tmux-256color.terminfo
+  tags: [ package ]
+
+- name: install terminfo
+  command: tic {{ tmux_config_dir }}/tmux-256color.terminfo
+  tags: [ package ]
