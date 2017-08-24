@@ -9,8 +9,8 @@
 - name: add completion to .bashrc
   blockinfile:
     dest: "{{ bash_config_dir }}/.bashrc"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK: Bash completion"
     block: |
-      # Tab completion
       if [[ -f /etc/bash_completion ]]; then
           . /etc/bash_completion
       fi

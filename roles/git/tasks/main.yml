@@ -22,9 +22,9 @@
 
 - name: git helper functions
   blockinfile:
-    dest: "~/.bash_profile"
+    dest: "~/.bashrc"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK: Git helper functions"
     block: |
-      # Save time when push/pull-ing on feature branches
       function push() {
         BRANCH=`git branch -l | grep "*" | sed 's/\* //'`
         ARGS=("$@")

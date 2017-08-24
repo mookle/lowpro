@@ -10,6 +10,7 @@
     - { role: curl, tags: [ curl ] }
     - { role: ruby, tags: [ ruby ] }
     - { role: vim, tags: [ vim ] }
+    - { role: neovim, tags: [ neovim ] }
     - { role: tmux, tags: [ tmux ] }
     - { role: scala, tags: [ scala ] }
     - { role: bash, tags: [ bash ] }

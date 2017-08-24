@@ -24,7 +24,7 @@ shopt -s checkwinsize
 [[ -f ~/.bash_aliases ]] && . ~/.bash_aliases
 
 # Ensure a default EDITOR is defined
-export EDITOR="vim"
+export EDITOR="nvim"
 
 # Better prompt
 PS1="\u@\H:\w\[\e[32;40m\]\$(__git_ps1)\[\e[0m\]\$ "
@@ -32,3 +32,4 @@ PS1="\u@\H:\w\[\e[32;40m\]\$(__git_ps1)\[\e[0m\]\$ "
 # Better color support
 export TERM=tmux-256color
 export CLICOLOR=1
+

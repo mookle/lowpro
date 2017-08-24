@@ -1,0 +1,39 @@
+---
+
+- include: debian.yml
+  when: ansible_os_family == 'Debian'
+  tags: [ package ]
+
+- include: darwin.yml
+  when: ansible_os_family == 'Darwin'
+  tags: [ package ]
+
+- name: ensure config directories exist
+  file: >
+    path={{ item }}
+    state=directory
+  with_items:
+    - "{{ neovim_config_dir }}"
+    - "{{ neovim_plugin_dir }}"
+    - "{{ neovim_vim_plug_dir }}"
+  tags: [ config ]
+
+- name: copy init.vim
+  template: >
+    src=templates/init.vim.j2
+    dest={{ neovim_config_dir }}/init.vim
+  tags: [ config ]
+
+- name: install vim-plug
+  get_url: >
+    url=https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    dest={{ neovim_vim_plug_dir }}/plug.vim
+  tags: [ config ]
+
+- name: install plugins
+  shell: nvim +PlugInstall +qall
+  tags: [ config ]
+
+- name: compile YouCompleteMe
+  command: "{{ neovim_plugin_dir }}/YouCompleteMe/install.py --racer-completer"
+  tags: [ config ]

@@ -8,8 +8,8 @@
 - name: add completion to .bashrc
   blockinfile:
     dest: "{{ bash_config_dir }}/.bashrc"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK: Bash completion"
     block: |
-      # Tab completion
       if type "brew" &> /dev/null; then
           brew_file=$(brew --prefix)/etc/bash_completion
           [[ -f $brew_file ]] && . $brew_file

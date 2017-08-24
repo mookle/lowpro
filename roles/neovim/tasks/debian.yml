@@ -1,0 +1,26 @@
+---
+
+- name: install dependancies
+  apt: >
+    name=software-properties-common
+    state=present
+  with_items:
+    - "software-properties-common"
+    - "python-pip"
+  become: true
+
+- name: add Neovim PPA repo
+  apt_repository: >
+    repo='ppa:neovim-ppa/unstable'
+    state=present
+  become: true
+
+- name: install Neovim
+  apt: >
+    name=neovim
+    state=present
+    update_cache=yes
+  become: true
+
+- name: install Neovim Python package
+  shell: pip2 install --upgrade neovim
