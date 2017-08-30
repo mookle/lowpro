@@ -27,7 +27,7 @@
   tags: [ config ]
 
 - name: install plugins
-  shell: vim +PlugInstall +qall
+  shell: vim +PlugInstall +qall &
   tags: [ config ]
 
 - name: compile YouCompleteMe
