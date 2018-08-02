@@ -1,8 +1,8 @@
 ---
 
 - name: install package
-  apt: >
-    name=virtualbox
-    state=present
-    update_cache=yes
+  apt:
+    name: virtualbox
+    state: present
+    update_cache: yes
   become: true

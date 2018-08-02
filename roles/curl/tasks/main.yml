@@ -9,7 +9,7 @@
   tags: [ package ]
 
 - name: copy curl output-formatting template
-  copy: >
-    src=files/.curl_format
-    dest={{ ansible_env.HOME }}/.curl_format
+  copy:
+    src: files/.curl_format
+    dest: "{{ ansible_env.HOME }}/.curl_format"
   tags: [ config ]

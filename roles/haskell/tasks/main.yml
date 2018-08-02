@@ -9,13 +9,13 @@
   tags: [ package ]
 
 - name: ensure config directory exists
-  file: >
-    path={{ haskell_config_dir }}
-    state=directory
+  file:
+    path: "{{ haskell_config_dir }}"
+    state: directory
   tags: [ config ]
 
 - name: copy config
-  copy: >
-    src=files/.ghci
-    dest={{ haskell_config_dir }}/.ghci
+  copy:
+    src: files/.ghci
+    dest: "{{ haskell_config_dir }}/.ghci"
   tags: [ config ]

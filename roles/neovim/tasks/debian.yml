@@ -10,16 +10,16 @@
   become: true
 
 - name: add Neovim PPA repo
-  apt_repository: >
-    repo='ppa:neovim-ppa/unstable'
-    state=present
+  apt_repository:
+    repo: "ppa:neovim-ppa/unstable"
+    state: present
   become: true
 
 - name: install Neovim
-  apt: >
-    name=neovim
-    state=present
-    update_cache=yes
+  apt:
+    name: neovim
+    state: present
+    update_cache: yes
   become: true
 
 - name: install Neovim Python package

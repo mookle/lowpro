@@ -1,7 +1,7 @@
 ---
 
 - name: install package
-  homebrew: >
-    name=ruby
-    state=present
+  homebrew:
+    name: ruby
+    state: present
 

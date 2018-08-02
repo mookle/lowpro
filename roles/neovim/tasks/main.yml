@@ -19,15 +19,15 @@
   tags: [ config ]
 
 - name: copy init.vim
-  template: >
-    src=templates/init.vim.j2
-    dest={{ neovim_config_dir }}/init.vim
+  template:
+    src: templates/init.vim.j2
+    dest: "{{ neovim_config_dir }}/init.vim"
   tags: [ config ]
 
 - name: install vim-plug
-  get_url: >
-    url=https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    dest={{ neovim_vim_plug_dir }}/plug.vim
+  get_url:
+    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    dest: "{{ neovim_vim_plug_dir }}/plug.vim"
   tags: [ config ]
 
 - name: install plugins

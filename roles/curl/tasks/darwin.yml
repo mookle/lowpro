@@ -1,7 +1,7 @@
 ---
 
 - name: install package
-  homebrew: >
-    name=curl
-    state=present
+  homebrew:
+    name: curl
+    state: present
 

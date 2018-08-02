@@ -1,13 +1,13 @@
 ---
 
 - name: ensure config directory exists
-  file: >
-    path={{ ssh_config_dir }}
-    state=directory
+  file:
+    path: "{{ ssh_config_dir }}"
+    state: directory
   tags: [ config ]
 
 - name: copy ssh config
-  copy: >
-    src=files/ssh_config
-    dest={{ ssh_config_dir }}/config
+  copy:
+    src: files/ssh_config
+    dest: "{{ ssh_config_dir }}/config"
   tags: [ config ]

@@ -1,6 +1,6 @@
 ---
 
 - name: install package
-  homebrew: >
-    name=sbt
-    state=present
+  homebrew:
+    name: sbt
+    state: present

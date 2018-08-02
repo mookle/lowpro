@@ -9,36 +9,37 @@
   tags: [ package ]
 
 - name: ensure config directories exists
-  file: >
-    path={{ item }}
-    state=directory
+  file:
+    path: "{{ item }}"
+    state: directory
   with_items:
     - "{{ tmux_config_dir }}"
     - "{{ tmuxinator_template_dir }}"
   tags: [ config ]
 
 - name: copy config file
-  copy: >
-    src=files/.tmux.conf
-    dest={{ tmux_config_dir }}/.tmux.conf
+  copy:
+    src: files/.tmux.conf
+    dest: "{{ tmux_config_dir }}/.tmux.conf"
   tags: [ config ]
 
 - name: install tmuxinator
-  gem: name=tmuxinator
+  gem:
+    name: tmuxinator
   tags: [ package ]
 
 - name: copy default tmuxinator template
-  copy: >
-    src=files/tmuxinator_template.yml
-    dest={{ tmuxinator_template_dir }}/template.yml
+  copy:
+    src: files/tmuxinator_template.yml
+    dest: "{{ tmuxinator_template_dir }}/template.yml"
   tags: [ config ]
 
 - name: copy tmux-friendly terminfo
-  template: >
-    src=files/tmux-256color.terminfo
-    dest={{ tmux_config_dir }}/tmux-256color.terminfo
+  template:
+    src: files/tmux-256color.terminfo
+    dest: "{{ tmux_config_dir }}/tmux-256color.terminfo"
   tags: [ package ]
 
 - name: install terminfo
-  command: tic {{ tmux_config_dir }}/tmux-256color.terminfo
+  command: "tic {{ tmux_config_dir }}/tmux-256color.terminfo"
   tags: [ package ]

@@ -1,7 +1,7 @@
 ---
 
 - name: install package
-  homebrew: >
-    name=tmux
-    state=present
+  homebrew:
+    name: tmux
+    state: present
 

@@ -1,6 +1,6 @@
 ---
 
 - name: install package
-  homebrew: >
-    name=haskell-stack
-    state=present
+  homebrew:
+    name: haskell-stack
+    state: present

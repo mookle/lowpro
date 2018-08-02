@@ -9,13 +9,13 @@
   tags: [ package ]
 
 - name: ensure config directory exists
-  file: >
-    path={{ lein_config_dir }}
-    state=directory
+  file:
+    path: "{{ lein_config_dir }}"
+    state: directory
   tags: [ config ]
 
 - name: copy config file
-  copy: >
-    src=files/profiles.clj
-    dest={{ lein_config_dir }}/profiles.clj
+  copy:
+    src: files/profiles.clj
+    dest: "{{ lein_config_dir }}/profiles.clj"
   tags: [ config ]

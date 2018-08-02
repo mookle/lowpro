@@ -9,15 +9,15 @@
   tags: [ package ]
 
 - name: ensure config directory exists
-  file: >
-    path={{ git_config_dir }}
-    state=directory
+  file:
+    path: "{{ git_config_dir }}"
+    state: directory
   tags: [ config ]
 
 - name: copy config file
-  template: >
-    src=templates/gitconfig.j2
-    dest={{ git_config_dir }}/.gitconfig
+  template:
+    src: templates/gitconfig.j2
+    dest: "{{ git_config_dir }}/.gitconfig"
   tags: [ config ]
 
 - name: git helper functions

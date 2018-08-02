@@ -1,7 +1,7 @@
 ---
 
 - name: install package
-  homebrew: >
-    name=leiningen
-    state=present
+  homebrew:
+    name: leiningen
+    state: present
 

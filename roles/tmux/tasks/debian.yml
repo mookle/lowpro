@@ -1,9 +1,9 @@
 ---
 
 - name: install package
-  apt: >
-    name=tmux
-    state=present
-    update_cache=yes
+  apt:
+    name: tmux
+    state: present
+    update_cache: yes
   become: true
 

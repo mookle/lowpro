@@ -1,7 +1,7 @@
 ---
 
 - name: install package
-  homebrew: >
-    name=scala
-    state=present
+  homebrew:
+    name: scala
+    state: present
 

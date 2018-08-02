@@ -1,8 +1,8 @@
 ---
 
 - name: install package
-  apt: >
-    name=vagrant
-    state=present
-    update_cache=yes
+  apt:
+    name: vagrant
+    state: present
+    update_cache: yes
   become: true

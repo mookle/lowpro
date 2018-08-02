@@ -1,17 +1,17 @@
 ---
 
 - name: install package
-  apt: >
-    name=vim
-    state=present
-    update_cache=yes
+  apt:
+    name: vim
+    state: present
+    update_cache: yes
   become: true
 
 - name: install YouCompleteMe dependencies
-  apt: >
-    name={{ item }}
-    state=present
-    update_cache=yes
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
   become: true
   with_items:
     - python-dev

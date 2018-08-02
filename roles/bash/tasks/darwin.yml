@@ -1,9 +1,9 @@
 ---
 
 - name: install bash completion
-  homebrew: >
-    name=bash-completion
-    state=present
+  homebrew:
+    name: bash-completion
+    state: present
 
 - name: add completion to .bashrc
   blockinfile:

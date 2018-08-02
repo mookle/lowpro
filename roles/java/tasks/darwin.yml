@@ -1,6 +1,6 @@
 ---
 
 - name: install package
-  homebrew_cask: >
-    name=java
-    state=present
+  homebrew_cask:
+    name: java
+    state: present

@@ -1,9 +1,9 @@
 ---
 
 - name: install bash completion
-  apt: >
-    name=bash-completion
-    state=present
+  apt:
+    name: bash-completion
+    state: present
   become: true
 
 - name: add completion to .bashrc

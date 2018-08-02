@@ -9,21 +9,21 @@
   tags: [ package ]
 
 - name: ensure config directory exists
-  file: >
-    path={{ vim_config_dir }}
-    state=directory
+  file:
+    path: "{{ vim_config_dir }}"
+    state: directory
   tags: [ config ]
 
 - name: copy .vimrc
-  template: >
-    src=templates/vimrc.j2
-    dest={{ vim_config_dir }}/.vimrc
+  template:
+    src: templates/vimrc.j2
+    dest: "{{ vim_config_dir }}/.vimrc"
   tags: [ config ]
 
 - name: install vim-plug
-  get_url: >
-    url=https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    dest={{ vim_vim_plug_dir }}/plug.vim
+  get_url:
+    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    dest: "{{ vim_vim_plug_dir }}/plug.vim"
   tags: [ config ]
 
 - name: install plugins
