@@ -9,10 +9,10 @@
   tags: [ package ]
 
 - name: ensure config directories exist
-  file: >
-    path={{ item }}
-    state=directory
-  with_items:
+  file:
+    path: "{{ item }}"
+    state: directory
+  loop:
     - "{{ neovim_config_dir }}"
     - "{{ neovim_plugin_dir }}"
     - "{{ neovim_vim_plug_dir }}"

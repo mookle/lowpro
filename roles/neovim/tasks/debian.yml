@@ -1,10 +1,10 @@
 ---
 
 - name: install dependancies
-  apt: >
-    name=software-properties-common
-    state=present
-  with_items:
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
     - "software-properties-common"
     - "python-pip"
   become: true
