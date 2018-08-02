@@ -3,19 +3,19 @@
 - hosts: localhost
   connection: local
   roles:
+    - { role: tmux, tags: [ tmux ] }
+    - { role: bash, tags: [ bash ] }
+    - { role: ssh, tags: [ ssh ] }
+    - { role: git, tags: [ git ] }
+    - { role: curl, tags: [ curl ] }
+    - { role: watch, tags: [ watch ] }
+    - { role: virtualbox, tags: [ virtualbox ] }
+    - { role: vagrant, tags: [ vagrant ] }
     - { role: rust, tags: [ rust ] }
     - { role: java, tags: [ java ] }
-    - { role: sbt, tags: [ sbt ] }
-    - { role: lein, tags: [ lein ] }
-    - { role: curl, tags: [ curl ] }
-    - { role: ruby, tags: [ ruby ] }
-    - { role: neovim, tags: [ neovim ] }
-    - { role: tmux, tags: [ tmux ] }
     - { role: scala, tags: [ scala ] }
-    - { role: bash, tags: [ bash ] }
-    - { role: git, tags: [ git ] }
-    - { role: ssh, tags: [ ssh ] }
+    - { role: sbt, tags: [ sbt ] }
     - { role: haskell, tags: [ haskell ] }
-    - { role: vagrant, tags: [ vagrant ] }
-    - { role: virtualbox, tags: [ virtualbox ] }
-    - { role: watch, tags: [ watch ] }
+    - { role: ruby, tags: [ ruby ] }
+    - { role: lein, tags: [ lein ] }
+    - { role: neovim, tags: [ neovim ] }
