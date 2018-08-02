@@ -1,6 +1,6 @@
 ---
 
 rust_download_dir: "{{ ansible_env.HOME }}"
-rust_version: 1.10.0
-rust_checksum: sha256:f189303d52b37c8bb694b9d9739ae73ffa926cbdeffde1d5d6a5c6e811940293
+rust_version: 1.27.2
+rust_checksum: sha256:5028a18e913ef3eb53e8d8119d2cc0594442725e055a9361012f8e26f754f2bf
 rust_build_name: rust-{{ rust_version }}-x86_64-unknown-linux-gnu

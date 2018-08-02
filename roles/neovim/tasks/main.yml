@@ -35,5 +35,5 @@
   tags: [ config ]
 
 - name: compile YouCompleteMe
-  command: "{{ neovim_plugin_dir }}/YouCompleteMe/install.py --racer-completer"
+  command: "{{ neovim_plugin_dir }}/YouCompleteMe/install.py --rust-completer --clang-completer"
   tags: [ config ]
