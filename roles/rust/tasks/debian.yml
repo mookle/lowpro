@@ -7,13 +7,18 @@
     checksum={{ rust_checksum }}
 
 - name: extract tarball
-  unarchive: >
-    src={{ rust_download_dir }}/{{ rust_build_name }}.tar.gz
-    dest={{ rust_download_dir }}
-    copy=no
+  unarchive:
+    src: "{{ rust_download_dir }}/{{ rust_build_name }}.tar.gz"
+    dest: "{{ rust_download_dir }}"
+    creates: "{{ rust_download_dir }}"
+    copy: no
+
+- name: check current version
+  shell: "rustc --version | grep {{ rust_version }}"
+  register: result
+  changed_when: result.stdout == "0"
 
 - name: run install script
   command: "{{ rust_download_dir }}/{{ rust_build_name }}/install.sh"
-  args:
-    creates: /usr/local/lib/rustlib/uninstall.sh
+  when: result.stdout == "0"
   become: true
