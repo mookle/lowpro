@@ -44,9 +44,12 @@ set softtabstop=4 " number of columns a tab uses
 
 " Visual settings
 set t_Co=256
-syntax on " enable syntax highlighting
+syntax enable " enable syntax highlighting
 autocmd BufRead,BufNewFile *.twig set filetype=htmljinja " syntax highlighting for Twig
-silent! colorscheme autobot
+set background=dark
+let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_contrast_light='soft'
+colorscheme srcery
 
 " CtrlP
 let g:ctrlp_custom_ignore = {
@@ -66,7 +69,7 @@ let g:vim_markdown_folding_disabled=1 " disable folding
 let g:php_ignore_phpdoc=1
 
 " Airline
-let g:airline_theme='powerlineish'
+let g:airline_theme='srcery'
 let g:airline_section_c = '%F' " display full filepath
 set laststatus=2 " always visible
 

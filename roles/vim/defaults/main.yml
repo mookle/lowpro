@@ -40,4 +40,5 @@ vim_plugins:
   - 'slashmili/alchemist.vim'
     # Colorschemes
   - 'mookle/autobot.vim'
-  - 'mookle/decepticon.vim'
+  - 'morhetz/gruvbox'
+  - 'srcery-colors/srcery-vim'

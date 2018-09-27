@@ -40,5 +40,5 @@ neovim_plugins:
   - 'slashmili/alchemist.vim'
     # Colorschemes
   - 'mookle/autobot.vim'
-  - 'mookle/decepticon.vim'
-  - 'mshift42/vim-themes'
+  - 'morhetz/gruvbox'
+  - 'srcery-colors/srcery-vim'
