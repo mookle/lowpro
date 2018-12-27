@@ -5,5 +5,7 @@
     name: neovim/neovim/neovim
     state: present
 
-- name: install neovim support for python
-  command: pip2 install --upgrade neovim
+- name: install ripgrep
+  homebrew:
+    name: ripgrep
+    state: present

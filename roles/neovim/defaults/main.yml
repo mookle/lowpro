@@ -4,41 +4,34 @@ neovim_config_dir: "{{ ansible_env.HOME }}/.config/nvim"
 neovim_plugin_dir: "{{ neovim_config_dir }}/plugged"
 neovim_vim_plug_dir: "{{ neovim_config_dir }}/autoload"
 neovim_plugins:
-    # Restores Focus(Lost|Gained) when using iTerm & tmux
+  # Restores Focus(Lost|Gained) when using iTerm & tmux
   - 'sjl/vitality.vim'
-    # CtrlP (fuzzy file-finder)
-  - 'kien/ctrlp.vim'
-    # Better auto-completion
-  - 'Valloric/YouCompleteMe'
-    # Display git diff notation in the gutter
+  # Fuzzy file finder
+  - 'junegunn/fzf'
+  - 'junegunn/fzf.vim'
+  # Auto-completion
+  - 'Shougo/deoplete.nvim'
+  # Display git diff notation in the gutter
   - 'airblade/vim-gitgutter'
-    # File renaming (saveas and delete old)
+  # File renaming (saveas and delete old)
   - 'vim-scripts/Rename'
-    # Multiline editing
-  - 'terryma/vim-multiple-cursors'
-    # Better status line
-  - 'vim-airline/vim-airline'
-  - 'vim-airline/vim-airline-themes'
-    # Improve netrw workflow
+  # ALL OF THE SYNTAX
+  - 'sheerun/vim-polyglot'
+  # Better status line
+  - 'itchyny/lightline.vim'
+  # Improve netrw workflow
   - 'tpope/vim-vinegar'
-    # Syntax highlighting
-  - 'estin/htmljinja'
-  - 'godlygeek/tabular' # required by plasticboy/vim-markdown
-  - 'plasticboy/vim-markdown'
-  - 'leshill/vim-json'
-  - 'StanAngeloff/php.vim'
-  - 'derekwyatt/vim-scala'
-  - 'rust-lang/rust.vim'
-    # Clojure integration
-  - 'guns/vim-clojure-static'
+  # Syntax / language packs
+  - 'sheerun/vim-polyglot'
+  # Clojure integration
   - 'tpope/vim-fireplace'
-  - 'venantius/vim-cljfmt'
   - 'guns/vim-sexp'
   - 'tpope/vim-sexp-mappings-for-regular-people'
-    # Elixir integration
-  - 'elixir-lang/vim-elixir'
+  - 'tpope/vim-repeat'
+  - 'tpope/vim-surround'
+  - 'venantius/vim-cljfmt'
+  # Elixir integration
   - 'slashmili/alchemist.vim'
-    # Colorschemes
-  - 'mookle/autobot.vim'
+  # Colorschemes
   - 'morhetz/gruvbox'
   - 'srcery-colors/srcery-vim'

@@ -8,6 +8,10 @@
   when: ansible_os_family == 'Darwin'
   tags: [ package ]
 
+# Deoplete requirement
+- name: install neovim support for python
+  command: pip3 install --user --upgrade pynvim
+
 - name: ensure config directories exist
   file:
     path: "{{ item }}"
@@ -32,8 +36,4 @@
 
 - name: install plugins
   shell: nvim +PlugInstall +qall &
-  tags: [ config ]
-
-- name: compile YouCompleteMe
-  command: "{{ neovim_plugin_dir }}/YouCompleteMe/install.py --rust-completer --clang-completer"
   tags: [ config ]

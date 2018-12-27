@@ -8,12 +8,14 @@ Plug '{{ item }}'
 call plug#end()
 
 " General settings
-set nocompatible " no old school vi support
-set nobackup	 " don't backup edited buffers
-set noswapfile	 " don't create a swap file
-set autoread     " reload externally edited files
-set visualbell 	 " silence beeps
-set noerrorbells " silence beeps
+set nocompatible   " no old school vi support
+set nobackup	   " don't backup edited buffers
+set noswapfile	   " don't create a swap file
+set autoread       " reload externally edited files
+set visualbell 	   " silence beeps
+set noerrorbells   " silence beeps
+set noshowmode     " hide mode display
+set updatetime=100 " reduce default of 4000
 
 " Windows / buffers
 set hidden     " hide buffers rather than require they are saved or discarded
@@ -26,13 +28,14 @@ set ignorecase " ignore case when searching
 set smartcase  " make searches case-sensitive when uppercase is used
 
 " Editing
-set number       " enable line numbers
-set cursorline   " highlight the current line
-set ruler        " display the cursor position in STATUS bar
-set showcmd      " show partial commands in the STATUS bar
-set textwidth=0  " don't wrap
-set wrapmargin=0 " don't wrap
-set scrolloff=12 " number of lines to display either side of the current
+set number        " enable line numbers
+set numberwidth=2 " minimum column width for line number gutter
+set cursorline    " highlight the current line
+set ruler         " display the cursor position in STATUS bar
+set showcmd       " show partial commands in the STATUS bar
+set textwidth=0   " don't wrap
+set wrapmargin=0  " don't wrap
+set scrolloff=12  " number of lines to display either side of the current
 set backspace=indent,eol,start " fix backspace
 
 " Indentation
@@ -47,22 +50,27 @@ if (has("termguicolors"))
     set termguicolors
 endif
 syntax enable " enable syntax highlighting
-autocmd BufRead,BufNewFile *.twig set filetype=htmljinja " syntax highlighting for Twig
-set background=dark
+colorscheme gruvbox
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_contrast_light='soft'
-colorscheme srcery
+set background=dark
 
-" CtrlP
-let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v[\/](\.git|tmp|cache|log|vendor|target|report)$',
-    \ 'file': '\v\.(so|swp|zip|log)$'
+" Lightline
+let g:lightline = {
+    \ 'colorscheme': 'gruvbox',
     \ }
-let g:ctrlp_working_path_mode = 'a'   " use the directory of the current file
-let g:ctrlp_clear_cache_on_exit= 1     " maintain cache between vim sessions
-let g:ctrlp_open_multiple_files = 'i' " open multiple files as hidden buffers
-let g:ctrlp_mruf_max = 15             " limit the number of recently-used files CtrlP should remember
-let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files --exclude-standard -co'] " faster indexing
+
+" Git gutter
+let g:gitgutter_sign_added = '▎'
+let g:gitgutter_sign_modified = '▎'
+let g:gitgutter_sign_removed = '▎'
+let g:gitgutter_sign_removed_first_line = '▎'
+let g:gitgutter_sign_modified_removed = '▎'
+highlight clear SignColumn
+highlight GitGutterAdd ctermfg=148 guifg=#afd700
+highlight GitGutterChange ctermfg=74 guifg=#5fafd7
+highlight GitGutterDelete ctermfg=167 guifg=#fb4934
+highlight link GitGutterChangeDelete GitGutterChange
 
 " Vim Markdown
 let g:vim_markdown_folding_disabled=1 " disable folding
@@ -70,10 +78,15 @@ let g:vim_markdown_folding_disabled=1 " disable folding
 " PHP syntax
 let g:php_ignore_phpdoc=1
 
-" Airline
-let g:airline_theme='srcery'
-let g:airline_section_c = '%F' " display full filepath
-set laststatus=2 " always visible
-
 " Clojure Static
-let g:clojure_align_multiline_strings = 1
+let g:clojure_align_multiline_strings=1
+
+" Deoplete
+let g:deoplete#enable_at_startup=1
+let g:deoplete#max_list=50
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+" FZF
+nnoremap <silent> <C-p> :Files<CR>
+nnoremap <silent> <C-o> :Buffer<CR>
+nnoremap <silent> <C-i> :Rg<CR>

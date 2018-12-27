@@ -13,6 +13,7 @@
   apt_repository:
     repo: "ppa:neovim-ppa/unstable"
     state: present
+  when: ansible_distribution == 'Ubuntu'
   become: true
 
 - name: install Neovim
@@ -22,5 +23,9 @@
     update_cache: yes
   become: true
 
-- name: install Neovim Python package
-  shell: pip2 install --upgrade neovim
+- name: install ripgrep
+  apt:
+    name: ripgrep
+    state: present
+    update_cache: yes
+  become: true
