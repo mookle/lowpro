@@ -7,10 +7,10 @@ neovim_plugins:
   # Restores Focus(Lost|Gained) when using iTerm & tmux
   - 'sjl/vitality.vim'
   # Fuzzy file finder
-  - 'junegunn/fzf'
-  - 'junegunn/fzf.vim'
+  #- 'junegunn/fzf'
+  #- 'junegunn/fzf.vim'
   # Auto-completion
-  - 'Shougo/deoplete.nvim'
+  #- 'Shougo/deoplete.nvim'
   # Display git diff notation in the gutter
   - 'airblade/vim-gitgutter'
   # File renaming (saveas and delete old)
