@@ -37,3 +37,11 @@
 - name: install plugins
   shell: nvim +PlugInstall +qall &
   tags: [ config ]
+
+- name: add FZF to bash
+  blockinfile:
+    dest: "{{ ansible_env.HOME }}/.bashrc"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK: Fuzzy search"
+    block: |
+      [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+      export FZF_DEFAULT_COMMAND='rg --files --follow --color never'
