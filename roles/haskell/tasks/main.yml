@@ -19,3 +19,6 @@
     src: files/.ghci
     dest: "{{ haskell_config_dir }}/.ghci"
   tags: [ config ]
+
+- name: install HSpec
+  shell: cabal install hspec

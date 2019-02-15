@@ -6,3 +6,20 @@
     state: present
     update_cache: yes
   become: true
+
+- name: install fswatch
+  apt:
+    name: fswatch
+    state: present
+  become: true
+
+- name: add util function to invoke runhaskell using fswatch
+  blockinfile:
+    dest: "{{ ansible_env.HOME }}/.bashrc"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK: runhaskell with file watch"
+    block: |
+        function runhaskell-watch() {
+          ARGS=("$@")
+          runhaskell $ARGS
+          fswatch -0o -m poll_monitor . | xargs -0 -I {} runhaskell $ARGS
+        }

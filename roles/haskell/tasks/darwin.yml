@@ -4,3 +4,19 @@
   homebrew:
     name: haskell-stack
     state: present
+
+- name: install fswatch
+  homebrew:
+    name: fswatch
+    state: present
+
+- name: add util function to invoke runhaskell using fswatch
+  blockinfile:
+    dest: "{{ ansible_env.HOME }}/.bashrc"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK: runhaskell with file watch"
+    block: |
+        function runhaskell-watch() {
+          ARGS=("$@")
+          runhaskell $ARGS
+          fswatch -0o . | xargs -0 -I {} runhaskell $ARGS
+        }
