@@ -1,6 +1,0 @@
----
-
-- name: install package
-  homebrew:
-    name: vim
-    state: present
