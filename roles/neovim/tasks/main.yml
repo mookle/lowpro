@@ -22,10 +22,16 @@
     - "{{ neovim_vim_plug_dir }}"
   tags: [ config ]
 
-- name: copy init.vim
+- name: copy main config file
   template:
     src: templates/init.vim.j2
     dest: "{{ neovim_config_dir }}/init.vim"
+  tags: [ config ]
+
+- name: copy filetype-specific config
+  copy:
+    src: files/ftplugin
+    dest: "{{ neovim_config_dir }}"
   tags: [ config ]
 
 - name: install vim-plug
