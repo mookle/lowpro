@@ -20,5 +20,8 @@
     dest: "{{ haskell_config_dir }}/.ghci"
   tags: [ config ]
 
+- name: update cabal
+  shell: cabal update
+
 - name: install HSpec
   shell: cabal install hspec
