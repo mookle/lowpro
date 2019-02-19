@@ -7,6 +7,13 @@
     update_cache: yes
   become: true
 
+- name: ensure gem is available
+  apt:
+    name: ruby
+    state: present
+    update_cache: yes
+  become: true
+
 - name: install ghi
   gem:
     name: ghi

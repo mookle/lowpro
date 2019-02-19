@@ -1,5 +1,10 @@
 ---
 
+- name: ensure gem is available
+  homebrew:
+    name: ruby
+    state: present
+
 - name: install pygments (ghi dependency)
   gem:
     name: pygments.rb

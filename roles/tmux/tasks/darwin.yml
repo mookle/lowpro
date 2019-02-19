@@ -5,3 +5,7 @@
     name: tmux
     state: present
 
+- name: ensure gem is available
+  homebrew:
+    name: ruby
+    state: present
