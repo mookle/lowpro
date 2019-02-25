@@ -1,0 +1,6 @@
+---
+
+- name: install packages
+  homebrew:
+    name: zsh
+    state: present

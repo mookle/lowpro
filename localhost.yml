@@ -5,6 +5,7 @@
   roles:
     - { role: tmux, tags: [ tmux ] }
     - { role: bash, tags: [ bash ] }
+    - { role: zsh, tags: [ zsh ] }
     - { role: ssh, tags: [ ssh ] }
     - { role: git, tags: [ git ] }
     - { role: curl, tags: [ curl ] }

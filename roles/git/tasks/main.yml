@@ -20,7 +20,7 @@
     dest: "{{ git_config_dir }}/.gitconfig"
   tags: [ config ]
 
-- name: git helper functions
+- name: git helper function for bash
   blockinfile:
     dest: "~/.bashrc"
     marker: "# {mark} ANSIBLE MANAGED BLOCK: Git helper functions"
@@ -38,4 +38,24 @@
         CMD="git pull origin $BRANCH --rebase $ARGS"
         history -s $CMD
         (set -x; $CMD)
+      }
+
+- name: git helper function for zsh
+  blockinfile:
+    dest: "~/.zshrc"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK: Git helper functions"
+    block: |
+      function push() {
+        BRANCH=`git branch -l | grep "*" | sed 's/\* //'`
+        ARGS=("$@")
+        CMD="git push origin $BRANCH $ARGS"
+        print -s $CMD
+        eval $CMD
+      }
+      function pull() {
+        BRANCH=`git branch -l | grep "*" | sed 's/\* //'`
+        ARGS=("$@")
+        CMD="git pull origin $BRANCH --rebase $ARGS"
+        print -s $CMD
+        eval $CMD
       }

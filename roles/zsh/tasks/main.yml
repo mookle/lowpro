@@ -1,0 +1,25 @@
+---
+
+- include: debian.yml
+  when: ansible_os_family == 'Debian'
+  tags: [ package ]
+
+- include: darwin.yml
+  when: ansible_os_family == 'Darwin'
+  tags: [ package ]
+
+- name: ensure config directory exists
+  file:
+    path: "{{ zsh_config_dir }}"
+    state: directory
+  tags: [ config ]
+
+- name: copy config files
+  copy:
+    src: files/{{ item }}
+    dest: "{{ zsh_config_dir }}/{{ item }}"
+  loop:
+    - .zshrc
+    - .zprofile
+    - .zsh_aliases
+  tags: [ config ]
