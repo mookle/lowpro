@@ -1,0 +1,111 @@
+---
+
+- name: check whether oh-my-zsh is already installed
+  stat:
+    path: "{{ oh_my_zsh.install.path }}"
+  register: omz
+
+# BEGIN: Only if oh-my-zsh is not already installed
+- name: download install script
+  get_url:
+    url: "{{ oh_my_zsh.install.src }}"
+    dest: "{{ oh_my_zsh.install.script }}"
+    mode: +x
+  when: omz.stat.exists == False
+
+- name: install oh-my-zsh
+  command: "sh -c {{ oh_my_zsh.install.script }}"
+  ignore_errors: yes
+  when: omz.stat.exists == False
+
+- name: restore pre-oh-my-zsh config
+  copy:
+    src: "{{ zsh.config_file }}.pre-oh-my-zsh"
+    dest: "{{ zsh.config_file }}"
+  when: omz.stat.exists == False
+
+- name: clean-up installation files
+  file:
+    path: "{{ item }}" 
+    state: absent
+  with_items:
+    - "{{ oh_my_zsh.install.script }}"
+    - "{{ zsh.config_file }}.pre-oh-my-zsh"
+  when: omz.stat.exists == False
+
+- name: install powerlevel9k
+  git:
+    repo: "{{ powerlevel9k.install.src }}"
+    dest: "{{ powerlevel9k.install.dest }}"
+  when: omz.stat.exists == False
+# END: Only if oh-my-zsh is not already installed
+
+- name: add oh-my-zsh config
+  blockinfile:
+    path: "{{ zsh.config_file }}"
+    insertafter: EOF
+    marker: "# {mark} ANSIBLE: oh-my-zsh"
+    block: |
+      # Path to your oh-my-zsh installation.
+      export ZSH="{{ oh_my_zsh.install.path }}"
+
+      # Theme name
+      ZSH_THEME="{{ oh_my_zsh.theme }}"
+
+      # Disable bi-weekly auto-update checks
+      DISABLE_AUTO_UPDATE="true"
+
+      # Enable command auto-correction
+      # ENABLE_CORRECTION="true"
+
+      # Display red dots whilst waiting for completion
+      # COMPLETION_WAITING_DOTS="true"
+
+      # Don't mark untracked files within a VCS as dirty
+      DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+      # Disable colors in ls.
+      # DISABLE_LS_COLORS="true"
+
+      # Uncomment the following line to disable auto-setting terminal title.
+      # DISABLE_AUTO_TITLE="true"
+
+      # Plugins
+      plugins=(
+      {% for item in oh_my_zsh.plugins %}
+        {{ item }}
+      {% endfor %}
+      )
+
+      source $ZSH/oh-my-zsh.sh
+
+      # 🐳 ○ ◉ 🦀 🚀 ● ►
+      POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='╰─► '
+      POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR='🚀'
+      POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=''
+      POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=''
+      POWERLEVEL9K_DISABLE_RPROMPT=false
+      POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+      POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+      POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir)
+      POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vcs)
+
+      POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND='102'
+      POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND='none'
+
+      POWERLEVEL9K_DIR_ETC_BACKGROUND='none'
+      POWERLEVEL9K_DIR_HOME_BACKGROUND='none'
+      POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='none'
+      POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='none'
+      POWERLEVEL9K_DIR_ETC_FOREGROUND='251'
+      POWERLEVEL9K_DIR_HOME_FOREGROUND='251'
+      POWERLEVEL9K_DIR_DEFAULT_FOREGROUND='251'
+      POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='251'
+
+      POWERLEVEL9K_VCS_BRANCH_ICON=''
+      POWERLEVEL9K_VCS_CLEAN_BACKGROUND='none'
+      POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='none'
+      POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='none'
+      POWERLEVEL9K_VCS_CLEAN_FOREGROUND='112'
+      POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='031'
+      POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='214'

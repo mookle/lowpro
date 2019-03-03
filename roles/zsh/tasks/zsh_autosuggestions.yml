@@ -1,0 +1,18 @@
+---
+
+- name: install zsh-autosuggestions
+  git: 
+    repo: "{{ zsh_autosuggestions.install.src }}"
+    dest: "{{ zsh_autosuggestions.install.dest }}"
+
+- name: add zsh-autosuggestion config
+  blockinfile:
+    dest: "{{ zsh.config_file }}"
+    insertafter: EOF
+    marker: "# {mark} ANSIBLE: zsh-autosuggestions"
+    block: |
+      # Enable autosuggestions
+      source {{ zsh_autosuggestions.install.dest }}/zsh-autosuggestions.zsh
+
+      # Use tab to accept suggestions
+      # bindkey '^I' autosuggest-accept
