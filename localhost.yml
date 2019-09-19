@@ -4,19 +4,13 @@
   connection: local
   roles:
     - { role: tmux, tags: [ tmux ] }
-    - { role: bash, tags: [ bash ] }
     - { role: zsh, tags: [ zsh ] }
     - { role: ssh, tags: [ ssh ] }
     - { role: git, tags: [ git ] }
     - { role: curl, tags: [ curl ] }
     - { role: watch, tags: [ watch ] }
     - { role: virtualbox, tags: [ virtualbox ] }
-    - { role: vagrant, tags: [ vagrant ] }
     - { role: rust, tags: [ rust ] }
-    - { role: java, tags: [ java ] }
-    - { role: scala, tags: [ scala ] }
-    - { role: sbt, tags: [ sbt ] }
-    - { role: haskell, tags: [ haskell ] }
     - { role: ruby, tags: [ ruby ] }
     - { role: lein, tags: [ lein ] }
     - { role: neovim, tags: [ neovim ] }
