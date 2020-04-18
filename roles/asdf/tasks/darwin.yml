@@ -1,0 +1,6 @@
+---
+
+- name: install asdf
+  homebrew:
+    name: asdf
+    state: present

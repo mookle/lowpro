@@ -14,3 +14,4 @@
     - { role: ruby, tags: [ ruby ] }
     - { role: lein, tags: [ lein ] }
     - { role: neovim, tags: [ neovim ] }
+    - { role: asdf, tags: [ asdf ] }
