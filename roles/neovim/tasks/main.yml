@@ -55,3 +55,6 @@
     - .bashrc
     - .zshrc
   tags: [ config ]
+
+- name: update git to use neovim
+  command: git config --global core.editor $(which nvim)
