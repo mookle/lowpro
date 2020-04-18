@@ -2,6 +2,8 @@
 
 - name: install package
   homebrew:
-    name: scala
+    name: "{{ item }}"
     state: present
-
+  loop:
+    - scala
+    - sbt
