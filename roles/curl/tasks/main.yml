@@ -1,10 +1,16 @@
 ---
 
-- include: debian.yml
+- apt:
+    name: curl
+    state: present
+    update_cache: yes
+  become: true
   when: ansible_os_family == 'Debian'
   tags: [ package ]
 
-- include: darwin.yml
+- homebrew:
+    name: curl
+    state: present
   when: ansible_os_family == 'Darwin'
   tags: [ package ]
 

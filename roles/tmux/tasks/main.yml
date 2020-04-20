@@ -1,44 +1,33 @@
 ---
 
-- include: debian.yml
+- apt:
+    name: tmux
+    state: present
+    update_cache: yes
+  become: true
   when: ansible_os_family == 'Debian'
   tags: [ package ]
 
-- include: darwin.yml
+- homebrew:
+    name: tmux
+    state: present
   when: ansible_os_family == 'Darwin'
   tags: [ package ]
 
-- name: ensure config directories exists
+- name: ensure config directory exists
   file:
-    path: "{{ item }}"
+    path: "{{ tmux_config_dir }}"
     state: directory
-  with_items:
-    - "{{ tmux_config_dir }}"
-    - "{{ tmuxinator_template_dir }}"
   tags: [ config ]
 
-- name: copy config file
+- name: copy config files
   copy:
-    src: files/.tmux.conf
-    dest: "{{ tmux_config_dir }}/.tmux.conf"
+    src: "files/{{ item }}"
+    dest: "{{ tmux_config_dir }}/{{ item }}"
+  loop:
+    - .tmux.conf
+    - tmux-256color.terminfo
   tags: [ config ]
-
-- name: install tmuxinator
-  gem:
-    name: tmuxinator
-  tags: [ package ]
-
-- name: copy default tmuxinator template
-  copy:
-    src: files/tmuxinator_template.yml
-    dest: "{{ tmuxinator_template_dir }}/template.yml"
-  tags: [ config ]
-
-- name: copy tmux-friendly terminfo
-  template:
-    src: files/tmux-256color.terminfo
-    dest: "{{ tmux_config_dir }}/tmux-256color.terminfo"
-  tags: [ package ]
 
 - name: install terminfo
   command: "tic {{ tmux_config_dir }}/tmux-256color.terminfo"

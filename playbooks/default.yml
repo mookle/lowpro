@@ -1,0 +1,14 @@
+---
+
+- import_playbook: common.yml
+
+- name: setup development environment
+  hosts: localhost
+  connection: local
+  roles:
+    - { role: roles/vagrant, tags: [ vagrant ] }
+    - { role: roles/virtualbox, tags: [ virtualbox ] }
+    - { role: roles/rust, tags: [ rust ] }
+    - { role: roles/ruby, tags: [ ruby ] }
+    - { role: roles/lein, tags: [ lein ] }
+

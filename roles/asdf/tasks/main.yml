@@ -1,16 +1,26 @@
 ---
 
-- include: debian.yml
-  when: ansible_os_family == 'Debian'
-  tags: [ package ]
-
-- include: darwin.yml
+- homebrew:
+    name: asdf
+    state: present
   when: ansible_os_family == 'Darwin'
   tags: [ package ]
 
-- name: add completion to .zshrc
+- git:
+    repo: "https://github.com/asdf-vm/asdf.git"
+    dest: ~/.asdf
+    clone: yes
+    version: "{{ asdf.version }}"
+    update: no
+  when: ansible_os_family == 'Debian'
+  tags: [ package ]
+
+- name: add asdf completion to .zshrc
   blockinfile:
     dest: "{{ zsh.config_file }}"
+    create: yes
+    insertafter: EOF
     marker: "# {mark} ANSIBLE MANAGED BLOCK: asdf completion"
     block: |
       . ~/.asdf/asdf.sh
+  tags: [ config ]

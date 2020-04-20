@@ -1,10 +1,16 @@
 ---
 
-- include: debian.yml
+- apt:
+    name: git
+    state: present
+    update_cache: yes
+  become: true
   when: ansible_os_family == 'Debian'
   tags: [ package ]
 
-- include: darwin.yml
+- homebrew:
+    name: git
+    state: present
   when: ansible_os_family == 'Darwin'
   tags: [ package ]
 
@@ -20,29 +26,10 @@
     dest: "{{ git_config_dir }}/.gitconfig"
   tags: [ config ]
 
-- name: git helper function for bash
-  blockinfile:
-    dest: "~/.bashrc"
-    marker: "# {mark} ANSIBLE MANAGED BLOCK: Git helper functions"
-    block: |
-      function push() {
-        BRANCH=`git branch -l | grep "*" | sed 's/\* //'`
-        ARGS=("$@")
-        CMD="git push origin $BRANCH $ARGS"
-        history -s $CMD
-        (set -x; $CMD)
-      }
-      function pull() {
-        BRANCH=`git branch -l | grep "*" | sed 's/\* //'`
-        ARGS=("$@")
-        CMD="git pull origin $BRANCH --rebase $ARGS"
-        history -s $CMD
-        (set -x; $CMD)
-      }
-
 - name: git helper function for zsh
   blockinfile:
-    dest: "~/.zshrc"
+    dest: "{{ zsh.config_file }}"
+    create: yes
     marker: "# {mark} ANSIBLE MANAGED BLOCK: Git helper functions"
     block: |
       function push() {
@@ -59,3 +46,5 @@
         print -s $CMD
         eval $CMD
       }
+    insertafter: EOF
+  tags: [ config ]

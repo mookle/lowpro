@@ -1,0 +1,15 @@
+---
+
+- name: install common utilities
+  hosts: localhost
+  connection: local
+  roles:
+    - { role: roles/zsh, tags: [ zsh ] }
+    - { role: roles/ssh, tags: [ ssh ] }
+    - { role: roles/git, tags: [ git ] }
+    - { role: roles/curl, tags: [ curl ] }
+    - { role: roles/asdf, tags: [ asdf ] }
+    - { role: roles/watch, tags: [ watch ] }
+    - { role: roles/tmux, tags: [ tmux ] }
+    - { role: roles/neovim, tags: [ neovim ] }
+
