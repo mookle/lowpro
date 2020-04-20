@@ -1,0 +1,11 @@
+---
+
+- import_playbook: common.yml
+
+- name: setup work dev envimoment
+  hosts: localhost
+  connection: local
+  roles:
+    - { role: roles/ruby, tags: [ ruby ] }
+    - { role: roles/rust, tags: [ rust ] }
+
