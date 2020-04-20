@@ -10,6 +10,7 @@
     - { role: roles/curl, tags: [ curl ] }
     - { role: roles/asdf, tags: [ asdf ] }
     - { role: roles/watch, tags: [ watch ] }
+    - { role: roles/rectangle, tags: [ rectangle ] }
     - { role: roles/tmux, tags: [ tmux ] }
     - { role: roles/neovim, tags: [ neovim ] }
 
