@@ -92,3 +92,15 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 nnoremap <silent> <C-p> :Files<CR>
 nnoremap <silent> <C-o> :Buffer<CR>
 nnoremap <silent> <C-i> :Rg<CR>
+
+" Vimwiki
+let g:vimwiki_list=[{
+    \ 'path': "~/src/zettelkasten",
+    \ 'syntax': 'markdown',
+    \ 'ext': '.md'
+    \ }]
+
+" Zettelkasten
+let g:zettel_format="%Y%m%d%H%M%S_%title"
+let g:zettel_fzf_command="rg --column --line-number --ignore-case --no-heading --color=always "
+let g:zettel_options=[{'front_matter': {'tags': '[]'}}]
