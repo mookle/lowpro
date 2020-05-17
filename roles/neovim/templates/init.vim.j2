@@ -19,6 +19,7 @@ set visualbell 	   " silence beeps
 set noerrorbells   " silence beeps
 set noshowmode     " hide mode display
 set updatetime=100 " reduce default of 4000
+set foldmethod=syntax " use syntax to pre-define folds
 
 " Windows / buffers
 set hidden     " hide buffers rather than require they are saved or discarded
@@ -29,6 +30,7 @@ set splitright " open vertical splits to the right of the current file
 set incsearch  " show search matches as they are typed
 set ignorecase " ignore case when searching
 set smartcase  " make searches case-sensitive when uppercase is used
+set nohlsearch " disable search highlighting
 
 " Editing
 set number        " enable line numbers
@@ -49,19 +51,16 @@ set expandtab     " convert tabs to spaces in INSERT mode
 set softtabstop=4 " number of columns a tab uses
 
 " Visual settings
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 if (has("termguicolors"))
     set termguicolors
 endif
 syntax enable " enable syntax highlighting
+autocmd BufRead,BufNewFile *.twig set filetype=htmljinja " syntax highlighting for Twig
 colorscheme gruvbox
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_contrast_light='soft'
 set background=dark
-
-" Lightline
-let g:lightline = {
-    \ 'colorscheme': 'gruvbox',
-    \ }
 
 " Git gutter
 let g:gitgutter_sign_added = '▎'

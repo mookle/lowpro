@@ -15,8 +15,6 @@ neovim_plugins:
   - 'airblade/vim-gitgutter'
   # File renaming (saveas and delete old)
   - 'vim-scripts/Rename'
-  # ALL OF THE SYNTAX
-  - 'sheerun/vim-polyglot'
   # Better status line
   - 'itchyny/lightline.vim'
   # Improve netrw workflow
