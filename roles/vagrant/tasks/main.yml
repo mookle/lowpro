@@ -1,10 +1,17 @@
 ---
 
-- include: debian.yml
-  when: ansible_os_family == 'Debian'
-  tags: [ package, debian ]
+- name: install via package manager
+  include_tasks: package_manager.yml
+  vars:
+    packages:
+      - vagrant
+      - virtualbox
+  when: ansible_system == "Linux"
 
-- include: darwin.yml
+- name: install via Homebrew cask
+  homebrew_cask:
+    name: vagrant
+    state: present
   when: ansible_os_family == 'Darwin'
   tags: [ package, darwin ]
 
@@ -13,4 +20,3 @@
   register: result
   changed_when: result.stdout == "0"
   tags: [ package ]
-

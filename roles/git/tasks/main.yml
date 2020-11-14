@@ -1,18 +1,9 @@
 ---
 
-- apt:
-    name: git
-    state: present
-    update_cache: yes
-  become: true
-  when: ansible_os_family == 'Debian'
-  tags: [ package ]
-
-- homebrew:
-    name: git
-    state: present
-  when: ansible_os_family == 'Darwin'
-  tags: [ package ]
+- name: install via package manager
+  include_tasks: package_manager.yml
+  vars:
+    packages: [ git ]
 
 - name: ensure config directory exists
   file:

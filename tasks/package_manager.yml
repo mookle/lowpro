@@ -1,0 +1,23 @@
+---
+
+- apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  loop: "{{ packages }}"
+  become: true
+  when: ansible_os_family == "Debian"
+
+- pacman:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  loop: "{{ packages }}"
+  become: true
+  when: ansible_os_family == "Archlinux"
+
+- homebrew:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ packages }}"
+  when: ansible_os_family == "Darwin"

@@ -7,7 +7,6 @@
   connection: local
   roles:
     - { role: roles/vagrant, tags: [ vagrant ] }
-    - { role: roles/virtualbox, tags: [ virtualbox ] }
     - { role: roles/rust, tags: [ rust ] }
     - { role: roles/haskell, tags: [ haskell ] }
     - { role: roles/java, tags: [ java ] }

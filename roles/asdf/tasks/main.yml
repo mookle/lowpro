@@ -3,7 +3,7 @@
 - homebrew:
     name: asdf
     state: present
-  when: ansible_os_family == 'Darwin'
+  when: ansible_system == "Darwin"
   tags: [ package ]
 
 - git:
@@ -12,7 +12,7 @@
     clone: yes
     version: "{{ asdf.version }}"
     update: no
-  when: ansible_os_family == 'Debian'
+  when: ansible_system == "Linux"
   tags: [ package ]
 
 - name: add asdf completion to .zshrc

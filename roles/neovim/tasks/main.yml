@@ -1,12 +1,23 @@
 ---
 
-- include: debian.yml
-  when: ansible_os_family == 'Debian'
-  tags: [ package ]
+- name: install via package manager
+  include_tasks: package_manager.yml
+  vars:
+    packages:
+      - software-properties-common
+      - python-pip
+      - python3-pip
+      - neovim
+      - ripgrep
+  when: ansible_system == "Linux"
 
-- include: darwin.yml
-  when: ansible_os_family == 'Darwin'
-  tags: [ package ]
+- name: install via package manager
+  include_tasks: package_manager.yml
+  vars:
+    packages:
+      - neovim/neovim/neovim
+      - ripgrep
+  when: ansible_system == "Darwin"
 
 # Deoplete requirement
 - name: install neovim support for python

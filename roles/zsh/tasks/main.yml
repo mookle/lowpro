@@ -1,19 +1,9 @@
 ---
 
-- name: install package
-  homebrew:
-    name: zsh
-    state: present
-  when: ansible_os_family == 'Darwin'
-  tags: [ package ]
-
-- name: install package
-  apt:
-    name: zsh
-    state: present
-  become: true
-  when: ansible_os_family == 'Debian'
-  tags: [ package ]
+- name: install via package manager
+  include_tasks: package_manager.yml
+  vars:
+    packages: [ zsh ]
 
 - name: create main config file
   blockinfile:

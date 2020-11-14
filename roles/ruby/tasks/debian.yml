@@ -1,9 +1,0 @@
----
-
-- name: install package
-  apt:
-    name: ruby
-    state: present
-    update_cache: yes
-  become: true
-
