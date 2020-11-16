@@ -12,8 +12,7 @@
   homebrew_cask:
     name: vagrant
     state: present
-  when: ansible_os_family == 'Darwin'
-  tags: [ package, darwin ]
+  when: ansible_os_family == "Darwin"
 
 - name: check for vagrant-vbguest plugin
   shell: vagrant plugin list | grep vagrant-vbguest | wc -m

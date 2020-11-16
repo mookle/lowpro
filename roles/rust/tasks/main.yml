@@ -2,13 +2,13 @@
 
 - name: "Install rustup"
   shell: curl https://sh.rustup.rs -sSf | sh -s -- -y
-  tags: [ package ]
 
 - name: "Remove cargo $PATH config from ~/.bash_profile"
   lineinfile:
     dest: "{{ bash_config_dir }}/.bash_profile"
     state: absent
     regexp: '^export PATH="\$HOME\/\.cargo\/bin:\$PATH"$'
+  tags: [ config ]
 
 - name: "Add cargo $PATH config to ~/.bashrc"
   blockinfile:
@@ -16,8 +16,10 @@
     marker: "# {mark} ANSIBLE MANAGED BLOCK: Rust toolchain"
     block: |
       export PATH="$HOME/.cargo/bin:$PATH"
+  tags: [ config ]
 
 - name: "Remove .profile file"
   file:
     dest: "{{ bash_config_dir }}/.profile"
     state: absent
+  tags: [ config ]

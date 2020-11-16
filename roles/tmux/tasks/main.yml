@@ -22,4 +22,4 @@
 
 - name: install terminfo
   command: "tic {{ tmux_config_dir }}/tmux-256color.terminfo"
-  tags: [ package ]
+  tags: [ config ]

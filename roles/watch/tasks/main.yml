@@ -3,5 +3,4 @@
 - homebrew:
     name: watch
     state: present
-  when: ansible_os_family == 'Darwin'
-  tags: [ package ]
+    when: ansible_os_family == "Darwin"

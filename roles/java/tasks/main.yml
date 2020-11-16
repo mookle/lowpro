@@ -2,8 +2,6 @@
 
 - include: debian.yml
   when: ansible_os_family == 'Debian'
-  tags: [ package ]
 
 - include: darwin.yml
   when: ansible_os_family == 'Darwin'
-  tags: [ package ]

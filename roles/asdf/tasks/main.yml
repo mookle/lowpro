@@ -4,7 +4,6 @@
     name: asdf
     state: present
   when: ansible_system == "Darwin"
-  tags: [ package ]
 
 - git:
     repo: "https://github.com/asdf-vm/asdf.git"
@@ -13,7 +12,6 @@
     version: "{{ asdf.version }}"
     update: no
   when: ansible_system == "Linux"
-  tags: [ package ]
 
 - name: add asdf completion to .zshrc
   blockinfile:
