@@ -1,42 +1,43 @@
 # Lowpro
 
-Basic provisioning for my development environment. Intended for use on OSX or Ubuntu systems.
+Setting up a new dev environment is boring, and dotfiles only relieve some of that pain; this repo is an attempt to automate the entire process. Tested against my own macOS and Ubuntu setups, YMMV.
 
 ## Usage
 
-    curl -L https://raw.githubusercontent.com/mookle/lowpro/master/provision | bash
+To provision a box-fresh system:
 
-## What's happening here?
+```bash
+curl -L https://raw.githubusercontent.com/mookle/lowpro/master/run | bash
+```
 
-The `./provision` script installs some platform-specific dependancies, clones this repo, then uses Ansible to ensure all the programs exist and are correctly configured. The installed / configured programs are:
+After the initial run, you can re-provision at any point by invoking the relevant script directly:
 
-### Languages
-- leiningen
-- scala
-- sbt
-- rust
-- haskell
-- java
-- ruby
+```bash
+$ bin/provision [{--tags | -t} <tag_name>] ...
+```
 
-### Editors
-- vim
-- nvim
+## Configuration
 
-### Version Control
-- git
-- ghi (https://github.com/stephencelis/ghi)
+Certain aspects of the process are configurable. Nothing too fancy, just something that allows for swapping between shells or language toolchains without needing to edit the playbooks/roles themselves. The current format/available options are:
 
-### Infrastructure / provisioning
-- ansible
-- homebrew
-- vagrant
-- virtualbox
-- bash
+```yaml
+shell: # {zsh}
+editor: # {neovim}
+languages: # (rust: nightly|lein: |haskell: |java: |scala: |ruby: ) ...
+extras:
+  linux: # no options yet
+  macos: # (watch|rectangle) ...
+```
 
-### Utilities
-- curl
-- ssh
-- tmux
-- tmuxinator (https://github.com/tmuxinator/tmuxinator)
-- watch
+## What does `run` do?
+
+The provisioning runner installs any system-specific dependancies, clones this repo, then uses Ansible (via `bin/provision`) to ensure everything is installed and correctly configured. "Everything" is broken up into several playbooks:
+
+- **Shell**. Installs and configures an interactive shell. Configurable.
+
+- **Core**. A (mostly) fixed set of roles, needed regardless of configuration/other playbooks. Exposes the `editor` param to configuration.
+
+- **Languages**. Installs and configures [asdf](https://github.com/asdf-vm/asdf) to help manage toolchain installations. Exposes the complete language set (inc. optional version pinning) to configuration.
+
+- **Extras**. Additional packages that require no config in order to setup. Configurable, with each `ansible_system` getting its own list. N.B. The actual config key != `ansible_system`
+
