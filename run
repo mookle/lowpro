@@ -1,29 +1,30 @@
 #!/bin/bash
 
-readonly PROVISION_DIR="$HOME/src/lowpro"
+readonly setup_dir="$HOME/src/lowpro"
 
-osx_setup() {
+darwin_deps() {
     local homebrew='https://raw.githubusercontent.com/Homebrew/install/master/install'
     /usr/bin/ruby -e "$(curl -fsSL $homebrew)"
     brew install git ansible
 }
 
-ubuntu_setup() {
+linux_deps() {
     sudo apt-get update -y
     sudo apt-get install git ansible -y
 }
 
-# Install prerequisites for provisioning
+# Install OS-specific dependancies
 case $(uname) in
-    Darwin) osx_setup;;
-    Linux ) ubuntu_setup;;
+    Darwin) darwin_deps;;
+    Linux ) linux_deps;;
     *     ) echo 'Aborting: Unsupported operating system'
             exit;;
 esac
 
-# Clone provisioning repo
-git clone https://github.com/mookle/lowpro $PROVISION_DIR
-cd $PROVISION_DIR
+# Clone full repo
+git clone https://github.com/mookle/lowpro $setup_dir
+cd $setup_dir
 
 # Setup localhost
-ansible-playbook -i hosts.yml -e @config.yml playbooks/all.yml --ask-become-pass --ask-vault-pass
+bin/provision
+

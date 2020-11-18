@@ -1,0 +1,29 @@
+#!/bin/bash
+
+tags=""
+cmd_suffix=""
+
+for arg in "$@"
+do
+    case $arg in
+        -t|--tag)
+            if [[ $tags == "" ]]; then
+                tags="$2"
+            else 
+                tags="$tags,$2"
+            fi
+            shift 2
+            ;;
+        -*)
+            echo "Aborting: Unsupported arg \"$arg\""
+            exit 1
+            ;;
+    esac
+done
+
+if [[ $tags != "" ]]; then
+    cmd_suffix="--tags=$tags"
+fi
+
+ansible-playbook -i hosts.yml -e @config.yml playbooks/all.yml --ask-become-pass --ask-vault-pass $cmd_suffix
+
