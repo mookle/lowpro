@@ -1,6 +1,6 @@
 # Lowpro
 
-Setting up a new dev environment is boring, and dotfiles only relieve some of that pain; this repo is an attempt to automate the entire process. Tested against my own macOS and Ubuntu setups, YMMV.
+Setting up a new dev environment is boring, and dotfiles only relieve some of that pain; this repo is an attempt to automate the entire process. Tested against my own macOS/Ubuntu/Manjaro setups, YMMV.
 
 ## Usage
 

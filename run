@@ -2,23 +2,23 @@
 
 readonly setup_dir="$HOME/src/lowpro"
 
-darwin_deps() {
-    local homebrew='https://raw.githubusercontent.com/Homebrew/install/master/install'
-    /usr/bin/ruby -e "$(curl -fsSL $homebrew)"
-    brew install git ansible
-}
-
-linux_deps() {
-    sudo apt-get update -y
-    sudo apt-get install git ansible -y
-}
-
-# Install OS-specific dependancies
-case $(uname) in
-    Darwin) darwin_deps;;
-    Linux ) linux_deps;;
-    *     ) echo 'Aborting: Unsupported operating system'
-            exit;;
+# Install system-specific dependancies
+case $(cat /etc/issue | awk '{print $1}') in
+    Darwin)
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+        brew install git ansible
+        ;;
+    Manjaro)
+        sudo pacman -Sy git ansible --noconfirm
+        ;;
+    Debian)
+        sudo apt-get update -y
+        sudo apt-get install git ansible -y
+        ;;
+    *)
+        echo 'Aborting: Unsupported operating system'
+        exit 1
+        ;;
 esac
 
 # Clone full repo
