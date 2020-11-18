@@ -2,7 +2,8 @@
 
 shell: zsh
 editor: neovim
-languages: {}
+languages:
+  rust: "nightly"
 extras:
   linux: []
   macos:

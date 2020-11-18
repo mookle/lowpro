@@ -13,4 +13,5 @@
       vars:
         version: "{{ item.value | default('undefined') }}"
       loop: "{{ languages | dict2items }}"
+      tags: "{{ languages.keys() }}"
   tags: languages
