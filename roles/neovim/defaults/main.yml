@@ -6,11 +6,13 @@ neovim_vim_plug_dir: "{{ neovim_config_dir }}/autoload"
 neovim_plugins:
   # Restores Focus(Lost|Gained) when using iTerm & tmux
   - 'sjl/vitality.vim'
+  # BEGIN Complex case, handled in init.vim
   # Fuzzy file finder
   #- 'junegunn/fzf'
   #- 'junegunn/fzf.vim'
   # Auto-completion
   #- 'Shougo/deoplete.nvim'
+  # END Complex case, handled in init.vim
   # Display git diff notation in the gutter
   - 'airblade/vim-gitgutter'
   # File renaming (saveas and delete old)

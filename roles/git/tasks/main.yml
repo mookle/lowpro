@@ -17,9 +17,9 @@
     dest: "{{ git_config_dir }}/.gitconfig"
   tags: [ config ]
 
-- name: git helper function for zsh
+- name: add shell helper function
   blockinfile:
-    dest: "{{ zsh.config_file }}"
+    dest: "{{ shell_config_file }}"
     create: yes
     marker: "# {mark} ANSIBLE MANAGED BLOCK: Git helper functions"
     block: |
@@ -38,4 +38,5 @@
         eval $CMD
       }
     insertafter: EOF
+  when: shell == "zsh"
   tags: [ config ]

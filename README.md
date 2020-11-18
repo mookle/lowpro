@@ -21,7 +21,7 @@ $ bin/provision [{--tags | -t} <tag_name>] ...
 Certain aspects of the process are configurable. Nothing too fancy, just something that allows for swapping between shells or language toolchains without needing to edit the playbooks/roles themselves. The current format/available options are:
 
 ```yaml
-shell: # {zsh}
+shell: # {zsh|fish}
 editor: # {neovim}
 languages: # (rust: nightly|lein: |haskell: |java: |scala: |ruby: ) ...
 extras:

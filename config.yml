@@ -1,6 +1,6 @@
 ---
 
-shell: zsh
+shell: fish
 editor: neovim
 languages:
   rust: "nightly"

@@ -1,0 +1,26 @@
+---
+
+- name: install via package manager
+  include_tasks: package_manager.yml
+  vars:
+    packages: [ fish ]
+
+- name: ensure config directory exists
+  file:
+    path: "{{ config_dir }}"
+    state: directory
+  tags: [ config ]
+
+- name: copy config file
+  copy:
+    src: files/config.fish
+    dest: "{{ config_file }}"
+  tags: [ config ]
+
+- include: oh_my_fish.yml
+  tags: [ config ]
+
+- name: set fish as current shell
+  command: "chsh -s /bin/fish {{ ansible_env.USER }}"
+  become: true
+  tags: [ config ]

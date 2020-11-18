@@ -57,13 +57,7 @@
 - include: zsh_autosuggestions.yml
   tags: [ config ]
 
-- name: check current shell
-  shell: "echo $SHELL"
-  register: current_shell
-  tags: [ config ]
-
 - name: set zsh as default shell
   command: "chsh -s /bin/zsh {{ ansible_env.USER }}"
-  when: current_shell.stdout_lines[0] != "/bin/zsh"
   become: true
   tags: [ config ]

@@ -21,4 +21,5 @@
     marker: "# {mark} ANSIBLE MANAGED BLOCK: asdf completion"
     block: |
       . ~/.asdf/asdf.sh
+  when: shell == "zsh"
   tags: [ config ]

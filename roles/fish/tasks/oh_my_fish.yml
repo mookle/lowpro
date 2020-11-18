@@ -1,0 +1,27 @@
+---
+
+- name: is oh-my-fish installed?
+  stat:
+    path: "{{ omf.install_path }}"
+  register: omf_installed
+
+- name: download installer
+  get_url:
+    url: "{{ omf.installer.src }}"
+    dest: "{{ omf.installer.dest }}"
+    mode: +x
+  when: omf_installed.stat.exists == False
+
+- name: install
+  command: "fish {{ omf.installer.dest }} --path={{ omf.install_path }} --config={{ omf.config_path }}"
+  when: omf_installed.stat.exists == False
+
+- name: clean-up installation file
+  file:
+    path: "{{ omf.installer.dest }}"
+    state: absent
+  when: omf_installed.stat.exists == False
+
+- name: install a decent theme
+  shell: "omf install {{ omf.theme }}"
+  when: omf_installed.stat.exists == False

@@ -5,19 +5,22 @@
   vars:
     packages:
       - software-properties-common
-      - python-pip
       - python3-pip
-      - neovim
-      - ripgrep
-  when: ansible_system == "Linux"
+  when: ansible_os_family == "Debian"
 
 - name: install via package manager
   include_tasks: package_manager.yml
   vars:
     packages:
-      - neovim/neovim/neovim
+      - python-pip # python3 in Archlinux
+  when: ansible_os_family == "Archlinux"
+
+- name: install via package manager
+  include_tasks: package_manager.yml
+  vars:
+    packages:
+      - neovim
       - ripgrep
-  when: ansible_system == "Darwin"
 
 # Deoplete requirement
 - name: install neovim support for python
@@ -55,18 +58,13 @@
   shell: nvim +PlugInstall +qall &
   tags: [ config ]
 
-- name: add FZF to bash / zsh
-  blockinfile:
-    dest: "{{ ansible_env.HOME }}/{{ item }}"
-    marker: "# {mark} ANSIBLE MANAGED BLOCK: Fuzzy search"
-    block: |
-      [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-      export FZF_DEFAULT_COMMAND='rg --files --follow --color never'
-  loop:
-    - .bashrc
-    - .zshrc
-  tags: [ config ]
+- name: add FZF to fish
+  copy:
+    src: fzf.fish
+    dest: "{{ ansible_env.HOME }}/.config/fish/conf.d/fzf.fish"
+  when: shell == "fish"
+  tags: [ config, fish ]
 
 - name: update git to use neovim
-  command: git config --global core.editor $(which nvim)
+  shell: git config --global core.editor nvim
   tags: [ config ]

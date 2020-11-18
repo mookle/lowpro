@@ -1,0 +1,12 @@
+---
+
+config_dir: "{{ ansible_env.HOME }}/.config/fish"
+config_file: "{{ ansible_env.HOME }}/.config/fish/config.fish"
+
+omf:
+  installer:
+    src: "https://get.oh-my.fish"
+    dest: "{{ ansible_env.HOME }}/omf_installer"
+  install_path: "{{ ansible_env.HOME }}/.local/share/omf"
+  config_path: "{{ ansible_env.HOME }}/.config/omf"
+  theme: bobthefish
