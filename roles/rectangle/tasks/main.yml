@@ -1,6 +1,0 @@
----
-
-- homebrew_cask:
-    name: rectangle
-    state: present
-  when: ansible_os_family == 'Darwin'

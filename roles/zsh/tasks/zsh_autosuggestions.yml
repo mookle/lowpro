@@ -7,7 +7,7 @@
 
 - name: add zsh-autosuggestion config
   blockinfile:
-    dest: "{{ zsh.config_file }}"
+    dest: "{{ config_file }}"
     insertafter: EOF
     marker: "# {mark} ANSIBLE: zsh-autosuggestions"
     block: |

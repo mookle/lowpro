@@ -13,9 +13,9 @@
     update: no
   when: ansible_system == "Linux"
 
-- name: add asdf completion to .zshrc
+- name: add asdf completion to shell
   blockinfile:
-    dest: "{{ zsh.config_file }}"
+    dest: "{{ shell_config_file }}"
     create: yes
     insertafter: EOF
     marker: "# {mark} ANSIBLE MANAGED BLOCK: asdf completion"

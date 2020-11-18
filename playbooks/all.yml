@@ -1,0 +1,10 @@
+---
+
+- name: entry-point for localhost provisioning
+  hosts: localhost
+  connection: local
+- import_playbook: shell.yml
+- import_playbook: core.yml
+- import_playbook: languages.yml
+- import_playbook: extras.yml
+

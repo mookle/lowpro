@@ -20,8 +20,8 @@
 
 - name: restore pre-oh-my-zsh config
   copy:
-    src: "{{ zsh.config_file }}.pre-oh-my-zsh"
-    dest: "{{ zsh.config_file }}"
+    src: "{{ config_file }}.pre-oh-my-zsh"
+    dest: "{{ config_file }}"
   when: omz.stat.exists == False
 
 - name: clean-up installation files
@@ -30,7 +30,7 @@
     state: absent
   with_items:
     - "{{ oh_my_zsh.install.script }}"
-    - "{{ zsh.config_file }}.pre-oh-my-zsh"
+    - "{{ config_file }}.pre-oh-my-zsh"
   when: omz.stat.exists == False
 
 - name: install powerlevel9k
@@ -42,7 +42,7 @@
 
 - name: add oh-my-zsh config
   blockinfile:
-    path: "{{ zsh.config_file }}"
+    path: "{{ config_file }}"
     insertafter: EOF
     marker: "# {mark} ANSIBLE: oh-my-zsh"
     block: |

@@ -7,7 +7,7 @@
 
 - name: create main config file
   blockinfile:
-    dest: "{{ zsh.config_file }}"
+    dest: "{{ config_file }}"
     create: yes
     insertafter: EOF
     marker: "# {mark} ANSIBLE: zsh"
@@ -45,7 +45,7 @@
 - name: copy additional config files
   copy:
     src: "files/{{ item }}"
-    dest: "{{ zsh.config_dir }}/{{ item }}"
+    dest: "{{ config_dir }}/{{ item }}"
   loop:
     - .zprofile
     - .zsh_aliases

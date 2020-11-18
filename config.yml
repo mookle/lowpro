@@ -1,0 +1,10 @@
+---
+
+shell: zsh
+editor: neovim
+languages: {}
+extras:
+  linux: []
+  macos:
+    - watch
+    - rectangle

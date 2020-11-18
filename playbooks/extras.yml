@@ -1,0 +1,17 @@
+---
+
+- name: install additional packages
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: macOS packages
+      include_tasks: package_manager.yml
+      loop: "{{ extras.macos }}"
+      when: ansible_system == "Darwin"
+
+    - name: Linux packages
+      include_tasks: package_manager.yml
+      loop: "{{ extras.linux }}"
+      when: ansible_system == "Linux"
+  tags: extras
+

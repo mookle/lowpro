@@ -1,8 +1,7 @@
 ---
 
-zsh:
-  config_dir: "{{ ansible_env.HOME }}"
-  config_file: "{{ ansible_env.HOME }}/.zshrc"
+config_dir: "{{ ansible_env.HOME }}"
+config_file: "{{ ansible_env.HOME }}/.zshrc"
 
 oh_my_zsh:
   install:
@@ -27,7 +26,7 @@ oh_my_zsh:
 zsh_autosuggestions:
   install:
     src: "https://github.com/zsh-users/zsh-autosuggestions"
-    dest: "{{ zsh.config_dir }}/.zsh/zsh-autosuggestions"
+    dest: "{{ ansible_env.HOME }}/.zsh/zsh-autosuggestions"
 
 powerlevel9k:
   install:

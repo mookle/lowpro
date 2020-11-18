@@ -1,0 +1,23 @@
+---
+
+- name: setup interactive shell for current user
+  hosts: localhost
+  connection: local
+  roles:
+    - { role: "roles/{{ shell }}", tags: "{{ shell }}" }
+  tasks:
+    - name: import vars from shell role
+      include_vars:
+        dir: "../roles/{{ shell }}/defaults"
+        name: tmp_shell_vars
+      tags: always
+
+    - name: set facts for later roles 
+      set_fact:
+        shell_config_file: "{{ tmp_shell_vars['config_file'] }}"
+      tags: always
+
+    - debug:
+        var: shell_config_file
+      tags: always
+  tags: shell
