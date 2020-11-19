@@ -1,8 +1,8 @@
 [user]
-    name = mookle
-    email = {{ git_user_email }}
+    name = {{ git_user }}
+    email = {{ git_email }}
 [core]
-    editor = vim
+    editor = {{ editor }}
 [color]
     ui = auto
 [color "status"]
@@ -15,6 +15,8 @@
     prune = fetch --prune
 [merge]
     ff = only
+[pull]
+    rebase = false
 [push]
     followTags = true
 [status]

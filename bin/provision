@@ -1,16 +1,24 @@
 #!/bin/bash
 
 tags=""
-cmd_suffix=""
+extra_vars=""
 
 for arg in "$@"
 do
     case $arg in
-        -t|--tag)
-            if [[ $tags == "" ]]; then
+        -t|--tags)
+            if [[ -z $tags ]]; then
                 tags="$2"
             else 
                 tags="$tags,$2"
+            fi
+            shift 2
+            ;;
+        -e|--extra_vars)
+            if [[ -z $extra_vars ]]; then
+                extra_vars="$2"
+            else
+                extra_vars="$extra_vars $2"
             fi
             shift 2
             ;;
@@ -21,9 +29,12 @@ do
     esac
 done
 
-if [[ $tags != "" ]]; then
-    cmd_suffix="--tags=$tags"
+if [[ ! -z $tags ]]; then
+    tags="--tags \"$tags\""
 fi
 
-ansible-playbook -i hosts.yml -e @config.yml playbooks/all.yml --ask-become-pass --ask-vault-pass $cmd_suffix
+if [[ ! -z $extra_vars ]]; then
+    extra_vars="--extra_vars \"$extra_vars\""
+fi
 
+ansible-playbook -i hosts.yml -e @config.yml playbooks/all.yml --ask-become-pass $tags $extra_vars

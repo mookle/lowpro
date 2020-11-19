@@ -2,7 +2,7 @@
 
 readonly setup_dir="$HOME/src/lowpro"
 
-# Install system-specific dependancies
+echo "[INFO] Installing system-specific dependancies"
 case $(cat /etc/issue | awk '{print $1}') in
     Darwin)
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
@@ -21,10 +21,18 @@ case $(cat /etc/issue | awk '{print $1}') in
         ;;
 esac
 
-# Clone full repo
+echo "[INFO] Cloning lowpro repo"
 git clone https://gitlab.com/mookle/lowpro $setup_dir
 cd $setup_dir
 
-# Setup localhost
-bin/provision
+while [[ -z $git_user || -z $git_email ]]; do
+    echo "[INFO] Additional info needed to configure Git"
+    echo -n "Enter username: "
+    read git_user
+    echo -n "Enter email: "
+    read git_email
+done
+
+echo "[INFO] Running Ansible playbook"
+bin/provision -e git_email=$git_email -e git_user=$git_user
 

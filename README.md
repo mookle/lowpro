@@ -13,7 +13,7 @@ curl -L https://gitlab.com/mookle/lowpro/-/raw/master/run | bash
 After the initial run, you can re-provision at any point by invoking the relevant script directly:
 
 ```bash
-$ bin/provision [{--tags | -t} <tag_name>] ...
+$ bin/provision [{--tags | -t} <tag_name>] ... [{--extra_vars | -e} <key=value>] ...
 ```
 
 ## Configuration
