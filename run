@@ -22,7 +22,7 @@ case $(cat /etc/issue | awk '{print $1}') in
 esac
 
 # Clone full repo
-git clone https://github.com/mookle/lowpro $setup_dir
+git clone https://gitlab.com/mookle/lowpro $setup_dir
 cd $setup_dir
 
 # Setup localhost
