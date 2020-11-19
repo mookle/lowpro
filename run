@@ -2,8 +2,16 @@
 
 readonly setup_dir="$HOME/src/lowpro"
 
+function which_system {
+    if [[ $(uname -s) == "Darwin" ]]; then
+        echo "Darwin"
+    else # Presuming some flavour of Linux
+        echo $(cat /etc/issue | awk '{print $1}')
+    fi
+}
+
 echo "[INFO] Installing system-specific dependancies"
-case $(cat /etc/issue | awk '{print $1}') in
+case $(which_system) in
     Darwin)
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
         brew install git ansible
