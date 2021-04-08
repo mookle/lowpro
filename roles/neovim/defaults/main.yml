@@ -35,6 +35,8 @@ neovim_plugins:
   # Colorschemes
   - 'morhetz/gruvbox'
   - 'srcery-colors/srcery-vim'
+  - 'jacoborus/tender.vim'
+  - 'ayu-theme/ayu-vim'
   # Zettelkasten plugins
   - 'vimwiki/vimwiki'
   - 'michal-h21/vim-zettel'

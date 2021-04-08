@@ -55,12 +55,14 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 if (has("termguicolors"))
     set termguicolors
 endif
-syntax enable " enable syntax highlighting
+syntax enable
 autocmd BufRead,BufNewFile *.twig set filetype=htmljinja " syntax highlighting for Twig
-colorscheme gruvbox
-let g:gruvbox_contrast_dark='hard'
-let g:gruvbox_contrast_light='soft'
-set background=dark
+let s:theme='tender'
+let g:ayucolor='light'
+let g:gruvbox_contrast_dark='medium'
+let g:gruvbox_contrast_light='medium'
+let g:lightline = { 'colorscheme': s:theme }
+exe 'colorscheme ' . s:theme
 
 " Git gutter
 let g:gitgutter_sign_added = '▎'
