@@ -19,8 +19,8 @@ neovim_plugins:
   - 'vim-scripts/Rename'
   # Better status line
   - 'itchyny/lightline.vim'
-  # Improve netrw workflow
-  - 'tpope/vim-vinegar'
+  # netrw replacement
+  - 'preservim/nerdtree'
   # Syntax / language packs
   - 'sheerun/vim-polyglot'
   # Clojure integration
@@ -37,6 +37,3 @@ neovim_plugins:
   - 'srcery-colors/srcery-vim'
   - 'jacoborus/tender.vim'
   - 'ayu-theme/ayu-vim'
-  # Zettelkasten plugins
-  - 'vimwiki/vimwiki'
-  - 'michal-h21/vim-zettel'

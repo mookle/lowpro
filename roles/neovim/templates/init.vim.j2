@@ -12,7 +12,7 @@ call plug#end()
 
 " General settings
 set nocompatible   " no old school vi support
-set nobackup	   " don't backup edited buffers
+set nobackup  	   " don't backup edited buffers
 set noswapfile	   " don't create a swap file
 set autoread       " reload externally edited files
 set visualbell 	   " silence beeps
@@ -95,14 +95,18 @@ nnoremap <silent> <C-p> :Files<CR>
 nnoremap <silent> <C-o> :Buffer<CR>
 nnoremap <silent> <C-i> :Rg<CR>
 
-" Vimwiki
-let g:vimwiki_list=[{
-    \ 'path': "~/src/zettelkasten",
-    \ 'syntax': 'markdown',
-    \ 'ext': '.md'
-    \ }]
-
 " Zettelkasten
-let g:zettel_format="%Y%m%d%H%M%S_%title"
-let g:zettel_fzf_command="rg --column --line-number --ignore-case --no-heading --color=always "
-let g:zettel_options=[{'front_matter': {'tags': '[]'}}]
+inoremap <silent> <C-t> <C-r>=strftime('%F %R')<CR>
+
+" NERDtree
+let NERDTreeMinimalUI=1
+let NERDTreeNaturalSort=1
+let NERDTreeShowHidden=1
+let NERDTreeSortHiddenFirst=1
+let NERDTreeMapJumpFirstChild=''
+let NERDTreeMapJumpLastChild=''
+let NERDTreeMapJumpNextSibling='J'
+let NERDTreeMapJumpPrevSibling='K'
+nnoremap <silent> - :NERDTreeFocus<CR>
+nnoremap <silent> _ :NERDTreeClose<CR>
+nnoremap <silent> + :NERDTreeFind<CR>
