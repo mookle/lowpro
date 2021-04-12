@@ -30,11 +30,11 @@ do
 done
 
 if [[ ! -z $tags ]]; then
-    tags="--tags \"$tags\""
+    tags="--tags $tags"
 fi
 
 if [[ ! -z $extra_vars ]]; then
-    extra_vars="--extra_vars \"$extra_vars\""
+    extra_vars="--extra-vars \"$extra_vars\""
 fi
 
 ansible-playbook -i hosts.yml -e @config.yml playbooks/all.yml --ask-become-pass $tags $extra_vars
