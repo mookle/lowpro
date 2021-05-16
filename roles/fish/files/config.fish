@@ -5,6 +5,9 @@ end
 alias hr 'history --merge' # read and merge history from disk
 bind \e\[A 'history --merge ; up-or-search'
 
-# Default editor
+# TODO parameterise this block
+# Default edit
 set -gx EDITOR /usr/bin/nvim
 set -gx VISUAL /usr/bin/nvim
+
+alias ll='ls -lahF'
