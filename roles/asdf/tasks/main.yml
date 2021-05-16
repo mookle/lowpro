@@ -13,7 +13,7 @@
     update: no
   when: ansible_system == "Linux"
 
-- name: add asdf completion to shell
+- name: add asdf completion to Zsh
   blockinfile:
     dest: "{{ shell_config_file }}"
     create: yes
@@ -22,4 +22,15 @@
     block: |
       . ~/.asdf/asdf.sh
   when: shell == "zsh"
+  tags: [ config ]
+
+- name: add asdf completion to Fish
+  blockinfile:
+    dest: "{{ shell_config_file }}"
+    create: yes
+    insertafter: EOF
+    marker: "# {mark} ANSIBLE MANAGED BLOCK: asdf completion"
+    block: |
+      source ~/.asdf/asdf.fish
+  when: shell == "fish"
   tags: [ config ]
