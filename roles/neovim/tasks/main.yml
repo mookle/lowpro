@@ -4,27 +4,8 @@
   include_tasks: package_manager.yml
   vars:
     packages:
-      - software-properties-common
-      - python3-pip
-  when: ansible_os_family == "Debian"
-
-- name: install via package manager
-  include_tasks: package_manager.yml
-  vars:
-    packages:
-      - python-pip # python3 in Archlinux
-  when: ansible_os_family == "Archlinux"
-
-- name: install via package manager
-  include_tasks: package_manager.yml
-  vars:
-    packages:
       - neovim
       - ripgrep
-
-# Deoplete requirement
-- name: install neovim support for python
-  command: pip3 install --user --upgrade pynvim
 
 - name: ensure config directories exist
   file:

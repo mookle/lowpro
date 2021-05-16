@@ -5,35 +5,33 @@ neovim_plugin_dir: "{{ neovim_config_dir }}/plugged"
 neovim_vim_plug_dir: "{{ neovim_config_dir }}/autoload"
 neovim_plugins:
   # Restores Focus(Lost|Gained) when using iTerm & tmux
-  - 'sjl/vitality.vim'
-  # BEGIN Complex case, handled in init.vim
-  # Fuzzy file finder
-  #- 'junegunn/fzf'
-  #- 'junegunn/fzf.vim'
-  # Auto-completion
-  #- 'Shougo/deoplete.nvim'
-  # END Complex case, handled in init.vim
-  # Display git diff notation in the gutter
-  - 'airblade/vim-gitgutter'
-  # File renaming (saveas and delete old)
-  - 'vim-scripts/Rename'
+  - "sjl/vitality.vim"
+  # Fuzzy search
+  - { src: "junegunn/fzf", opt: "{ 'do': { -> fzf#install() } }" }
+  - "junegunn/fzf.vim"
+  # Git diff annotation
+  - "airblade/vim-gitgutter"
   # Better status line
-  - 'itchyny/lightline.vim'
-  # netrw replacement
-  - 'preservim/nerdtree'
+  - "itchyny/lightline.vim"
+  # Tree browser
+  - "lambdalisue/fern.vim"
+  - "antoinemadec/FixCursorHold.nvim"
+  - "lambdalisue/fern-hijack.vim"
   # Syntax / language packs
-  - 'sheerun/vim-polyglot'
-  # Clojure integration
-  - 'tpope/vim-fireplace'
-  - 'guns/vim-sexp'
-  - 'tpope/vim-sexp-mappings-for-regular-people'
-  - 'tpope/vim-repeat'
-  - 'tpope/vim-surround'
-  - 'venantius/vim-cljfmt'
+  - "sheerun/vim-polyglot"
+  # Wrapping strings/tokens
+  - "tpope/vim-surround"
+  - "tpope/vim-repeat"
+  # S-expression support
+  - "tpope/vim-sexp-mappings-for-regular-people"
+  - "guns/vim-sexp"
+  # Language Server Protocol magic
+  - { src: "neoclide/coc.nvim", opt: "{'branch': 'release'}" }
   # Elixir integration
-  - 'slashmili/alchemist.vim'
+  - { src: "elixir-lsp/coc-elixir", opt: "{'do': 'yarn install && yarn prepack'}" }
+  - "mhinz/vim-mix-format"
   # Colorschemes
-  - 'morhetz/gruvbox'
-  - 'srcery-colors/srcery-vim'
-  - 'jacoborus/tender.vim'
-  - 'ayu-theme/ayu-vim'
+  - "morhetz/gruvbox"
+  - "srcery-colors/srcery-vim"
+  - "jacoborus/tender.vim"
+  - "ayu-theme/ayu-vim"

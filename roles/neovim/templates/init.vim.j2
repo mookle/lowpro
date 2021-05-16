@@ -2,24 +2,26 @@
 call plug#begin()
 
 {% for item in neovim_plugins %}
+{% if item is mapping %}
+Plug '{{ item.src }}', {{ item.opt }}
+{% else %}
 Plug '{{ item }}'
+{% endif %}
 {% endfor %}
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 call plug#end()
 
 " General settings
-set nocompatible   " no old school vi support
-set nobackup  	   " don't backup edited buffers
-set noswapfile	   " don't create a swap file
-set autoread       " reload externally edited files
-set visualbell 	   " silence beeps
-set noerrorbells   " silence beeps
-set noshowmode     " hide mode display
-set updatetime=100 " reduce default of 4000
+set nocompatible      " no old school vi support
+set nobackup  	      " don't backup edited buffers
+set noswapfile	      " don't create a swap file
+set autoread          " reload externally edited files
+set visualbell 	      " silence beeps
+set noerrorbells      " silence beeps
+set noshowmode        " hide mode display
+set updatetime=100    " reduce default of 4000
 set foldmethod=syntax " use syntax to pre-define folds
+set foldlevel=3       " better values set per filetype
 
 " Windows / buffers
 set hidden     " hide buffers rather than require they are saved or discarded
@@ -51,16 +53,17 @@ set expandtab     " convert tabs to spaces in INSERT mode
 set softtabstop=4 " number of columns a tab uses
 
 " Visual settings
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
 if (has("termguicolors"))
     set termguicolors
 endif
 syntax enable
-autocmd BufRead,BufNewFile *.twig set filetype=htmljinja " syntax highlighting for Twig
-let s:theme='tender'
-let g:ayucolor='light'
-let g:gruvbox_contrast_dark='medium'
-let g:gruvbox_contrast_light='medium'
+
+" Colourschemes
+let s:theme = 'tender'
+let g:ayucolor = 'light'
+let g:gruvbox_contrast_dark = 'medium'
+let g:gruvbox_contrast_light = 'medium'
 let g:lightline = { 'colorscheme': s:theme }
 exe 'colorscheme ' . s:theme
 
@@ -76,37 +79,18 @@ highlight GitGutterChange ctermfg=74 guifg=#5fafd7
 highlight GitGutterDelete ctermfg=167 guifg=#fb4934
 highlight link GitGutterChangeDelete GitGutterChange
 
-" Vim Markdown
-let g:vim_markdown_folding_disabled=1 " disable folding
-
-" PHP syntax
-let g:php_ignore_phpdoc=1
-
-" Clojure Static
-let g:clojure_align_multiline_strings=1
-
-" Deoplete
-let g:deoplete#enable_at_startup=1
-call deoplete#custom#option('max_list', 50)
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-
 " FZF
-nnoremap <silent> <C-p> :Files<CR>
-nnoremap <silent> <C-o> :Buffer<CR>
-nnoremap <silent> <C-i> :Rg<CR>
+noremap <silent> <C-o> :GFiles<CR>
+noremap <silent> <C-p> :Buffer<CR>
+noremap <silent> <C-i> :Rg<CR>
 
-" Zettelkasten
+" INSERT mode timestamp
 inoremap <silent> <C-t> <C-r>=strftime('%F %R')<CR>
 
-" NERDtree
-let NERDTreeMinimalUI=1
-let NERDTreeNaturalSort=1
-let NERDTreeShowHidden=1
-let NERDTreeSortHiddenFirst=1
-let NERDTreeMapJumpFirstChild=''
-let NERDTreeMapJumpLastChild=''
-let NERDTreeMapJumpNextSibling='J'
-let NERDTreeMapJumpPrevSibling='K'
-nnoremap <silent> - :NERDTreeFocus<CR>
-nnoremap <silent> _ :NERDTreeClose<CR>
-nnoremap <silent> + :NERDTreeFind<CR>
+" Fern
+nnoremap <silent> - :Fern . -reveal=%<CR>
+
+" Autocompletion
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <CR> pumvisible() ? coc#_select_confirm() : "\<CR>"
