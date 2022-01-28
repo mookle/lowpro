@@ -51,10 +51,10 @@
     - .zsh_aliases
   tags: [ config ]
 
-- include: oh_my_zsh.yml
+- import_tasks: oh_my_zsh.yml
   tags: [ config ]
 
-- include: zsh_autosuggestions.yml
+- import_tasks: zsh_autosuggestions.yml
   tags: [ config ]
 
 - name: set zsh as default shell

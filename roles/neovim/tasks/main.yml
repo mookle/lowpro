@@ -39,6 +39,7 @@
   shell: nvim +PlugInstall +qall &
   tags: [ config ]
 
+# FZF added via plugin
 - name: add FZF to fish
   copy:
     src: fzf.fish

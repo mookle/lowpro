@@ -1,9 +1,9 @@
 ---
 
-- include: debian.yml
+- include_tasks: debian.yml
   when: ansible_os_family == 'Debian'
 
-- include: darwin.yml
+- include_tasks: darwin.yml
   when: ansible_os_family == 'Darwin'
 
 - name: ensure config directory exists

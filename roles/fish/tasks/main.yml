@@ -20,7 +20,13 @@
     dest: "{{ config_file }}"
   tags: [ config ]
 
-- include: oh_my_fish.yml
+- name: is oh-my-fish installed?
+  stat:
+    path: "{{ omf.install_path }}"
+  register: omf_installed
+
+- include_tasks: oh_my_fish.yml
+  when: omf_installed.stat.exists == False
   tags: [ config ]
 
 - name: register fish path as a variable
