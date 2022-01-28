@@ -5,10 +5,13 @@
   vars:
     packages: [ fish ]
 
-- name: ensure config directory exists
+- name: ensure config directories exist
   file:
-    path: "{{ config_dir }}"
+    path: "{{ item }}"
     state: directory
+  with_items:
+    - "{{ config_dir }}"
+    - "{{ config_dir }}/conf.d"
   tags: [ config ]
 
 - name: copy config file
@@ -20,7 +23,22 @@
 - include: oh_my_fish.yml
   tags: [ config ]
 
+- name: register fish path as a variable
+  shell: "which fish"
+  register: fish_path
+  tags: [ config ]
+
+- name: add fish to allowed shells list
+  lineinfile:
+    path: /etc/shells
+    state: present
+    line: "{{ fish_path.stdout }}"
+  become: true
+  tags: [ config ]
+
 - name: set fish as current shell
-  command: "chsh -s /bin/fish {{ ansible_env.USER }}"
+  user:
+    name: "{{ ansible_env.USER }}"
+    shell: "{{ fish_path.stdout }}"
   become: true
   tags: [ config ]
