@@ -1,36 +1,58 @@
 ---
 
-- homebrew:
-    name: asdf
-    state: present
-  when: ansible_system == "Darwin"
+- name: remove existing installation
+  file:
+    path: ~/.asdf
+    state: absent
 
-- git:
+- name: install via Git
+  git:
     repo: "https://github.com/asdf-vm/asdf.git"
     dest: ~/.asdf
-    clone: yes
     version: "{{ asdf.version }}"
+    single_branch: yes
     update: no
-  when: ansible_system == "Linux"
+    force: yes
 
-- name: add asdf completion to Zsh
+- name: add config (inc completions) to Zsh
   blockinfile:
     dest: "{{ shell_config_file }}"
     create: yes
     insertafter: EOF
-    marker: "# {mark} ANSIBLE MANAGED BLOCK: asdf completion"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK: asdf config"
     block: |
       . ~/.asdf/asdf.sh
+
+      # append completions to fpath
+      fpath=(${ASDF_DIR}/completions $fpath)
+
+      # initialise completions with ZSH's compinit
+      autoload -Uz compinit && compinit
   when: shell == "zsh"
   tags: [ config ]
 
-- name: add asdf completion to Fish
+- name: add config (inc completions) to Fish
   blockinfile:
     dest: "{{ shell_config_file }}"
     create: yes
     insertafter: EOF
-    marker: "# {mark} ANSIBLE MANAGED BLOCK: asdf completion"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK: asdf config"
     block: |
       source ~/.asdf/asdf.fish
+  when: shell == "fish"
+  tags: [ config ]
+
+- name: ensure `completions` config directory exists
+  file:
+    path: ~/.config/fish/completions
+    state: directory
+  when: shell == "fish"
+  tags: [ config ]
+
+- name: symlink config from local installation
+  file:
+    src: ~/.asdf/completions/asdf.fish
+    dest: ~/.config/fish/completions/asdf.fish
+    state: link
   when: shell == "fish"
   tags: [ config ]
