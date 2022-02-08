@@ -28,3 +28,13 @@
   shell: "rustup default {{ version }}"
   when: version != "default"
   tags: [ config ]
+
+- name: install RLS components
+  command: |
+    rustup component add rls rust-analysis rust-src
+  tags: [config, neovim]
+
+- name: install CoC RLS extension
+  shell: |
+    nvim +"CocInstall -sync coc-rls|qa" --headless
+  tags: [config, neovim]
