@@ -6,12 +6,15 @@
   roles:
     - { role: roles/asdf, tags: asdf }
   tasks:
-    - include_role:
-        name: "roles/{{ item.key }}"
+    - name: Setup language toolchains
+      include_role:
+        name: "roles/{{ lang_item.key }}"
         apply:
-          tags: "{{ item.key }}"
+          tags: "{{ lang_item.key }}"
       vars:
-        version: "{{ item.value | default('undefined') }}"
+        version: "{{ lang_item.value | default('undefined') }}"
       loop: "{{ languages | dict2items }}"
+      loop_control:
+        loop_var: lang_item
       tags: "{{ languages.keys() }}"
   tags: languages
