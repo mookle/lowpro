@@ -12,19 +12,30 @@ call plug#begin()
   " Tree browser
   Plug 'lambdalisue/fern.vim'
   Plug 'lambdalisue/fern-hijack.vim'
-  " Syntax / language packs
-  Plug 'sheerun/vim-polyglot'
   " Wrapping strings/tokens
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-repeat'
   " Language Server Protocol magic
   Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+  " Rust integration
+  Plug 'rust-lang/rust.vim'
+  " Scala integration
+  Plug 'derekwyatt/vim-scala'
   " Clojure integration
+  Plug 'clojure-vim/clojure.vim'
   Plug 'tpope/vim-sexp-mappings-for-regular-people'
   Plug 'guns/vim-sexp'
   " Elixir integration
+  Plug 'elixir-editors/vim-elixir'
   Plug 'elixir-lsp/coc-elixir', { 'do': 'yarn install && yarn prepack' }
   Plug 'mhinz/vim-mix-format'
+  " Misc integrations
+  Plug 'preservim/vim-markdown'
+  Plug 'vim-python/python-syntax'
+  Plug 'vim-ruby/vim-ruby'
+  Plug 'pearofducks/ansible-vim'
+  Plug 'ekalinin/Dockerfile.vim'
+  Plug 'ericpruitt/tmux.vim', {'rtp': 'vim/'}
   " Colorschemes
   Plug 'morhetz/gruvbox'
   Plug 'srcery-colors/srcery-vim'
