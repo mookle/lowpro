@@ -1,14 +1,35 @@
-" Plugin manager
 call plug#begin()
-
-{% for item in neovim_plugins %}
-{% if item is mapping %}
-Plug '{{ item.src }}', {{ item.opt }}
-{% else %}
-Plug '{{ item }}'
-{% endif %}
-{% endfor %}
-
+  " Performance/behavioural hotfixes
+  Plug 'sjl/vitality.vim'
+  Plug 'antoinemadec/FixCursorHold.nvim'
+  " Fuzzy search
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
+  " Git integration
+  Plug 'airblade/vim-gitgutter'
+  " Better status line
+  Plug 'itchyny/lightline.vim'
+  " Tree browser
+  Plug 'lambdalisue/fern.vim'
+  Plug 'lambdalisue/fern-hijack.vim'
+  " Syntax / language packs
+  Plug 'sheerun/vim-polyglot'
+  " Wrapping strings/tokens
+  Plug 'tpope/vim-surround'
+  Plug 'tpope/vim-repeat'
+  " Language Server Protocol magic
+  Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+  " Clojure integration
+  Plug 'tpope/vim-sexp-mappings-for-regular-people'
+  Plug 'guns/vim-sexp'
+  " Elixir integration
+  Plug 'elixir-lsp/coc-elixir', { 'do': 'yarn install && yarn prepack' }
+  Plug 'mhinz/vim-mix-format'
+  " Colorschemes
+  Plug 'morhetz/gruvbox'
+  Plug 'srcery-colors/srcery-vim'
+  Plug 'jacoborus/tender.vim'
+  Plug 'ayu-theme/ayu-vim'
 call plug#end()
 
 " General settings
@@ -46,18 +67,17 @@ set scrolloff=12  " number of lines to display either side of the current
 set backspace=indent,eol,start " fix backspace
 
 " Indentation
-filetype plugin indent on
+set tabstop=8     " number of columns a hard tab uses
+set expandtab     " convert tabs to spaces in INSERT mode
+set softtabstop=4 " number of columns a tab uses (can be a mix of tab and space)
 set shiftwidth=4  " number of spaces to use when indenting in CMD mode
 set shiftround    " round to the closest mulitple of shiftwidth in CMD mode
-set expandtab     " convert tabs to spaces in INSERT mode
-set softtabstop=4 " number of columns a tab uses
 
 " Visual settings
 let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
 if (has("termguicolors"))
     set termguicolors
 endif
-syntax enable
 
 " Colourschemes
 let s:theme = 'tender'

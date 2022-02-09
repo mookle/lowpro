@@ -13,6 +13,8 @@
     state: directory
   loop:
     - "{{ neovim_config_dir }}"
+    - "{{ neovim_config_dir }}/ftplugin"
+    - "{{ neovim_config_dir }}/after/ftplugin"
     - "{{ neovim_plugin_dir }}"
     - "{{ neovim_vim_plug_dir }}"
   tags: [ config ]
