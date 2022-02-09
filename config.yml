@@ -6,6 +6,7 @@ languages:
   rust: "nightly"
   elixir: ~
   clojure: ~
+  scala: ~
 extras:
   linux: []
   macos:

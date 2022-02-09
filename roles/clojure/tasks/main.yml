@@ -28,4 +28,15 @@
   copy:
     src: files/ftplugin.vim
     dest: "{{ ansible_env.HOME }}/.config/nvim/ftplugin/clojure.vim"
-  tags: [ config ]
+  tags: [ config, neovim ]
+
+- name: add plugin to init.vim
+  blockinfile:
+    dest: "{{ ansible_env.HOME }}/.config/nvim/init.vim"
+    marker: "\" {mark} ANSIBLE BLOCK: Clojure integration"
+    block: |
+      Plug 'clojure-vim/clojure.vim'
+      Plug 'tpope/vim-sexp-mappings-for-regular-people'
+      Plug 'guns/vim-sexp'
+    insertbefore: "call plug#end()"
+  tags: [ config, neovim ]

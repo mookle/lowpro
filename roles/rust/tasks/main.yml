@@ -13,7 +13,7 @@
 - name: add Cargo to PATH via zsh
   blockinfile:
     dest: "{{ shell_config_file }}"
-    marker: "# {mark} ANSIBLE MANAGED BLOCK: Rust toolchain"
+    marker: "# {mark} ANSIBLE BLOCK: Rust toolchain"
     block: |
       export PATH="$HOME/.cargo/bin:$PATH"
   when: shell == "zsh"
@@ -29,18 +29,27 @@
   when: version != "default"
   tags: [ config ]
 
+- name: add plugin to init.vim
+  blockinfile:
+    dest: "{{ ansible_env.HOME }}/.config/nvim/init.vim"
+    marker: "\" {mark} ANSIBLE BLOCK: Rust integration"
+    block: |
+      Plug 'rust-lang/rust.vim'
+    insertbefore: "call plug#end()"
+  tags: [ config, neovim ]
+
 - name: install RLS components
   command: |
     rustup component add rls rust-analysis rust-src
-  tags: [config, neovim]
+  tags: [ config, neovim ]
 
 - name: install CoC RLS extension
   shell: |
     nvim +"CocInstall -sync coc-rls|qa" --headless
-  tags: [config, neovim]
+  tags: [ config, neovim ]
 
 - name: copy neovim filetype config
   copy:
     src: files/ftplugin.vim
     dest: "{{ ansible_env.HOME }}/.config/nvim/ftplugin/rust.vim"
-  tags: [ config ]
+  tags: [ config, neovim ]

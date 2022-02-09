@@ -10,3 +10,14 @@
     src: files/ftplugin.vim
     dest: "{{ ansible_env.HOME }}/.config/nvim/ftplugin/elixir.vim"
   tags: [ config ]
+
+- name: add plugin to init.vim
+  blockinfile:
+    dest: "{{ ansible_env.HOME }}/.config/nvim/init.vim"
+    marker: "\" {mark} ANSIBLE BLOCK: Elixir integration"
+    block: |
+      Plug 'elixir-editors/vim-elixir'
+      Plug 'elixir-lsp/coc-elixir', { 'do': 'yarn install && yarn prepack' }
+      Plug 'mhinz/vim-mix-format'
+    insertbefore: "call plug#end()"
+  tags: [ config, neovim ]
