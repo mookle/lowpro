@@ -23,3 +23,9 @@
     src: files/profiles.clj
     dest: "{{ lein_config_dir }}/profiles.clj"
   tags: [ config ]
+
+- name: copy neovim filetype config
+  copy:
+    src: files/ftplugin.vim
+    dest: "{{ ansible_env.HOME }}/.config/nvim/ftplugin/clojure.vim"
+  tags: [ config ]
