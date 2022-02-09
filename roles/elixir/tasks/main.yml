@@ -1,0 +1,12 @@
+---
+
+- name: install via package manager
+  include_tasks: package_manager.yml
+  vars:
+    packages: [ elixir ]
+
+- name: copy neovim filetype config
+  copy:
+    src: files/ftplugin.vim
+    dest: "{{ ansible_env.HOME }}/.config/nvim/ftplugin/elixir.vim"
+  tags: [ config ]

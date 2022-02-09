@@ -4,6 +4,7 @@ shell: fish
 editor: neovim
 languages:
   rust: "nightly"
+  elixir: ~
 extras:
   linux: []
   macos:
