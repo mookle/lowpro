@@ -5,6 +5,7 @@ editor: neovim
 languages:
   rust: "nightly"
   elixir: ~
+  clojure: ~
 extras:
   linux: []
   macos:
