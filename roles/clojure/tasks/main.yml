@@ -38,5 +38,11 @@
       Plug 'clojure-vim/clojure.vim'
       Plug 'tpope/vim-sexp-mappings-for-regular-people'
       Plug 'guns/vim-sexp'
+      Plug 'Olical/conjure'
     insertbefore: "call plug#end()"
+  tags: [ config, neovim ]
+
+- name: install CoC extension
+  shell: |
+    nvim +"CocInstall -sync coc-conjure|qa" --headless
   tags: [ config, neovim ]
