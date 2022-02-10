@@ -15,3 +15,8 @@
       Plug 'derekwyatt/vim-scala'
     insertbefore: "call plug#end()"
   tags: [ config, neovim ]
+
+- name: install CoC extension
+  shell: |
+    nvim +"CocInstall -sync coc-metals|qa" --headless
+  tags: [ config, neovim ]
