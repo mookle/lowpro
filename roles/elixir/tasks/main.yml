@@ -21,3 +21,23 @@
       Plug 'mhinz/vim-mix-format'
     insertbefore: "call plug#end()"
   tags: [ config, neovim ]
+
+- name: install CoC extension
+  shell: |
+    nvim +"CocInstall -sync coc-elixir|qa" --headless
+  tags: [ config, neovim ]
+
+- name: build ElixirLS
+  shell: |
+    git clone https://github.com/elixir-lsp/elixir-ls.git ~/.elixir-ls
+    cd ~/.elixir-ls
+    mix deps.get && mix compile && mix elixir_ls.release -o release
+  tags: [ config, neovim ]
+
+- name: point CoC to the locally built ElixirLS
+  lineinfile:
+    dest: "{{ ansible_env.HOME }}/.config/nvim/coc-settings.json"
+    create: yes
+    # Cannot use ansible_env.HOME here. Jinja breaks the JSON by converting double quotes to single
+    line: '{"elixir.pathToElixirLS": "~/.elixir-ls/release/language_server.sh"}'
+  tags: [ config, neovim ]
