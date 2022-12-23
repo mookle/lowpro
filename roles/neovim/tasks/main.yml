@@ -13,42 +13,40 @@
     state: directory
   loop:
     - "{{ neovim_config_dir }}"
-    - "{{ neovim_config_dir }}/ftplugin"
     - "{{ neovim_config_dir }}/after/ftplugin"
-    - "{{ neovim_plugin_dir }}"
-    - "{{ neovim_vim_plug_dir }}"
   tags: [ config ]
 
-- name: copy main config file
-  template:
-    src: templates/init.vim.j2
-    dest: "{{ neovim_config_dir }}/init.vim"
-  tags: [ config ]
-
-- name: copy filetype-specific config
+- name: copy config
   copy:
-    src: files/ftplugin
+    src: "files/config/" # trailing slash means contents get copied, not the dir itself
     dest: "{{ neovim_config_dir }}"
   tags: [ config ]
 
-- name: install vim-plug
-  get_url:
-    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    dest: "{{ neovim_vim_plug_dir }}/plug.vim"
-  tags: [ config ]
-
-- name: install plugins
-  shell: nvim +PlugInstall +qall &
-  tags: [ config ]
-
-# FZF added via plugin
-- name: add FZF to fish
-  copy:
-    src: fzf.fish
-    dest: "{{ ansible_env.HOME }}/.config/fish/conf.d/fzf.fish"
-  when: shell == "fish"
-  tags: [ config, fish ]
+    #- name: install plugins
+    #shell: nvim +PackerSync +qall &
+    #tags: [ config ]
 
 - name: update git to use neovim
   shell: git config --global core.editor nvim
   tags: [ config ]
+
+- name: import vars from role
+  include_vars:
+    file: defaults/main.yml
+    name: tmp_vars
+  tags: always
+
+- name: set facts for later roles
+  set_fact:
+    neovim_plugin_file: "{{ tmp_vars['neovim_config_dir'] }}/lua/plugins.lua"
+    neovim_plugin_config_dir: "{{ tmp_vars['neovim_config_dir'] }}/lua/config"
+    neovim_config_dir: "{{ neovim_config_dir }}"
+  tags: always
+
+- debug:
+    var: "{{ item }}"
+  loop:
+    - neovim_config_dir
+    - neovim_plugin_file
+    - neovim_plugin_config_dir
+  tags: always

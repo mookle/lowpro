@@ -1,12 +1,14 @@
 ---
 
 - name: install rustup
-  shell: "{{ rustup_installer }}"
+  shell: |
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y -q --no-modify-path
 
 - name: add Cargo to PATH via fish
   copy:
-    src: rust.fish
+    src: files/rust.fish
     dest: "{{ ansible_env.HOME }}/.config/fish/conf.d/rust.fish"
+      #dest: "{{ fish_config_dir }}"
   when: shell == "fish"
   tags: [ config, fish ]
 
@@ -29,27 +31,31 @@
   when: version != "default"
   tags: [ config ]
 
-- name: add plugin to init.vim
-  blockinfile:
-    dest: "{{ ansible_env.HOME }}/.config/nvim/init.vim"
-    marker: "\" {mark} ANSIBLE BLOCK: Rust integration"
-    block: |
-      Plug 'rust-lang/rust.vim'
-    insertbefore: "call plug#end()"
-  tags: [ config, neovim ]
-
-- name: install RLS components
+- name: install LSP server
   command: |
-    rustup component add rls rust-analysis rust-src
+    rustup component add rust-analyzer
   tags: [ config, neovim ]
 
-- name: install CoC RLS extension
-  shell: |
-    nvim +"CocInstall -sync coc-rls|qa" --headless
+- name: add plugin to Neovim
+  blockinfile:
+    dest: "{{ neovim_plugin_file }}"
+    marker: "-- {mark} ANSIBLE BLOCK: Rust integration"
+    block: |
+      use {
+        'simrat39/rust-tools.nvim',
+          config = [[ require('config.rust-tools') ]],
+      }
+    insertafter: "-- [ANSIBLE HOOK]"
   tags: [ config, neovim ]
 
-- name: copy neovim filetype config
+- name: copy plugin config
+  copy:
+    src: files/rust-tools.lua
+    dest: "{{ neovim_plugin_config_dir }}"
+  tags: [ config, neovim ]
+
+- name: copy filetype config 
   copy:
     src: files/ftplugin.vim
-    dest: "{{ ansible_env.HOME }}/.config/nvim/ftplugin/rust.vim"
+    dest: "{{ neovim_config_dir }}/after/ftplugin/rust.vim"
   tags: [ config, neovim ]

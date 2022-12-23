@@ -1,5 +1,3 @@
 ---
 
 neovim_config_dir: "{{ ansible_env.HOME }}/.config/nvim"
-neovim_plugin_dir: "{{ neovim_config_dir }}/plugged"
-neovim_vim_plug_dir: "{{ neovim_config_dir }}/autoload"
