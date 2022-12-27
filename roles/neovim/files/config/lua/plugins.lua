@@ -29,7 +29,10 @@ packer.startup(function(use)
         config = [[ require('config.hop') ]],
     }
     -- inline git diff
-    use 'airblade/vim-gitgutter'
+    use {
+        'airblade/vim-gitgutter',
+        config = [[ require('config.vim-gitgutter') ]],
+    }
     -- lightweight status line
     use {
         'nvim-lualine/lualine.nvim',
