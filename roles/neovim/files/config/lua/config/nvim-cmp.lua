@@ -46,9 +46,5 @@ cmp.setup {
         { name = "vsnip" },
         { name = "path" },
         { name = "buffer" },
-        { name = "elixir" },
-        { name = "clojure" },
-        { name = "scala" },
-        { name = "rust" },
     },
 }

@@ -39,6 +39,7 @@
     neovim_plugin_file: "{{ tmp_vars['neovim_config_dir'] }}/lua/plugins.lua"
     neovim_plugin_config_dir: "{{ tmp_vars['neovim_config_dir'] }}/lua/config"
     neovim_config_dir: "{{ neovim_config_dir }}"
+    neovim_nvim_cmp_config_file: "{{ tmp_vars['neovim_config_dir'] }}/lua/config/nvim-cmp.lua"
   tags: always
 
 - debug:
@@ -47,4 +48,5 @@
     - neovim_config_dir
     - neovim_plugin_file
     - neovim_plugin_config_dir
+    - neovim_nvim_cmp_config_file
   tags: always

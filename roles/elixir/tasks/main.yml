@@ -40,3 +40,14 @@
     src: files/ftplugin.vim
     dest: "{{ neovim_config_dir }}/after/ftplugin/elixir.vim"
   tags: [ config, neovim ]
+
+- name: add Elixir source to nvim-cmp config
+  blockinfile:
+    dest: "{{ neovim_nvim_cmp_config_file }}"
+    marker: "-- {mark} ANSIBLE BLOCK: Elixir integration"
+    block: |4
+                { name = "elixir" },
+    insertafter: "sources = {"
+  tags: [ config, neovim ]
+  notify:
+    - update Neovim plugins

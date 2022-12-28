@@ -63,3 +63,14 @@
     src: files/ftplugin.vim
     dest: "{{ neovim_config_dir }}/after/ftplugin/rust.vim"
   tags: [ config, neovim ]
+
+- name: add Rust source to nvim-cmp config
+  blockinfile:
+    dest: "{{ neovim_nvim_cmp_config_file }}"
+    marker: "-- {mark} ANSIBLE BLOCK: Rust integration"
+    block: |4
+                { name = "rust" },
+    insertafter: "sources = {"
+  tags: [ config, neovim ]
+  notify:
+    - update Neovim plugins
