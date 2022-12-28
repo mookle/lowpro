@@ -40,12 +40,12 @@
   blockinfile:
     dest: "{{ neovim_plugin_file }}"
     marker: "-- {mark} ANSIBLE BLOCK: Rust integration"
-    block: |
-      use {
-        'simrat39/rust-tools.nvim',
-          config = [[ require('config.rust-tools') ]],
-      }
-    insertafter: "-- [ANSIBLE HOOK]"
+    block: |4
+        use {
+          'simrat39/rust-tools.nvim',
+            config = [[ require('config.rust-tools') ]],
+        }
+    insertbefore: 'end\) -- END plugins'
   tags: [ config, neovim ]
   notify:
     - update Neovim plugins

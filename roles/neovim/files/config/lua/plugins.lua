@@ -105,9 +105,7 @@ packer.startup(function(use)
         config = [[ require('config.onedark') ]],
     }
     use 'srcery-colors/srcery-vim'
-
--- [ANSIBLE HOOK]
-end)
+end) -- END plugins
 
 -- the first run will install packer and our plugins
 if packer_installed then
