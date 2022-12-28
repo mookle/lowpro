@@ -47,12 +47,16 @@
       }
     insertafter: "-- [ANSIBLE HOOK]"
   tags: [ config, neovim ]
+  notify:
+    - update Neovim plugins
 
 - name: copy plugin config
   copy:
     src: files/rust-tools.lua
     dest: "{{ neovim_plugin_config_dir }}"
   tags: [ config, neovim ]
+  notify:
+    - update Neovim plugins
 
 - name: copy filetype config 
   copy:

@@ -1,0 +1,5 @@
+---
+
+- name: update Neovim plugins
+  shell: nvim +PackerSync +qall &
+  listen: update Neovim plugins
