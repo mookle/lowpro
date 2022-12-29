@@ -1,0 +1,3 @@
+-- Hmm somewhat odd to have the lspconfig setup being done here: no guarantee
+-- it's even installed...
+require('lspconfig').clojure_lsp.setup({}) 

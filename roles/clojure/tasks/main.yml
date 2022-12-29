@@ -24,25 +24,53 @@
     dest: "{{ lein_config_dir }}/profiles.clj"
   tags: [ config ]
 
-- name: copy neovim filetype config
+      # Plug 'clojure-vim/clojure.vim'
+
+- name: add plugins to Neovim
+  blockinfile:
+    dest: "{{ neovim_plugin_file }}"
+    marker: "-- {mark} ANSIBLE BLOCK: Clojure integration"
+    block: |4
+        -- interactive evaluation
+        use {
+          'Olical/conjure',
+          tag = 'v4.41.0',
+        }
+        -- utilities for working with s-expressions
+        use {
+          'guns/vim-sexp',
+          {
+            'tpope/vim-sexp-mappings-for-regular-people',
+            after = 'vim-sexp',
+            requires = 'vim-sexp',
+          }
+        }
+    insertbefore: 'end\) -- END plugins'
+  tags: [ config, neovim ]
+  notify:
+    - update Neovim plugins
+
+      #- name: copy plugin config
+      #copy:
+      #src: files/rust-tools.lua
+      #dest: "{{ neovim_plugin_config_dir }}"
+      #tags: [ config, neovim ]
+      #notify:
+      #- update Neovim plugins
+
+- name: copy filetype config 
   copy:
     src: files/ftplugin.vim
-    dest: "{{ ansible_env.HOME }}/.config/nvim/ftplugin/clojure.vim"
+    dest: "{{ neovim_config_dir }}/after/ftplugin/clojure.vim"
   tags: [ config, neovim ]
 
-- name: add plugin to init.vim
+- name: add Clojure source to nvim-cmp config
   blockinfile:
-    dest: "{{ ansible_env.HOME }}/.config/nvim/init.vim"
-    marker: "\" {mark} ANSIBLE BLOCK: Clojure integration"
-    block: |
-      Plug 'clojure-vim/clojure.vim'
-      Plug 'tpope/vim-sexp-mappings-for-regular-people'
-      Plug 'guns/vim-sexp'
-      Plug 'Olical/conjure'
-    insertbefore: "call plug#end()"
+    dest: "{{ neovim_nvim_cmp_config_file }}"
+    marker: "-- {mark} ANSIBLE BLOCK: Clojure integration"
+    block: |4
+                { name = "clojure" },
+    insertafter: "sources = {"
   tags: [ config, neovim ]
-
-- name: install CoC extension
-  shell: |
-    nvim +"CocInstall -sync coc-conjure|qa" --headless
-  tags: [ config, neovim ]
+  notify:
+    - update Neovim plugins

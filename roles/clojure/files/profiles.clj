@@ -1,2 +1,2 @@
-{:user {:dependencies [[cljfmt "0.5.1"]]
-        :plugins [[venantius/ultra "0.4.1"]]}}
+{:user {:dependencies [[cljfmt "0.9.0"]]
+        :plugins [[venantius/ultra "0.6.0"]]}}
