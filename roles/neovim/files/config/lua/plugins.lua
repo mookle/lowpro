@@ -85,6 +85,8 @@ packer.startup(function(use)
     }
     -- snippets
     use 'hrsh7th/vim-vsnip'
+    -- highlight trailing whitespace
+    use 'ntpeters/vim-better-whitespace'
     -- colorschemes
     use {
         'Shatur/neovim-ayu',
