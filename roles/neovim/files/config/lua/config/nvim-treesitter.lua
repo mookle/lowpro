@@ -13,6 +13,9 @@ require('nvim-treesitter.configs').setup {
         "godot_resource",
         "scala",
         "yaml",
+        "vim",
+        "help",
+        "c",
     },
     auto_install = true,
     highlight = {
