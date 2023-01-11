@@ -29,7 +29,7 @@
   when: omf_installed.stat.exists == False
   tags: [ config ]
 
-- name: register fish path as a variable
+- name: register fish_path variable
   shell: "which fish"
   register: fish_path
   tags: [ config ]

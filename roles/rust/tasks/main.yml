@@ -3,6 +3,8 @@
 - name: install rustup
   shell: |
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y -q --no-modify-path
+  args:
+    creates: "{{ ansible_env.HOME }}/.cargo/bin/rustup"
 
 - name: add Cargo to PATH via fish
   copy:
@@ -23,6 +25,8 @@
 
 - name: install toolchain
   shell: "rustup toolchain install {{ version }}"
+  args:
+    creates: "{{ ansible_env.HOME }}/.cargo/bin/rustc"
   when: version != "default"
   tags: [ config ]
 
@@ -34,6 +38,8 @@
 - name: install LSP server
   command: |
     rustup component add rust-analyzer
+  args:
+    creates: "{{ ansible_env.HOME }}/.cargo/bin/rust-analyzer"
   tags: [ config, neovim ]
 
 - name: add plugin to Neovim
@@ -58,7 +64,7 @@
   notify:
     - update Neovim plugins
 
-- name: copy filetype config 
+- name: copy filetype config
   copy:
     src: files/ftplugin.vim
     dest: "{{ neovim_config_dir }}/after/ftplugin/rust.vim"

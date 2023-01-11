@@ -9,7 +9,13 @@
   shell: |
     git clone --depth 1 --branch {{ elixir_ls_version }} https://github.com/elixir-lsp/elixir-ls.git {{ elixir_ls_dir }}
     cd {{ elixir_ls_dir }}
-    mix deps.get && mix compile && mix elixir_ls.release -o {{ elixir_ls_build_dir }}
+    mix local.hex --force
+    mix local.rebar --force
+    mix deps.get
+    mix compile
+    mix elixir_ls.release -o {{ elixir_ls_build_dir }}
+  args:
+    creates: "{{ elixir_ls }}"
   tags: [ config, neovim ]
 
 - name: add plugin to Neovim
@@ -35,7 +41,7 @@
   notify:
     - update Neovim plugins
 
-- name: copy filetype config 
+- name: copy filetype config
   copy:
     src: files/ftplugin.vim
     dest: "{{ neovim_config_dir }}/after/ftplugin/elixir.vim"
