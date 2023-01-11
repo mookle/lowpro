@@ -8,4 +8,4 @@ require("oil").setup({
     },
 })
 
-require('utils').map('n', 'f.', ':Oil<CR>')
+require('utils').map('n', '<space>.', ':Oil<CR>')
