@@ -45,9 +45,9 @@ packer.startup(function(use)
         run = ':TSUpdate',
     }
     -- file browser for basic fs operations
-    use {
-        { 'lambdalisue/fern.vim', config = [[ require('config.fern') ]] },
-        { 'lambdalisue/fern-hijack.vim', after = 'fern.vim' },
+     use {
+        'stevearc/oil.nvim',
+        config = [[ require('config.oil_nvim') ]]
     }
     -- string/token wrapping
     use { 
