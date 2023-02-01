@@ -12,7 +12,7 @@ end
 local packer_installed = install_packer()
 
 local packer = require('packer')
- 
+
 packer.startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
@@ -50,7 +50,7 @@ packer.startup(function(use)
         config = [[ require('config.oil_nvim') ]]
     }
     -- string/token wrapping
-    use { 
+    use {
         'tpope/vim-surround',
         { 'tpope/vim-repeat', after = 'vim-surround' }
     }
@@ -59,8 +59,7 @@ packer.startup(function(use)
     use('pearofducks/ansible-vim')
     use('ekalinin/Dockerfile.vim')
     use('ericpruitt/tmux.vim')
-    use('habamax/vim-godot')
-    -- LSP client 
+    -- LSP client
     use {
         "neovim/nvim-lspconfig",
         {
@@ -87,6 +86,11 @@ packer.startup(function(use)
     use 'hrsh7th/vim-vsnip'
     -- highlight trailing whitespace
     use 'ntpeters/vim-better-whitespace'
+    -- Godot integration
+    use {
+        'habamax/vim-godot',
+        config = [[ require('config.vim-godot') ]],
+    }
     -- colorschemes
     use {
         'Shatur/neovim-ayu',
