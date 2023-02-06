@@ -42,6 +42,8 @@ return {
                 { name = "path" },
                 { name = "buffer" },
                 { name = "snippy" },
+                { name = "elixir" },
+                { name = "rust" },
             },
         }
     end,

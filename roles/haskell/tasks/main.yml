@@ -23,9 +23,3 @@
 
 - name: install HSpec
   shell: cabal install hspec
-
-- name: copy neovim filetype config
-  copy:
-    src: files/ftplugin.vim
-    dest: "{{ ansible_env.HOME }}/.config/nvim/ftplugin/haskell.vim"
-  tags: [ config ]

@@ -2,9 +2,6 @@
 -- A lot of this config has been lifted straight from this tutorial: https://sharksforarms.dev/posts/neovim-rust/
 -- Extra bits n pieces found here: https://rsdlt.github.io/posts/rust-nvim-ide-guide-walkthrough-development-debug/
 --
-
-local rust_tools = require('rust-tools')
-
 local function on_attach(client, buffer)
     local keymap_opts = { buffer = buffer }
 
@@ -25,42 +22,38 @@ local function on_attach(client, buffer)
     -- Show diagnostic popup on cursor hover
     local diag_float_grp = vim.api.nvim_create_augroup("DiagnosticFloat", { clear = true })
     vim.api.nvim_create_autocmd("CursorHold", {
-    callback = function()
-    vim.diagnostic.open_float(nil, { focusable = false })
-    end,
-    group = diag_float_grp,
+        callback = function()
+            vim.diagnostic.open_float(nil, { focusable = false })
+        end,
+        group = diag_float_grp,
     })
 end
 
--- See https://github.com/simrat39/rust-tools.nvim#configuration
-rust_tools.setup {
-    tools = {
-        runnables = {
-            use_telescope = true,
+return {
+    "simrat39/rust-tools.nvim",
+    opts = {
+        tools = {
+            runnables = {
+                use_telescope = true,
+            },
+            inlay_hints = {
+                auto = true,
+                show_parameter_hints = false,
+                parameter_hints_prefix = "",
+                other_hints_prefix = "",
+            },
         },
-        inlay_hints = {
-            auto = true,
-            show_parameter_hints = false,
-            parameter_hints_prefix = "",
-            other_hints_prefix = "",
-        },
-    },
-    -- opts to send to nvim-lspconfig
-    -- these override the defaults set by rust-tools.nvim
-    -- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
-    server = {
-        on_attach = on_attach,
-        settings = {
-            -- to enable rust-analyzer settings visit:
-            -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
-            ["rust-analyzer"] = {
-                -- enable clippy on save
-                checkOnSave = {
-                    command = "clippy",
+        -- opts to send to nvim-lspconfig
+        -- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
+        server = {
+            on_attach = on_attach,
+            settings = {
+                ["rust-analyzer"] = {
+                    checkOnSave = {
+                        command = "clippy",
+                    },
                 },
             },
         },
     },
 }
-
-

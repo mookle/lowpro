@@ -1,0 +1,8 @@
+---
+
+- name: install LSP server
+  command: |
+    rustup component add rust-analyzer
+  args:
+    creates: "{{ ansible_env.HOME }}/.cargo/bin/rust-analyzer"
+  tags: [ config, neovim ]

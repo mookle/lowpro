@@ -6,17 +6,3 @@
     packages:
       - scala
       - sbt
-
-- name: add plugin to init.vim
-  blockinfile:
-    dest: "{{ ansible_env.HOME }}/.config/nvim/init.vim"
-    marker: "\" {mark} ANSIBLE BLOCK: Scala integration"
-    block: |
-      Plug 'derekwyatt/vim-scala'
-    insertbefore: "call plug#end()"
-  tags: [ config, neovim ]
-
-- name: install CoC extension
-  shell: |
-    nvim +"CocInstall -sync coc-metals|qa" --headless
-  tags: [ config, neovim ]

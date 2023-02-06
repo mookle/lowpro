@@ -1,0 +1,20 @@
+---
+
+- name: build Elixir LSP server
+  shell: |
+    git clone --depth 1 --branch {{ elixir_ls_version }} https://github.com/elixir-lsp/elixir-ls.git {{ elixir_ls_dir }}
+    cd {{ elixir_ls_dir }}
+    mix local.hex --force
+    mix local.rebar --force
+    mix deps.get
+    mix compile
+    mix elixir_ls.release -o {{ elixir_ls_build_dir }}
+  args:
+    creates: "{{ elixir_ls }}"
+  tags: [ config ]
+
+- name: setup elixir.nvim
+  template:
+    src: templates/elixir.lua.j2
+    dest: "{{ neovim_plugin_dir }}/elixir.lua"
+  tags: [ config ]
