@@ -16,3 +16,7 @@
 
 - name: install a decent theme
   shell: "omf install {{ omf.theme }}"
+
+- name: install git plugin
+  shell: |
+    omf install https://github.com/jhillyerd/plugin-git
