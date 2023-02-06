@@ -12,7 +12,7 @@ local options = {
     shiftwidth = 4,
     shiftround = true,
 
-    -- 
+    --
     -- Line display/behaviour
     --
     -- number: display line numbers

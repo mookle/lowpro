@@ -17,6 +17,4 @@
       loop_control:
         loop_var: lang_item
       tags: "{{ languages.keys() }}"
-  handlers:
-    - import_tasks: ../roles/neovim/handlers/main.yml
   tags: languages

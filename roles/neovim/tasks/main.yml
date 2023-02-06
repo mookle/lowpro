@@ -21,8 +21,6 @@
     src: "files/config/" # trailing slash means contents get copied, not the dir itself
     dest: "{{ neovim_config_dir }}"
   tags: [ config ]
-  notify:
-    - update Neovim plugins
 
 - name: update git to use neovim
   shell: git config --global core.editor nvim

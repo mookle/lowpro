@@ -30,16 +30,12 @@
         }
     insertbefore: 'end\) -- END plugins'
   tags: [ config, neovim ]
-  notify:
-    - update Neovim plugins
 
 - name: copy plugin config
   template:
     src: templates/elixir_nvim.j2
     dest: "{{ neovim_plugin_config_dir }}/elixir_nvim.lua"
   tags: [ config, neovim ]
-  notify:
-    - update Neovim plugins
 
 - name: copy filetype config
   copy:
@@ -55,5 +51,3 @@
                 { name = "elixir" },
     insertafter: "sources = {"
   tags: [ config, neovim ]
-  notify:
-    - update Neovim plugins
