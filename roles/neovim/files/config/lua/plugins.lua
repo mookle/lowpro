@@ -82,8 +82,13 @@ packer.startup(function(use)
         after = 'hrsh7th/nvim-cmp',
         requires = 'hrsh7th/nvim-cmp',
     }
-    -- snippets
-    use 'hrsh7th/vim-vsnip'
+    -- snippet framework
+    use {
+        'dcampos/nvim-snippy',
+        'dcampos/cmp-snippy',
+        'honza/vim-snippets',
+        config = [[ require('config.snippy') ]],
+    }
     -- highlight trailing whitespace
     use 'ntpeters/vim-better-whitespace'
     -- Godot integration

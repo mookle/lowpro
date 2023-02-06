@@ -19,7 +19,7 @@ cmp.setup {
     preselect = cmp.PreselectMode.None,
     snippet = {
         expand = function(args)
-        vim.fn["vsnip#anonymous"](args.body)
+            require("snippy").expand_snippet(args.body)
         end,
     },
     mapping = {
@@ -43,8 +43,8 @@ cmp.setup {
     },
     sources = {
         { name = "nvim_lsp" },
-        { name = "vsnip" },
         { name = "path" },
         { name = "buffer" },
+        { name = "snippy" },
     },
 }
