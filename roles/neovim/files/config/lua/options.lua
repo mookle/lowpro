@@ -19,11 +19,13 @@ local options = {
     -- numberwidth: min column width for number gutter
     -- scrolloff: number of lines to display either side of the cursor
     -- cursorline: highlight the current line
+    -- signcolumn: auto-expand/shrink the sign column; max 2 columns
     --
     number = true,
     numberwidth = 2,
     scrolloff = 12,
     cursorline = true,
+    signcolumn = "auto:2",
 
     --
     -- Searching
@@ -49,7 +51,7 @@ local options = {
     -- foldmethod: how folds are determined
     -- foldlevel: how many levels before folds are closed
     --
-    foldmethod = 'syntax',
+    foldmethod = "syntax",
     foldlevel = 3,
 
     --
@@ -68,4 +70,4 @@ for k,v in pairs(options) do
     vim.opt[k] = v
 end
 
-vim.o.background = 'dark'
+vim.o.background = "dark"

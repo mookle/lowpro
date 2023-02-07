@@ -17,6 +17,14 @@ return {
             }
         },
     },
+    -- highlight todo comments
+    {
+        "folke/todo-comments.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
+        config = true,
+    },
     -- colorschemes
     { "srcery-colors/srcery-vim" },
     {
