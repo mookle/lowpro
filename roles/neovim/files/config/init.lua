@@ -13,3 +13,6 @@ vim.opt.rtp:prepend(lazypath)
 
 require("options")
 require("lazy").setup("plugins")
+
+vim.o.background = "dark"
+vim.cmd("colorscheme rose-pine")
