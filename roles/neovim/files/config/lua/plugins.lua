@@ -56,4 +56,6 @@ return {
     },
     -- highlight trailing whitespace
     { 'ntpeters/vim-better-whitespace' },
+    -- dynamic column limit display
+    { 'Bekaboo/deadcolumn.nvim' },
 }

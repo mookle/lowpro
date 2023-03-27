@@ -26,6 +26,7 @@ local options = {
     scrolloff = 12,
     cursorline = true,
     signcolumn = "auto:2",
+    colorcolumn = "80",
 
     --
     -- Searching
