@@ -6,7 +6,7 @@
 -- +++ b/lua/telescope/pickers/layout_strategies.lua
 -- @@ -348,7 +348,7 @@ layout_strategies.horizontal = make_documented_layout(
 --      results.height = height - prompt.height - h_space
---  
+--
 --      if self.previewer then
 -- -      preview.height = height - 2 * bs
 -- +      preview.height = height - 3 * bs
@@ -56,7 +56,7 @@ return {
             oldfiles = no_titles,
         },
     },
-    config = function()
+    config = function(args)
         local map = require("utils").map
         local builtin = require("telescope.builtin")
         args.opts.defaults.mappings = {
