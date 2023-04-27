@@ -11,15 +11,17 @@
     state: directory
   tags: [ config ]
 
-- name: copy config files
+- name: copy config file
   copy:
-    src: "files/{{ item }}"
-    dest: "{{ tmux_config_dir }}/{{ item }}"
-  loop:
-    - .tmux.conf
-    - tmux-256color.terminfo
+    src: files/tmux.conf
+    dest: "{{ tmux_config_dir }}/tmux.conf"
   tags: [ config ]
 
-- name: install terminfo
-  command: "tic {{ tmux_config_dir }}/tmux-256color.terminfo"
-  tags: [ config ]
+- name: install plugin manager
+  git:
+    repo: https://github.com/tmux-plugins/tpm
+    dest: "{{ tpm_install_dir }}"
+
+- name: install plugins
+  shell: |
+    {{ tpm_install_dir }}/bin/install_plugins
