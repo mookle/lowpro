@@ -6,17 +6,6 @@ return {
             "tpope/vim-repeat"
         },
     },
-    -- LSP client
-    {
-        "neovim/nvim-lspconfig",
-        dependencies = {
-            -- visual LSP loading/progress
-            {
-                "j-hui/fidget.nvim",
-                config = true,
-            }
-        },
-    },
     -- colorschemes
     {
         "atelierbram/Base2Tone-nvim",
