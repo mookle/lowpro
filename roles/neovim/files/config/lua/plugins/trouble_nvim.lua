@@ -16,6 +16,6 @@ return {
             vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
         end
 
-        require("utils").map("n", "<space>t", "<cmd>TroubleToggle<cr>")
+        require("utils").map("n", "<space>d", "<cmd>TroubleToggle<cr>")
     end,
 }
