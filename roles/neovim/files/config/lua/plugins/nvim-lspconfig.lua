@@ -4,6 +4,7 @@ return {
         -- visual LSP loading/progress
         {
             "j-hui/fidget.nvim",
+            tag = "legacy",
             config = true,
         },
         -- LSP breadcrumbs / jump points
