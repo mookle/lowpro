@@ -8,8 +8,20 @@ return {
     },
     -- colorschemes
     {
-        "atelierbram/Base2Tone-nvim",
-        "no-clown-fiesta/no-clown-fiesta.nvim",
+        {
+            "mcchrish/zenbones.nvim",
+            dependencies = {
+                "rktjmp/lush.nvim",
+            },
+            config = function()
+                --vim.g.neobones_darkness = 'warm'
+                vim.g.neobones_lighten_noncurrent_window = true
+                vim.g.rosebones_darkness = 'stark'
+                vim.g.rosebones_lighten_noncurrent_window = true
+                vim.g.zenwritten_darkness = 'warm'
+                vim.g.zenwritten_lighten_noncurrent_window = true
+            end,
+        },
         "Rigellute/rigel",
         "sainnhe/gruvbox-material",
         "srcery-colors/srcery-vim",
