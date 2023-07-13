@@ -30,6 +30,5 @@
   include_tasks:
     file: "{{ item }}.yml"
   loop:
-    - elixir
     - rust
   tags: [ config ]

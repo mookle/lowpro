@@ -3,8 +3,3 @@
 neovim_config_dir: "{{ ansible_env.HOME }}/.config/nvim"
 neovim_plugin_dir: "{{ neovim_config_dir }}/lua/plugins"
 neovim_plugin_file: "{{ neovim_config_dir }}/lua/plugins.lua"
-
-elixir_ls_version: "v0.12.0"
-elixir_ls_build_dir: "release"
-elixir_ls_dir: "{{ ansible_env.HOME }}/.elixir-ls"
-elixir_ls: "{{ elixir_ls_dir }}/{{ elixir_ls_build_dir }}/language_server.sh"
