@@ -1,0 +1,27 @@
+---
+
+- name: copy desktop files
+  copy:
+    src: "{{ kitty_install_path }}/kitty.app/share/applications/{{ item }}"
+    dest: "{{ ansible_env.HOME }}/.local/share/applications/{{ item }}"
+  loop:
+    - kitty.desktop
+    - kitty-open.desktop
+
+- name: update icon paths
+  replace:
+    path: "{{ ansible_env.HOME }}/.local/share/applications/{{ item }}"
+    regexp: 'Icon=kitty'
+    replace: "Icon={{ kitty_install_path }}/kitty.app/share/icons/hicolor/256x256/apps/kitty.png"
+  loop:
+    - kitty.desktop
+    - kitty-open.desktop
+
+- name: update exec paths
+  replace:
+    path: "{{ ansible_env.HOME }}/.local/share/applications/{{ item }}"
+    regexp: 'Exec=kitty'
+    replace: "Exec={{ kitty_install_path }}/kitty.app/bin/kitty"
+  loop:
+    - kitty.desktop
+    - kitty-open.desktop
