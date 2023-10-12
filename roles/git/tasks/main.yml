@@ -16,29 +16,5 @@
   template:
     src: templates/gitconfig.j2
     dest: "{{ git_config_dir }}/.gitconfig"
-  when: git_user is defined and git_email is defined
-  tags: [ config ]
-
-- name: add shell helper function
-  blockinfile:
-    dest: "{{ shell_config_file }}"
-    create: yes
-    marker: "# {mark} ANSIBLE MANAGED BLOCK: Git helper functions"
-    block: |
-      function push() {
-        BRANCH=`git branch -l | grep "*" | sed 's/\* //'`
-        ARGS=("$@")
-        CMD="git push origin $BRANCH $ARGS"
-        print -s $CMD
-        eval $CMD
-      }
-      function pull() {
-        BRANCH=`git branch -l | grep "*" | sed 's/\* //'`
-        ARGS=("$@")
-        CMD="git pull origin $BRANCH --rebase $ARGS"
-        print -s $CMD
-        eval $CMD
-      }
-    insertafter: EOF
-  when: shell == "zsh"
+  when: git_user is defined and git_email is defined and editor is defined
   tags: [ config ]

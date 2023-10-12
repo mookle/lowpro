@@ -3,6 +3,7 @@
     email = {{ git_email }}
 [core]
     editor = {{ editor }}
+    fileMode = false
 [color]
     ui = auto
 [color "status"]
@@ -19,5 +20,8 @@
     rebase = false
 [push]
     followTags = true
+    autoSetupRemote = true
 [status]
     statusUntrackedFiles = all
+[init]
+    defaultBranch = main
