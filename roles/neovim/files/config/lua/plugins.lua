@@ -22,9 +22,6 @@ return {
                 vim.g.zenwritten_lighten_noncurrent_window = true
             end,
         },
-        "Rigellute/rigel",
-        "sainnhe/gruvbox-material",
-        "srcery-colors/srcery-vim",
         {
             'EdenEast/nightfox.nvim',
             opts = {
@@ -38,21 +35,6 @@ return {
                     }
                 }
             },
-        },
-        {
-            "rose-pine/neovim",
-            name = "rose-pine",
-            config = function()
-                require("rose-pine").setup({
-                    disable_italics = true,
-                })
-            end,
-        },
-        {
-            'Shatur/neovim-ayu',
-            config = function()
-                require("ayu").setup({ mirage = true })
-            end,
         },
     },
     -- highlight trailing whitespace
