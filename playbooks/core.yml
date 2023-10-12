@@ -6,7 +6,6 @@
   roles:
     - { role: roles/ssh, tags: ssh }
     - { role: roles/git, tags: git }
-    - { role: roles/curl, tags: curl }
     - { role: roles/tmux, tags: tmux }
     - { role: "roles/{{ editor }}", tags: "{{ editor }}" }
     - { role: roles/vagrant, tags: vagrant }

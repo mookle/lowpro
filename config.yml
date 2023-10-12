@@ -6,7 +6,9 @@ languages:
   rust: "nightly"
   elixir: ~
 extras:
-  linux: []
+  linux:
+    - curl
   macos:
+    - curl
     - watch
     - rectangle
