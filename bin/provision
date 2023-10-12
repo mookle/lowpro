@@ -37,4 +37,4 @@ if [[ ! -z $extra_vars ]]; then
     extra_vars="--extra-vars \"$extra_vars\""
 fi
 
-ansible-playbook -i hosts.yml -e @config.yml playbooks/all.yml --ask-become-pass $tags $extra_vars
+ansible-playbook -i 'localhost,' -c local -e @config.yml playbooks/all.yml --ask-become-pass $tags $extra_vars

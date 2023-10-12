@@ -6,6 +6,7 @@
   roles:
     - { role: roles/git, tags: git }
     - { role: roles/tmux, tags: tmux }
+    
     - { role: "roles/{{ editor }}", tags: "{{ editor }}" }
   tags: core
 
