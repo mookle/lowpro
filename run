@@ -27,6 +27,10 @@ case $(which_system) in
         sudo apt-get update -y
         sudo apt-get install git ansible -y
         ;;
+    Pop!_OS)
+        sudo apt update -y
+        sudo apt install git ansible -y
+        ;;
     *)
         echo 'Aborting: Unsupported operating system'
         exit 1
