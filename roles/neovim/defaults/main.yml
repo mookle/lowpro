@@ -3,3 +3,4 @@
 neovim_config_dir: "{{ ansible_env.HOME }}/.config/nvim"
 neovim_plugin_dir: "{{ neovim_config_dir }}/lua/plugins"
 neovim_plugin_file: "{{ neovim_config_dir }}/lua/plugins.lua"
+neovim_appimage_url: "https://github.com/neovim/neovim/releases/latest/download/nvim.appimage"

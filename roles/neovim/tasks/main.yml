@@ -5,6 +5,24 @@
   vars:
     packages:
       - neovim
+  when: ansible_os_family == "Darwin"
+
+- name: ensure installation directory exists
+  file:
+    path: "{{ ansible_env.HOME}}/.local/bin"
+    state: directory
+
+- name: install via appimage
+  get_url:
+    url: "{{ neovim_appimage_url }}"
+    dest: "{{ ansible_env.HOME }}/.local/bin/nvim"
+    mode: u+x
+  when: ansible_system == "Linux"
+
+- name: install ripgrep
+  include_tasks: package_manager.yml
+  vars:
+    packages:
       - ripgrep
 
 - name: ensure config directories exist
