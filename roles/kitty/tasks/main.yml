@@ -4,32 +4,5 @@
   shell: |
     curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin launch=n dest={{ kitty_install_path }}
 
-- name: add to PATH
-  file:
-    src: "{{ kitty_install_path }}//kitty.app/bin/{{ item }}"
-    dest: "{{ ansible_env.HOME }}/.local/bin/{{ item }}"
-    state: link
-  loop:
-    - kitty
-    - kitten
+- include_tasks: debian.yml
   when: ansible_os_family == 'Debian'
-  tags: [ config ]
-
-- name: ensure config directory exists
-  file:
-    path: "{{ ansible_env.HOME }}/.config/kitty"
-    state: directory
-  when: ansible_os_family == 'Debian'
-  tags: [ config ]
-
-- name: copy config
-  copy:
-    src: "files/" # trailing slash means contents get copied, not the dir itself
-    dest: "{{ ansible_env.HOME }}/.config/kitty"
-  when: ansible_os_family == 'Debian'
-  tags: [ config ]
-
-- name: integrate with Linux desktop
-  include_tasks: desktop.yml
-  when: ansible_os_family == 'Debian'
-  tags: [ config ]
