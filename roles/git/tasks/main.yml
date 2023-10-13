@@ -3,7 +3,9 @@
 - name: install via package manager
   include_tasks: package_manager.yml
   vars:
-    packages: [ git ]
+    packages:
+      - git
+      - git-lfs
 
 - name: ensure config directory exists
   file:
