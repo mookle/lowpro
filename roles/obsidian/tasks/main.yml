@@ -1,4 +1,8 @@
 ---
 
-- include_tasks: debian.yml
+- name: install via appimage
+  include_tasks: ../roles/ail/tasks/installer.yml
+  vars:
+    app_name: obsidian
+    appimage_url: "https://github.com/obsidianmd/obsidian-releases/releases/download/v1.4.14/Obsidian-1.4.14.AppImage"
   when: ansible_os_family == 'Debian'

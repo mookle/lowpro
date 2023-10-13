@@ -1,4 +1,8 @@
 ---
 
-- include_tasks: debian.yml
+- name: install via appimage
+  include_tasks: ../roles/ail/tasks/installer.yml
+  vars:
+    app_name: krita
+    appimage_url: "https://download.kde.org/stable/krita/5.2.0/krita-5.2.0-x86_64.appimage"
   when: ansible_os_family == 'Debian'

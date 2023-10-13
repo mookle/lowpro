@@ -1,0 +1,27 @@
+---
+
+# AppImageLauncher is clever enough not to install duplicates
+# but this lock prevents repeat downloads and saves time
+- name: check for installation lockfile
+  stat:
+    path: "{{ ansible_env.HOME }}/.local/state/ansible-{{ app_name }}.appimglock"
+  register: lock
+
+- name: download appimage
+  get_url:
+    url: "{{ appimage_url }}"
+    dest: "{{ ansible_env.HOME }}/{{ app_name }}.appimage"
+    mode: u+x
+  when: lock.stat.exists == false
+
+- name: integrate via AppImageLauncher
+  shell: |
+    ail-cli integrate {{ ansible_env.HOME }}/{{ app_name }}.appimage
+  when: lock.stat.exists == false
+
+- name: create lockfile
+  file:
+    path: "{{ ansible_env.HOME }}/.local/state/ansible-{{ app_name }}.appimglock"
+    state: touch
+  when: lock.stat.exists == false
+

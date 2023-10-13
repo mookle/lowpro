@@ -1,4 +1,0 @@
----
-
-krita_appimage_url: "https://download.kde.org/stable/krita/5.2.0/krita-5.2.0-x86_64.appimage"
-krita_lockfile: "{{ ansible_env.HOME }}/.local/state/ansible-krita.appimglock"

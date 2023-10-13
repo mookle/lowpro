@@ -1,4 +1,0 @@
----
-
-obsidian_appimage_url: "https://github.com/obsidianmd/obsidian-releases/releases/download/v1.4.14/Obsidian-1.4.14.AppImage"
-obsidian_lockfile: "{{ ansible_env.HOME }}/.local/state/ansible-obsidian.appimglock"
