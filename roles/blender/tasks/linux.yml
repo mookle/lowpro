@@ -1,0 +1,45 @@
+---
+
+- name: check for existing installation
+  stat:
+    path: "{{ blender_lockfile }}"
+  register: lock
+
+- name: install via tarball
+  unarchive:
+    remote_src: true
+    src: "{{ blender_tarball_url }}"
+    dest: "{{ ansible_env.HOME }}/.local"
+  when: lock.stat.exists == false
+
+- name: add to PATH
+  file:
+    src: "{{ ansible_env.HOME }}/.local/{{ blender_version }}/blender"
+    dest: "{{ ansible_env.HOME }}/.local/bin/blender"
+    state: link
+  when: lock.stat.exists == false
+
+- name: integrate with desktop
+  copy:
+    src: "{{ ansible_env.HOME }}/.local/{{ blender_version }}/blender.desktop"
+    dest: "{{ ansible_env.HOME }}/.local/share/applications/blender.desktop"
+  when: lock.stat.exists == false
+
+- name: update icon path
+  replace:
+    path: "{{ ansible_env.HOME }}/.local/share/applications/blender.desktop"
+    regexp: 'Icon=blender'
+    replace: "Icon={{ ansible_env.HOME }}/.local/{{ blender_version }}/blender.svg"
+  when: lock.stat.exists == false
+
+- name: add exec path
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.local/share/applications/blender.desktop"
+    line: "Exec={{ ansible_env.HOME }}/.local/bin/blender"
+  when: lock.stat.exists == false
+
+- name: create lockfile
+  file:
+    path: "{{ blender_lockfile }}"
+    state: touch
+  when: lock.stat.exists == false

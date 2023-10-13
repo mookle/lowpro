@@ -1,0 +1,4 @@
+---
+
+- include_tasks: linux.yml
+  when: ansible_system == 'Linux'
