@@ -3,6 +3,8 @@
 - name: install additional packages
   hosts: localhost
   connection: local
+  roles:
+    - { role: roles/obsidian, tags: obsidian }
   tasks:
     - name: macOS packages
       include_tasks: ../tasks/package_manager.yml
