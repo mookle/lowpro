@@ -2,7 +2,7 @@
 
 - name: add to PATH
   file:
-    src: "{{ kitty_install_path }}//kitty.app/bin/{{ item }}"
+    src: "{{ kitty_install_path }}/kitty.app/bin/{{ item }}"
     dest: "{{ ansible_env.HOME }}/.local/bin/{{ item }}"
     state: link
   loop:
