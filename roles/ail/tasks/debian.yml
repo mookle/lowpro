@@ -23,5 +23,6 @@
   copy:
     src: "files/appimagelauncher.cfg"
     dest: "{{ ansible_env.HOME }}/.config/appimagelauncher.cfg"
+    force: false
   tags: [ config ]
 
