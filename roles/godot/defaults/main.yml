@@ -1,0 +1,5 @@
+---
+
+godot_version: "4.1.2-stable"
+godot_archive_url: "https://github.com/godotengine/godot/releases/download/{{ godot_version }}/Godot_v{{ godot_version }}_linux.x86_64.zip"
+godot_lockfile: "{{ ansible_env.HOME }}/.local/state/ansible-godot.lock"

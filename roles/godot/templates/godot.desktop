@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=Godot
+GenericName=Game engine
+Comment=Cross-platform game engine for 2D and 3D
+Keywords=3d;2d;game engine;
+Exec={{ ansible_env.HOME }}/.local/bin/godot
+Icon={{ ansible_env.HOME }}/.local/godot/icon.svg
+Terminal=false
+Type=Application
+PrefersNonDefaultGPU=true
+X-KDE-RunOnDiscreteGpu=true
+Categories=Graphics;3DGraphics;
+MimeType=application/x-godot;

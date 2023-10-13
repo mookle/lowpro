@@ -1,0 +1,44 @@
+---
+
+- name: check for existing installation
+  stat:
+    path: "{{ godot_lockfile }}"
+  register: lock
+
+- name: create installation directory
+  file:
+    path: "{{ ansible_env.HOME }}/.local/godot"
+    state: directory
+  when: lock.stat.exists == false
+
+- name: install via archive
+  unarchive:
+    remote_src: true
+    src: "{{ godot_archive_url }}"
+    dest: "{{ ansible_env.HOME }}/.local/godot"
+  when: lock.stat.exists == false
+
+- name: add to PATH
+  file:
+    src: "{{ ansible_env.HOME }}/.local/godot/Godot_v{{ godot_version }}_linux.x86_64"
+    dest: "{{ ansible_env.HOME }}/.local/bin/godot"
+    state: link
+  when: lock.stat.exists == false
+
+- name: integrate with desktop
+  template:
+    src: templates/godot.desktop
+    dest: "{{ ansible_env.HOME }}/.local/share/applications/godot.desktop"
+  when: lock.stat.exists == false
+
+- name: copy icon
+  copy:
+    src: files/icon.svg
+    dest: "{{ ansible_env.HOME }}/.local/godot/"
+  when: lock.stat.exists == false
+
+- name: create lockfile
+  file:
+    path: "{{ godot_lockfile }}"
+    state: touch
+  when: lock.stat.exists == false

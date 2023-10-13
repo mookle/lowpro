@@ -7,6 +7,7 @@
     - { role: roles/obsidian, tags: obsidian }
     - { role: roles/krita, tags: krita }
     - { role: roles/blender, tags: blender }
+    - { role: roles/godot, tags: godot }
   tasks:
     - name: macOS packages
       include_tasks: ../tasks/package_manager.yml
