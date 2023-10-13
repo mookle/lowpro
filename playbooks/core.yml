@@ -7,6 +7,7 @@
     - { role: roles/git, tags: git }
     - { role: roles/tmux, tags: tmux }
     - { role: roles/kitty, tags: kitty }
+    - { role: "roles/ail", tags: "ail" }
     - { role: "roles/{{ editor }}", tags: "{{ editor }}" }
   tags: core
 

@@ -3,7 +3,7 @@
 - apt:
     name: "{{ item }}"
     state: present
-    update_cache: yes
+    update_cache: true
   loop: "{{ packages }}"
   become: true
   when: ansible_os_family == "Debian"
@@ -11,7 +11,7 @@
 - pacman:
     name: "{{ item }}"
     state: present
-    update_cache: yes
+    update_cache: true
   loop: "{{ packages }}"
   become: true
   when: ansible_os_family == "Archlinux"

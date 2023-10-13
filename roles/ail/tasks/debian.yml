@@ -1,0 +1,27 @@
+---
+
+- name: install via package manager
+  include_tasks: package_manager.yml
+  vars:
+    packages:
+      - software-properties-common
+
+- name: add appimagelauncher ppa to system
+  apt_repository:
+    validate_certs: no
+    repo: 'ppa:appimagelauncher-team/stable'
+    state: present
+  become: true
+
+- name: install via package manager
+  include_tasks: package_manager.yml
+  vars:
+    packages:
+      - appimagelauncher
+
+- name: copy config
+  copy:
+    src: "files/appimagelauncher.cfg"
+    dest: "{{ ansible_env.HOME }}/.config/appimagelauncher.cfg"
+  tags: [ config ]
+
