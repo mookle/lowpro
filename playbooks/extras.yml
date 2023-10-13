@@ -5,6 +5,7 @@
   connection: local
   roles:
     - { role: roles/obsidian, tags: obsidian }
+    - { role: roles/krita, tags: krita }
   tasks:
     - name: macOS packages
       include_tasks: ../tasks/package_manager.yml
