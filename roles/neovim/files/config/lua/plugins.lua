@@ -36,6 +36,17 @@ return {
                 }
             },
         },
+        {
+            "sainnhe/gruvbox-material",
+            config = function()
+                vim.o.background = "dark" -- dark|light
+                vim.g.gruvbox_material_background = "medium" -- hard|medium|soft
+                vim.g.gruvbox_material_foreground = "material" -- material|mix|original
+                vim.g.gruvbox_material_better_performance = 1
+                vim.g.gruvbox_material_enable_bold = 1
+                vim.g.gruvbox_material_enable_italic = 1
+            end,
+        },
     },
     -- highlight trailing whitespace
     { 'ntpeters/vim-better-whitespace' },
