@@ -15,7 +15,7 @@ return {
             "scala",
             "yaml",
             "vim",
-            "help",
+            "vimdoc",
             "c",
         },
         auto_install = true,
