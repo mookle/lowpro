@@ -15,4 +15,4 @@ require("options")
 require("lazy").setup("plugins")
 
 vim.o.background = "dark"
-vim.cmd("colorscheme terafox")
+vim.cmd("colorscheme nordic")
