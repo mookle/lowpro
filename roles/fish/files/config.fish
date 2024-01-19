@@ -10,4 +10,4 @@ bind \e\[A 'history --merge ; up-or-search'
 set -gx EDITOR /usr/bin/nvim
 set -gx VISUAL /usr/bin/nvim
 
-alias ll='ls -lahF'
+alias ll='ls -lAhv'
