@@ -2,9 +2,9 @@ return {
     "nvim-lualine/lualine.nvim",
     opts = {
         options = {
-            section_separators = { left = '', right = '' },
-            component_separators = '|'
-
+            section_separators = { left = '', right = '' },
+            component_separators = '/',
+            globalstatus = true,
         },
         sections = {
             lualine_a = {
@@ -13,8 +13,8 @@ return {
             lualine_b = {
                 { 'filename', newfile_status = true, path = 3 }
             },
-            lualine_c = { 'branch', 'diff', 'diagnostics' },
-            lualine_x = { 'filetype', 'encoding' },
+            lualine_x = { 'diagnostics' },
+            lualine_x = { 'branch',  'diff' },
             lualine_y = { 'progress' },
             lualine_z = {
                 { 'location', padding = { left = 1, right = 2 }},
