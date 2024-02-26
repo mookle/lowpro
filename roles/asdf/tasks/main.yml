@@ -14,23 +14,6 @@
     update: no
     force: yes
 
-- name: add config (inc completions) to Zsh
-  blockinfile:
-    dest: "{{ shell_config_file }}"
-    create: yes
-    insertafter: EOF
-    marker: "# {mark} ANSIBLE MANAGED BLOCK: asdf config"
-    block: |
-      . ~/.asdf/asdf.sh
-
-      # append completions to fpath
-      fpath=(${ASDF_DIR}/completions $fpath)
-
-      # initialise completions with ZSH's compinit
-      autoload -Uz compinit && compinit
-  when: shell == "zsh"
-  tags: [ config ]
-
 - name: add config (inc completions) to Fish
   blockinfile:
     dest: "{{ shell_config_file }}"

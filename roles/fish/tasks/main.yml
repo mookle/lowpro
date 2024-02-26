@@ -14,12 +14,6 @@
     - "{{ config_dir }}/conf.d"
   tags: [ config ]
 
-- name: copy config file
-  copy:
-    src: files/config.fish
-    dest: "{{ config_file }}"
-  tags: [ config ]
-
 - name: is oh-my-fish installed?
   stat:
     path: "{{ omf.install_path }}"

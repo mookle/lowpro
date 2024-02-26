@@ -41,14 +41,6 @@ echo "[INFO] Cloning lowpro repo"
 git clone https://gitlab.com/mookle/lowpro $setup_dir
 cd $setup_dir
 
-while [[ -z $git_user || -z $git_email ]]; do
-    echo "[INFO] Additional info needed to configure Git"
-    echo -n "Enter username: "
-    read git_user
-    echo -n "Enter email: "
-    read git_email
-done
-
 echo "[INFO] Running Ansible playbook"
-bin/provision -e git_email=$git_email -e git_user=$git_user
+bin/provision
 

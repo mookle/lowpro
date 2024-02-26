@@ -1,5 +1,3 @@
 ---
 
-tmux_config_dir: "{{ ansible_env.HOME }}/.config/tmux"
-tmuxinator_template_dir: "{{ ansible_env.HOME }}/.tmuxinator"
 tpm_install_dir: "{{ ansible_env.HOME }}/.tmux/plugins/tpm"

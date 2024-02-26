@@ -1,4 +1,3 @@
 ---
 
 kitty_install_path: "{{ ansible_env.HOME }}/.local"
-kitty_binary_path: "{{ kitty_install_path }}/kitty.app/bin"

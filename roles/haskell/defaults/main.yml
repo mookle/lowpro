@@ -1,3 +1,0 @@
----
-
-haskell_config_dir: "{{ ansible_env.HOME }}"

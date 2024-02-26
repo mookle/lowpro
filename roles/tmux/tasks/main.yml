@@ -5,18 +5,6 @@
   vars:
     packages: [ tmux ]
 
-- name: ensure config directory exists
-  file:
-    path: "{{ tmux_config_dir }}"
-    state: directory
-  tags: [ config ]
-
-- name: copy config file
-  copy:
-    src: files/tmux.conf
-    dest: "{{ tmux_config_dir }}/tmux.conf"
-  tags: [ config ]
-
 - name: install plugin manager
   git:
     repo: https://github.com/tmux-plugins/tpm

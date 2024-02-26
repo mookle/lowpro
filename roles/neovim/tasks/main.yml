@@ -25,21 +25,6 @@
     packages:
       - ripgrep
 
-- name: ensure config directories exist
-  file:
-    path: "{{ item }}"
-    state: directory
-  loop:
-    - "{{ neovim_config_dir }}"
-    - "{{ neovim_config_dir }}/after/ftplugin"
-  tags: [ config ]
-
-- name: copy config
-  copy:
-    src: "files/config/" # trailing slash means contents get copied, not the dir itself
-    dest: "{{ neovim_config_dir }}"
-  tags: [ config ]
-
 - name: update git to use neovim
   shell: git config --global core.editor nvim
   tags: [ config ]

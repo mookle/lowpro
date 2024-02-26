@@ -9,7 +9,7 @@ do
         -t|--tags)
             if [[ -z $tags ]]; then
                 tags="$2"
-            else 
+            else
                 tags="$tags,$2"
             fi
             shift 2

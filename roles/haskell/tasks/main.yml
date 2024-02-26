@@ -6,18 +6,6 @@
 - include_tasks: darwin.yml
   when: ansible_os_family == 'Darwin'
 
-- name: ensure config directory exists
-  file:
-    path: "{{ haskell_config_dir }}"
-    state: directory
-  tags: [ config ]
-
-- name: copy config
-  copy:
-    src: files/.ghci
-    dest: "{{ haskell_config_dir }}/.ghci"
-  tags: [ config ]
-
 - name: update cabal
   shell: cabal update
 

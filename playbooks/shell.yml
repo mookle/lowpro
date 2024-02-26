@@ -12,7 +12,7 @@
         name: tmp_shell_vars
       tags: always
 
-    - name: set facts for later roles 
+    - name: set facts for later roles
       set_fact:
         shell_config_file: "{{ tmp_shell_vars['config_file'] }}"
       tags: always

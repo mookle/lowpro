@@ -1,5 +1,0 @@
----
-
-lein_branch: stable
-lein_install_dir: /usr/local/bin
-lein_config_dir: "{{ ansible_env.HOME }}/.lein"

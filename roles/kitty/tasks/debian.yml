@@ -10,18 +10,6 @@
     - kitten
   tags: [ config ]
 
-- name: ensure config directory exists
-  file:
-    path: "{{ ansible_env.HOME }}/.config/kitty"
-    state: directory
-  tags: [ config ]
-
-- name: copy config
-  copy:
-    src: "files/" # trailing slash means contents get copied, not the dir itself
-    dest: "{{ ansible_env.HOME }}/.config/kitty"
-  tags: [ config ]
-
 - name: integrate with desktop
   include_tasks: desktop.yml
   tags: [ config ]

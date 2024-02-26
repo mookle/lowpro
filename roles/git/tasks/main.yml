@@ -6,17 +6,3 @@
     packages:
       - git
       - git-lfs
-
-- name: ensure config directory exists
-  file:
-    path: "{{ git_config_dir }}"
-    state: directory
-  when: git_user is defined and git_email is defined
-  tags: [ config ]
-
-- name: copy config file
-  template:
-    src: templates/gitconfig.j2
-    dest: "{{ git_config_dir }}/.gitconfig"
-  when: git_user is defined and git_email is defined and editor is defined
-  tags: [ config ]
