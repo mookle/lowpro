@@ -14,14 +14,19 @@
     - "{{ config_dir }}/conf.d"
   tags: [ config ]
 
-- name: is oh-my-fish installed?
-  stat:
-    path: "{{ omf.install_path }}"
-  register: omf_installed
+- name: install fisher
+  shell: |
+    source <(curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish) && fisher install jorgebucaran/fisher
+  args:
+    executable: /bin/bash
 
-- include_tasks: oh_my_fish.yml
-  when: omf_installed.stat.exists == False
-  tags: [ config ]
+- name: install plugins
+  shell: |
+    fisher install {{ item }}
+  with_items:
+    - IlanCosman/tide@v6
+    - jhillyerd/plugin-git
+  tags: [fish]
 
 - name: register fish_path variable
   shell: "which fish"
