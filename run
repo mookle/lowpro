@@ -14,28 +14,32 @@ echo "[INFO] Installing system-specific dependancies"
 case $(which_system) in
     Darwin)
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-        brew install git ansible
+        brew install git ansible wget stow
         ;;
     Manjaro)
-        sudo pacman -Sy git ansible --noconfirm
+        sudo pacman -Sy git ansible wget stow --noconfirm
         ;;
     Debian)
         sudo apt-get update -y
-        sudo apt-get install git ansible -y
+        sudo apt-get install git ansible wget stow -y
         ;;
     Ubuntu)
         sudo apt-get update -y
-        sudo apt-get install git ansible -y
+        sudo apt-get install git ansible wget stow -y
         ;;
     Pop!_OS)
         sudo apt update -y
-        sudo apt install git ansible -y
+        sudo apt install git ansible wget stow -y
         ;;
     *)
         echo 'Aborting: Unsupported operating system'
         exit 1
         ;;
 esac
+
+echo "[INFO] Installing Ansible modules"
+mkdir -p ~/.ansible/plugins/modules
+wget https://raw.githubusercontent.com/caian-org/ansible-stow/v1.1.2/stow -P ~/.ansible/plugins/modules
 
 echo "[INFO] Cloning lowpro repo"
 git clone https://gitlab.com/mookle/lowpro $setup_dir

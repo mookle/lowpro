@@ -2,3 +2,11 @@
 
 - include_tasks: debian.yml
   when: ansible_os_family == 'Debian'
+
+- name: symlink to config files
+  stow:
+    dir: "{{ role_path }}"
+    package: files
+    target: "{{ ansible_env.HOME }}/.config"
+    state: present
+  tags: [ config, stow ]

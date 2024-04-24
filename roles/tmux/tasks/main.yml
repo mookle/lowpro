@@ -13,3 +13,11 @@
 - name: install plugins
   shell: |
     {{ tpm_install_dir }}/bin/install_plugins
+
+- name: symlink to config files
+  stow:
+    dir: "{{ role_path }}"
+    package: files
+    target: "{{ ansible_env.HOME }}"
+    state: present
+  tags: [ config, stow ]
